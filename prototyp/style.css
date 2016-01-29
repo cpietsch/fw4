@@ -386,7 +386,7 @@ svg {
     /* top: 20px; */
     right: 0px;
     position: absolute;
-    width: 480px;
+    width: 500px;
     color: #2D2D2D;
     background: rgb(255, 255, 255);
     font-size: 13px;
@@ -395,7 +395,7 @@ svg {
 }
 .detail .inner {
   float: left;
-  padding: 40px;
+  padding: 50px;
 }
 
 .detail2 {
