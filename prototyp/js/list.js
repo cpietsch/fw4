@@ -331,9 +331,11 @@ function myListView() {
       //d.alpha = 0.6;
     }
 
-    svg.attr("cursor", function(){
-      return best.p ? "pointer" : "default";
+    container.style("cursor", function(){
+      return best.d < 5 ? "pointer" : "default";
     });
+
+    // console.log(best)
 
   }
 
@@ -442,7 +444,7 @@ function myListView() {
     zoom.center(center);
     
 
-    svg.attr("cursor", "pointer");
+    // svg.attr("cursor", "pointer");
 
 
     //cloud.filterWords(d.keywords);
@@ -450,6 +452,7 @@ function myListView() {
   }
 
   chart.mouseout = function(d){
+    console.log("mouseout")
     if(cloud.lock) return;
 
     //d.target.alpha = 1;
@@ -458,7 +461,7 @@ function myListView() {
     }
 
     myTooltip.hide();
-    svg.attr("cursor", "default");
+    // svg.attr("cursor", "default");
 
   }
 

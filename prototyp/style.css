@@ -30,7 +30,7 @@ body {
 
 canvas {
   position: absolute;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .splash {
@@ -381,21 +381,23 @@ svg {
 .detail {
     z-index: 100;
     height: 100%;
-    transition: right 0.2s ease-in-out;
+    transition: right 0.3s ease-out;
     box-shadow: 0 0px 56px rgba(0,0,0,0.26),0 0px 6px rgba(0,0,0,0.23);
     /* top: 20px; */
     right: 0px;
     position: absolute;
-    width: 500px;
+    width: 520px;
     color: #2D2D2D;
-    background: rgb(255, 253, 241);
+    background: rgb(255, 254, 250);
+    /* background: url("img/koenigspapier.png"); */
     font-size: 13px;
     line-height: 1.3em;
     overflow-y: scroll;
 }
 .detail .inner {
   float: left;
-  padding: 50px;
+  padding: 60px;
+  /* padding-left: 60px; */
 }
 
 .detail2 {
