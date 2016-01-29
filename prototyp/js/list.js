@@ -681,7 +681,7 @@ function myListView() {
       stage5.addChild(sprite);
     });
     // img.src = "data/bilder_4000/" + d.id + ".jpg";
-    img.src = "http://s3.eu-central-1.amazonaws.com/fw4/large/105599.jpg";
+    img.src = "data/large/105599.jpg";
 
   
   }
