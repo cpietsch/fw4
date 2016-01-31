@@ -127,13 +127,15 @@ svg {
 }
 
 .timeline .inner {
+  transform-origin: 0 0;
+  transform: scale(0.1);
   /* float: left; */
   /* left: -5%; */
-  /* width: 110%; */
+  width: 260px;
   /* margin-top: 7px; */
   /* margin-bottom: 15%; */
   /* margin-left: 4px; */
-  /* padding: 5%; */
+  padding: 15px;
   position: relative;
   /* overflow: hidden; */
   /* height: 70%; */
@@ -141,10 +143,10 @@ svg {
 
 .timeline .entries {
   /* float: left; */
-  width: 27px;
+  /* width: 27px; */
   transform-origin: 0 0;
   /* width: 10%; */
-  font-size: 1px;
+  /* font-size: 1px; */
   /* transform: scale(42); */
   /* background: #fff; */
   opacity: 0;
@@ -160,9 +162,14 @@ svg {
 .timeline.small .entries {
   /* opacity: 0; */
 }
+.outer {
+    transform-origin: 0 0;
+}
 
 .timeline .entry {
-  /* width: 30px; */
+  padding-bottom: 12px;
+  /* transform-origin: 0 0; */
+  /* width: 240px; */
   position: relative;
   /* background: rgba(255, 255, 255, 0.29); */
   /* transform: scale(4); */
@@ -171,9 +178,7 @@ svg {
   /* font-size: 1em; */
   /* display: list-item; */
   margin-bottom: 2px;
-  margin-left: 2px;
-  /* margin-left: 0px; */
-  /* margin-left: 15px; */
+  /* margin-left: 2px; */
   /* list-style-position: inside; */
   /* list-style-type: circle; */
   /* font-size: 11px; */

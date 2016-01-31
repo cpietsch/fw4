@@ -680,9 +680,9 @@ function myListView() {
       .range(["small", "middle", "deep"])
 
     var fontScale = d3.scale.linear()
-      .domain([2,10])
-      .range([3,14])
-      // .clamp(true)
+      .domain([1,3])
+      .range([9,14])
+      .clamp(true)
 
 
     console.log(timelineScale(scale), scale)
@@ -695,8 +695,7 @@ function myListView() {
       .enter()
       .append("div")
       .classed("container", true)
-      .append("div")
-      .classed("inner", true)
+     
 
     enter.append("div")
       .classed("year", true)
@@ -704,6 +703,10 @@ function myListView() {
       .text(function(d){ return d.key; })
 
     var e = enter
+      .append("div")
+      .classed("outer", true)
+      .append("div")
+      .classed("inner", true)
       .append("div")
       .classed("entries", true)
       .selectAll(".entry")
@@ -739,7 +742,11 @@ function myListView() {
       // .style("line-height", scale*2 + "px")
 
     select
-      .select(".entries")
+      .select(".year")
+      .style("font-size", fontScale(scale) + "px")
+
+    select
+      .select(".outer")
       .style("transform", "scale("+ scale +")")
       // .style("opacity", (scale/4));
 
