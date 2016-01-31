@@ -134,11 +134,12 @@ svg {
   /* margin-left: 4px; */
   /* margin: 5%; */
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
   /* height: 70%; */
 }
 
 .timeline .entries {
+  transform-origin: 0 0;
   /* width: 10%; */
   font-size: 3px;
   /* transform: scale(42); */
@@ -158,6 +159,7 @@ svg {
 }
 
 .timeline .entry {
+  background: rgba(255, 255, 255, 0.29);
   /* transform: scale(4); */
   /* transition: font-size 0.1s; */
   /* line-height: 1em; */
