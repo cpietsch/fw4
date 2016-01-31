@@ -650,13 +650,20 @@ function myListView() {
         
         hideTheRest(d);
 
+        showDetail(d);
+
         loadBigImage(d);
 
-        detailContainer
-          .html(detailTemplate(d))
-          .classed("hide", false)
+        
       })
     
+  }
+
+  function showDetail(d){
+    console.log("show detail")
+    detailContainer
+      .html(detailTemplate(d))
+      .classed("hide", false)
   }
 
   var loadedBigInterval = null;
@@ -736,7 +743,7 @@ function myListView() {
 
     enter.append("div")
       .classed("year", true)
-      .text(function(d){ return d.key; })
+      .text(function(d){ return "'"+(1800-d.key)*-1; })
 
     enter
       .append("div")
@@ -746,7 +753,7 @@ function myListView() {
       .enter()
       .append("div")
       .classed("entry", true)
-      .text(function(d){ return d.kategorie; })
+      .text(function(d){ return d.text; })
     
     select
       .style("transform", function(d){
@@ -820,9 +827,7 @@ function myListView() {
       
       hideTheRest(selectedImage);
       
-      detailContainer
-        .html(detailTemplate(selectedImage))
-        .classed("hide", false)
+      showDetail(selectedImage)
     }
 
     

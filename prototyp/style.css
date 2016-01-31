@@ -112,11 +112,11 @@ svg {
     /* margin-top: 10%; */
 }
 .timeline * {
-  pointer-events:none;
+  /* pointer-events:none; */
 }
 .timeline .container {
   /* margin-top: 10%; */
-  overflow: hidden;
+  /* overflow: hidden; */
   /* margin: 1%; */
   /* margin: 10px; */
   position: absolute;
@@ -125,12 +125,15 @@ svg {
 }
 
 .timeline .inner {
-  margin-top: 10%;
-  margin-bottom: 7%;
+  /* left: -5%; */
+  /* width: 110%; */
+  margin-top: 7px;
+  margin-bottom: 15%;
+  margin-left: 4px;
   /* margin: 5%; */
   position: relative;
   overflow: hidden;
-  height: 86%;
+  height: 70%;
 }
 
 .timeline .entries {
@@ -141,7 +144,9 @@ svg {
 }
 
 .timeline .entry {
-  /* margin: 4px; */
+  font-size: 0.9em;
+  display: list-item;
+  padding-bottom: 24px;
   /* list-style-position: inside; */
   list-style-type: circle;
   /* font-size: 11px; */
@@ -162,10 +167,10 @@ svg {
   /* font-size: 10px; */
   /* font-weight: bold; */
   color: rgb(247, 239, 205);
-  border-bottom: 2px solid rgba(247, 239, 205, 0.31);
+  /* border-bottom: 2px solid rgba(247, 239, 205, 0.31); */
   /* border-left: 2px solid rgba(247, 239, 205, 0.99); */
   /* margin: auto auto; */
-  padding: 1%;
+  padding: 5%;
   /* margin-top: 11%; */
   /* margin: 5%; */
 }
@@ -376,7 +381,7 @@ svg {
 }
 
 .detail.hide {
-  right:-480px !important;
+  right: -520px !important;
 }
 .detail {
     z-index: 100;
