@@ -103,14 +103,14 @@ svg {
 }
 
 .timeline {
-
+    /* display: none; */
     /* font-family: Helvetica Neue; */
     z-index: 200;
     color: rgb(247, 239, 205);
     font-size: 9px;
     /* font-weight: bold; */
     /* margin-top: 10%; */
-}
+    }
 .timeline * {
   /* pointer-events:none; */
 }
@@ -133,7 +133,7 @@ svg {
   /* margin-top: 7px; */
   /* margin-bottom: 15%; */
   /* margin-left: 4px; */
-  /* margin: 5%; */
+  /* padding: 5%; */
   position: relative;
   /* overflow: hidden; */
   /* height: 70%; */
@@ -141,8 +141,7 @@ svg {
 
 .timeline .entries {
   /* float: left; */
-  width: 30px;
-  /* width: 30px; */
+  width: 27px;
   transform-origin: 0 0;
   /* width: 10%; */
   font-size: 1px;
@@ -163,6 +162,7 @@ svg {
 }
 
 .timeline .entry {
+  /* width: 30px; */
   position: relative;
   /* background: rgba(255, 255, 255, 0.29); */
   /* transform: scale(4); */
@@ -171,7 +171,8 @@ svg {
   /* font-size: 1em; */
   /* display: list-item; */
   margin-bottom: 2px;
-  margin-left: 0px;
+  margin-left: 2px;
+  /* margin-left: 0px; */
   /* margin-left: 15px; */
   /* list-style-position: inside; */
   /* list-style-type: circle; */
