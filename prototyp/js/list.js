@@ -728,6 +728,11 @@ function myListView() {
     e
       .append("div")
       .classed("text", true)
+      .text(function(d){ return d.text; })
+
+    e
+      .append("div")
+      .classed("extra", true)
       .text(function(d){ return d.extra; })
     
     select
@@ -934,7 +939,7 @@ function myListView() {
     var unten = data.filter(function(d){ return !d.active; })
     stackLayout(unten, true);
 
-    var add = x.domain().map(function(d){ return { x: x(d), y: 0 }; });
+    var add = x.domain().map(function(d){ return { x: x(d) + rangeBand/3, y: 0 }; });
     console.log(add);
 
     console.time("Quadtree")
