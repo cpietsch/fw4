@@ -114,6 +114,7 @@ svg {
 .timeline * {
   /* pointer-events:none; */
 }
+
 .timeline .container {
   /* margin-top: 10%; */
   /* overflow: hidden; */
@@ -128,28 +129,54 @@ svg {
   /* left: -5%; */
   /* width: 110%; */
   margin-top: 7px;
-  margin-bottom: 15%;
+  /* margin-bottom: 15%; */
   margin-left: 4px;
   /* margin: 5%; */
   position: relative;
   overflow: hidden;
-  height: 70%;
+  /* height: 70%; */
 }
 
 .timeline .entries {
-  opacity: 0.2;
-  padding: 7%;
+  background: #fff;
+  opacity: 0;
+  opacity: 1;
+  /* padding: 5%; */
   /* margin: 5%; */
   position: relative;
 }
+.timeline.middle .entries {
+    /* background: rgb(238, 229, 209); */
+}
+
+.timeline.small .entries {
+  /* opacity: 0; */
+}
 
 .timeline .entry {
-  font-size: 0.9em;
-  display: list-item;
-  padding-bottom: 24px;
+  /* font-size: 1em; */
+  /* display: list-item; */
+  /* padding-bottom: 8px; */
+  /* margin-left: 15px; */
   /* list-style-position: inside; */
   list-style-type: circle;
   /* font-size: 11px; */
+}
+
+.title {
+    /* padding-left: 8px; */
+    font-weight: bold;
+    /* float: left; */
+}
+
+.jahr {
+    opacity: 0.5;
+    /* float: right; */
+}
+
+.text {
+    /* padding-top: 6px; */
+    /* clear: both; */
 }
 
 .timeline .year {
@@ -504,6 +531,7 @@ svg {
   /*-webkit-filter: drop-shadow( 5px 5px 1px #FFF );*/
 }
 .search {
+    display: none;
     font-weight: bold;
     z-index: 500;
     color: #FFF;
