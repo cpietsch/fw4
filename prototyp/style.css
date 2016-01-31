@@ -127,6 +127,7 @@ svg {
 }
 
 .timeline .inner {
+  /* float: left; */
   /* left: -5%; */
   /* width: 110%; */
   /* margin-top: 7px; */
@@ -139,6 +140,9 @@ svg {
 }
 
 .timeline .entries {
+  float: left;
+  width: 30px;
+  /* width: 30px; */
   transform-origin: 0 0;
   /* width: 10%; */
   font-size: 3px;
@@ -159,6 +163,7 @@ svg {
 }
 
 .timeline .entry {
+  position: relative;
   background: rgba(255, 255, 255, 0.29);
   /* transform: scale(4); */
   /* transition: font-size 0.1s; */
@@ -170,6 +175,7 @@ svg {
   /* list-style-position: inside; */
   /* list-style-type: circle; */
   /* font-size: 11px; */
+  float: left;
 }
 
 .title {
