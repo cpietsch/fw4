@@ -728,7 +728,7 @@ function myListView() {
     e
       .append("div")
       .classed("text", true)
-      .text(function(d){ return d.text; })
+      .text(function(d){ return d.extra; })
     
     select
       .style("transform", function(d){
