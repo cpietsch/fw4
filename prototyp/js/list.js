@@ -680,8 +680,8 @@ function myListView() {
       .range(["small", "middle", "deep"])
 
     var fontScale = d3.scale.linear()
-      .domain([1,3])
-      .range([9,14])
+      .domain([1,9])
+      .range([9,20])
       .clamp(true)
 
 
@@ -748,7 +748,7 @@ function myListView() {
     select
       .select(".outer")
       .style("transform", "scale("+ scale +")")
-      // .style("opacity", (scale/4));
+      .style("opacity", (scale/7));
 
 
   }
