@@ -140,12 +140,12 @@ svg {
 }
 
 .timeline .entries {
-  float: left;
+  /* float: left; */
   width: 30px;
   /* width: 30px; */
   transform-origin: 0 0;
   /* width: 10%; */
-  font-size: 3px;
+  font-size: 1px;
   /* transform: scale(42); */
   /* background: #fff; */
   opacity: 0;
@@ -164,18 +164,19 @@ svg {
 
 .timeline .entry {
   position: relative;
-  background: rgba(255, 255, 255, 0.29);
+  /* background: rgba(255, 255, 255, 0.29); */
   /* transform: scale(4); */
   /* transition: font-size 0.1s; */
   /* line-height: 1em; */
   /* font-size: 1em; */
   /* display: list-item; */
-  /* padding-bottom: 8px; */
+  margin-bottom: 2px;
+  margin-left: 0px;
   /* margin-left: 15px; */
   /* list-style-position: inside; */
   /* list-style-type: circle; */
   /* font-size: 11px; */
-  float: left;
+  /* float: left; */
 }
 
 .title {
@@ -186,11 +187,11 @@ svg {
 
 .jahr {
     opacity: 0.5;
-    /* float: right; */
+    float: right;
 }
 
 .text {
-    /* padding-top: 6px; */
+    /* padding-top: 0.5px; */
     /* clear: both; */
 }
 
