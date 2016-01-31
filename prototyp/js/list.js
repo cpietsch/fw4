@@ -735,10 +735,12 @@ function myListView() {
       .style("height", rangeBand*scale + "px")
       .style("width", rangeBand*scale + "px")
       // .style("font-size", fontScale(scale) + "px")
-      .style("font-size", scale*2 + "px")
+      // .style("font-size", scale*2 + "px")
+      // .style("line-height", scale*2 + "px")
 
     select
       .select(".entries")
+      .style("transform", "scale("+ scale +")")
       // .style("opacity", (scale/4));
 
 

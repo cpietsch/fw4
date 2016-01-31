@@ -116,6 +116,7 @@ svg {
 }
 
 .timeline .container {
+  /* transition: font-size 0.1s; */
   /* margin-top: 10%; */
   /* overflow: hidden; */
   /* margin: 1%; */
@@ -128,9 +129,9 @@ svg {
 .timeline .inner {
   /* left: -5%; */
   /* width: 110%; */
-  margin-top: 7px;
+  /* margin-top: 7px; */
   /* margin-bottom: 15%; */
-  margin-left: 4px;
+  /* margin-left: 4px; */
   /* margin: 5%; */
   position: relative;
   overflow: hidden;
@@ -138,7 +139,10 @@ svg {
 }
 
 .timeline .entries {
-  background: #fff;
+  /* width: 10%; */
+  font-size: 3px;
+  /* transform: scale(42); */
+  /* background: #fff; */
   opacity: 0;
   opacity: 1;
   /* padding: 5%; */
@@ -154,12 +158,15 @@ svg {
 }
 
 .timeline .entry {
+  /* transform: scale(4); */
+  /* transition: font-size 0.1s; */
+  /* line-height: 1em; */
   /* font-size: 1em; */
   /* display: list-item; */
   /* padding-bottom: 8px; */
   /* margin-left: 15px; */
   /* list-style-position: inside; */
-  list-style-type: circle;
+  /* list-style-type: circle; */
   /* font-size: 11px; */
 }
 
