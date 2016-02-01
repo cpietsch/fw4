@@ -715,21 +715,25 @@ function myListView() {
       .append("div")
       .classed("entry", true)
 
-    e
+    var l = e
+      .append("div")
+      .classed("left", true)
+
+    l
       .append("div")
       .classed("jahr", true)
       .text(function(d){ return d.jahr; })
 
-    e
+    l
       .append("div")
       .classed("title", true)
       .text(function(d){ return d.titel; })
 
-    e
+    l
       .append("div")
       .classed("text", true)
       .text(function(d){ return d.text; })
-
+      
     e
       .append("div")
       .classed("extra", true)
