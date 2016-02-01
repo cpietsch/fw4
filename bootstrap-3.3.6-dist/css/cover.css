@@ -58,11 +58,18 @@ body {
   padding: 30px;
 }
 
+.quote {
+    font-size: 18px;
+    font-style: italic;
+    font-family: 'Droid Serif', serif;
+}
+
 
 /*
  * Header
  */
 .masthead-brand {
+  text-transform: uppercase;
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -74,11 +81,12 @@ body {
   margin-left: 20px;
 }
 .masthead-nav > li > a {
+  font-family: euclid flex;
   padding-right: 0;
   padding-left: 0;
   font-size: 16px;
   font-weight: bold;
-  color: #fff; /* IE8 proofing */
+  color: #fff;/* IE8 proofing */
   color: rgba(255,255,255,.75);
   border-bottom: 2px solid transparent;
 }
