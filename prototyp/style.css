@@ -166,12 +166,12 @@ svg {
 }
 
 .timeline .entry {
-  border-bottom: 1px solid rgba(240, 238, 221, 0.45);
+  border-bottom: 1px solid rgba(240, 238, 221, 0.08);
   /* clear: both; */
   /* overflow: hidden; */
   /* height: 15px; */
-  padding-bottom: 9px;
-  margin-bottom: 12px;
+  padding-bottom: 7px;
+  margin-bottom: 5px;
   /* transform-origin: 0 0; */
   width: 100%;
   position: relative;
@@ -217,7 +217,7 @@ svg {
     width: 48%;
     /* -webkit-column-count: 3; */
     font-size: 3px;
-    /* opacity: -0.8; */
+    /* opacity: 0.2; */
     /* padding-top: 2px; */
     /* clear: both; */
     float: right;
