@@ -21,10 +21,12 @@ function myListView() {
     .rangeBands([margin.left, width + margin.left],0.2)
     .domain(timeDomain.map(function(d){ return d.key; }))
 
-  var fontScale = d3.scale.linear()
-    .domain([2,6])
-    .range([9,15])
-    .clamp(true)
+  // var fontScale = d3.scale.linear()
+  //   .domain([2,6])
+  //   .range([9,15])
+  //   .clamp(true)
+
+
 
   var Quadtree = d3.geom.quadtree()
       // .extent([[0, 0], [width, -height]])
@@ -191,11 +193,11 @@ function myListView() {
     stage5.scale.y = 1/scale3;
     stage5.y = height;
 
-    // make x Axis
+    //make x Axis
     // x.domain().forEach(function(d){
     //   var xpos = (x(d) + x.rangeBand()/collumns)*scale1;
 
-    //   var text = new PIXI.Text(d, {font:"70px Arial", fill:0xffffff, align : 'center'});
+    //   var text = new PIXI.Text(d, {font:"70px Arial", fill:0x999999, align : 'center'});
     //   text.x = xpos;
     //   text.y = 4*scale;
 
@@ -204,11 +206,9 @@ function myListView() {
 
     //stackLayout(data, false);
 
-    
-
-    svg = renderElem
-      .classed("overlay", true)
+    d3.select(".viz")
       .call(zoom)
+      .on("mousemove", mousemove)
       .on("click", function(){
 
         // console.log("click",drag,zoomedToImage)
@@ -216,12 +216,6 @@ function myListView() {
         
         if (drag) return;
 
-        // var tween = new TWEEN.Tween({ x: 0 })
-        // .to({ x: 3 }, 1200)
-        // .onUpdate(function() {
-        //     filter.time = this.x;
-        // })
-        // .start();
 
         if(Math.abs(zoomedToImageScale-scale) < 0.1 ) chart.resetZoom();
         else zoomToImage(selectedImage, 1400/Math.sqrt(Math.sqrt(scale)));
@@ -229,11 +223,15 @@ function myListView() {
         // if(zoomedToImage) zoomToImage(selectedImage, 500);
         // if(!zoomedToImage) zoomToImage(selectedImage, 1000);
       })
-      .on("mousemove", mousemove)
+
+    svg = renderElem
+      // .classed("overlay", true)
+      
+      
 
     // myTooltip = tooltip(svg);
 
-    timeline = d3.select("body").append("div").classed("timeline", true)
+    timeline = d3.select(".viz").append("div").classed("timeline", true)
       .style("transform", "translate(" + 0 + "px," + (height -30) + "px)");
 
 
@@ -253,13 +251,8 @@ function myListView() {
 
 
   function mousemove(d){
-    ping();
+    //ping();
     var mouse = d3.mouse(this);
-
-    // filter.center.x = mouse[0] / width;
-    // filter.center.y = mouse[1] / height;
-
-    //c(mouse, filter.center);
 
     var p = toScreenPoint(mouse);
 
@@ -269,6 +262,8 @@ function myListView() {
     var best = nearest(p[0]-imgPadding, p[1]-imgPadding, {d: 200, p: null}, quadtree);
     // console.timeEnd("search")
 
+   // console.log(best.p)
+
 
     if(best.p && !zoomedToImage) {
       var d = best.p;
@@ -276,64 +271,15 @@ function myListView() {
       var center = [ ((d.x+imgPadding)* scale) + translate[0] ,(height+d.y+imgPadding)*scale + translate[1] ];
       zoom.center(center);
 
-      
-      if(selectedImage != d && selectedImage){
-        //mouseout / enter
-        // selectedImage.sprite.scale.x = 1;
-        // selectedImage.sprite.scale.y = 1;
-
-        // if(selectedImage.sprite2){
-        //   selectedImage.sprite2.scale.x = 1;
-        //   selectedImage.sprite2.scale.y = 1;
-        // }
-
-        // d.sprite.scale.x = 1.03;
-        // d.sprite.scale.y = 1.03;
-
-        // if(d.sprite2){
-        //   d.sprite2.scale.x = 1.03;
-        //   d.sprite2.scale.y = 1.03;
-        // }
-
-        // if(d.sprite2){
-        //   d.sprite2.visible = 1;
-        //   d.alpha = 1;
-        //   d.alpha2 = 1;
-        //   d.visible = 1
-        //   d.sprite2.scale.x = scale2;
-        //   d.sprite2.scale.y = scale2;
-        //   c(d.id)
-        // }
-
-        // selectedImage._transition = selectedImage._transition || d3;
-
-        // selectedImage._transition.transition().duration(100).tween("scale", function() {
-        //   var i = d3.interpolateNumber(2, 1);
-        //   return function(t) {
-        //     selectedImage.sprite.scale.x = selectedImage.sprite.scale.y = i(t);
-        //   };
-        // });
-
-
-        // d._transition = d._transition || d3;
-        
-        // d._transition.transition().duration(100).tween("scale", function() {
-        //   var i = d3.interpolateNumber(1, 2);
-        //   return function(t) {
-        //     d.sprite.scale.x = d.sprite.scale.y = i(t);
-        //   };
-        // });
-
-        //console.log(t)
-      } 
-
       selectedImage = d;
       //d.alpha = 0.6;
     }
 
-    svg.attr("cursor", function(){
-      return best.p ? "pointer" : "default";
+    container.style("cursor", function(){
+      return best.d < 5 ? "pointer" : "default";
     });
+
+    // console.log(best)
 
   }
 
@@ -442,7 +388,7 @@ function myListView() {
     zoom.center(center);
     
 
-    svg.attr("cursor", "pointer");
+    // svg.attr("cursor", "pointer");
 
 
     //cloud.filterWords(d.keywords);
@@ -450,6 +396,7 @@ function myListView() {
   }
 
   chart.mouseout = function(d){
+    console.log("mouseout")
     if(cloud.lock) return;
 
     //d.target.alpha = 1;
@@ -458,7 +405,7 @@ function myListView() {
     }
 
     myTooltip.hide();
-    svg.attr("cursor", "default");
+    // svg.attr("cursor", "default");
 
   }
 
@@ -647,13 +594,21 @@ function myListView() {
         
         hideTheRest(d);
 
+        showDetail(d);
+
         loadBigImage(d);
 
-        detailContainer
-          .html(detailTemplate(d))
-          .classed("hide", false)
+        
       })
+  
     
+  }
+
+  function showDetail(d){
+    console.log("show detail")
+    detailContainer
+      .html(detailTemplate(d))
+      .classed("hide", false)
   }
 
   var loadedBigInterval = null;
@@ -720,6 +675,18 @@ function myListView() {
 
   function updateDomain(x1,x2){
 
+    var timelineScale = d3.scale.threshold()
+      .domain([2,4])
+      .range(["small", "middle", "deep"])
+
+    var fontScale = d3.scale.linear()
+      .domain([1,9])
+      .range([9,20])
+      .clamp(true)
+
+
+    console.log(timelineScale(scale), scale)
+    timeline.attr("class", "timeline "+ timelineScale(scale))
 
     var select = timeline.selectAll(".container")
       .data(timeDomain)
@@ -728,14 +695,18 @@ function myListView() {
       .enter()
       .append("div")
       .classed("container", true)
-      .append("div")
-      .classed("inner", true)
+     
 
     enter.append("div")
       .classed("year", true)
+      // .text(function(d){ return "'"+(1800-d.key)*-1; })
       .text(function(d){ return d.key; })
 
-    enter
+    var e = enter
+      .append("div")
+      .classed("outer", true)
+      .append("div")
+      .classed("inner", true)
       .append("div")
       .classed("entries", true)
       .selectAll(".entry")
@@ -743,7 +714,30 @@ function myListView() {
       .enter()
       .append("div")
       .classed("entry", true)
-      .text(function(d){ return d.kategorie; })
+
+    var l = e
+      .append("div")
+      .classed("left", true)
+
+    l
+      .append("div")
+      .classed("jahr", true)
+      .text(function(d){ return d.jahr; })
+
+    l
+      .append("div")
+      .classed("title", true)
+      .text(function(d){ return d.titel; })
+
+    l
+      .append("div")
+      .classed("text", true)
+      .text(function(d){ return d.text; })
+
+    e
+      .append("div")
+      .classed("extra", true)
+      .text(function(d){ return d.extra; })
     
     select
       .style("transform", function(d){
@@ -752,11 +746,24 @@ function myListView() {
       })
       .style("height", rangeBand*scale + "px")
       .style("width", rangeBand*scale + "px")
+      // .style("font-size", fontScale(scale) + "px")
+      // .style("font-size", scale*2 + "px")
+      // .style("line-height", scale*2 + "px")
+
+    select
+      .select(".year")
       .style("font-size", fontScale(scale) + "px")
 
     select
-      .select(".entries")
-      .style("opacity", (scale/4));
+      .select(".outer")
+      .style("transform", "scale("+ scale +")")
+      .style("opacity", (scale/7));
+
+    select
+      .select(".inner")
+      .style("background", "rgba(247, 239, 205, "+ (1 - (scale/7)) +")");
+
+
 
 
   }
@@ -817,9 +824,7 @@ function myListView() {
       
       hideTheRest(selectedImage);
       
-      detailContainer
-        .html(detailTemplate(selectedImage))
-        .classed("hide", false)
+      showDetail(selectedImage)
     }
 
     
@@ -944,8 +949,12 @@ function myListView() {
     var unten = data.filter(function(d){ return !d.active; })
     stackLayout(unten, true);
 
+    var add = x.domain().map(function(d){ return { x: x(d) + rangeBand/3, y: 0 }; });
+    console.log(add);
+
     console.time("Quadtree")
-    quadtree = Quadtree(data);
+    // quadtree = Quadtree(data);
+    quadtree = Quadtree(add.concat(data));
     console.timeEnd("Quadtree");
     // console.log(quadtree)
   }

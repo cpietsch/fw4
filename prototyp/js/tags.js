@@ -29,7 +29,7 @@ function myTagCloud() {
   chart.init = function(_data) {
     data = _data;
 
-    container = d3.select("body").append("div")
+    container = d3.select(".page").append("div")
       .style("width", width + margin.left + margin.right)
       .style("height", height + margin.top + margin.bottom)
       .classed("tagcloud", true)

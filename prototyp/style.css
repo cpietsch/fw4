@@ -30,7 +30,7 @@ body {
 
 canvas {
   position: absolute;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .splash {
@@ -103,51 +103,145 @@ svg {
 }
 
 .timeline {
-
+    /* display: none; */
     /* font-family: Helvetica Neue; */
     z-index: 200;
     color: rgb(247, 239, 205);
     font-size: 9px;
     /* font-weight: bold; */
     /* margin-top: 10%; */
-}
+    }
 .timeline * {
-  pointer-events:none;
+  /* pointer-events:none; */
 }
+
 .timeline .container {
+  /* transition: font-size 0.1s; */
   /* margin-top: 10%; */
   overflow: hidden;
   /* margin: 1%; */
-  /* margin: 10px; */
+  /* padding: 10px; */
   position: absolute;
   height: 10px;
   /* background: rgba(232, 220, 184, 0.82); */
 }
 
 .timeline .inner {
-  margin-top: 10%;
-  margin-bottom: 7%;
-  /* margin: 5%; */
+  /* background: rgb(247, 239, 205); */
+  float: left;
+  transform-origin: 0 0;
+  transform: scale(0.1);
+  /* float: left; */
+  /* left: -5%; */
+  width: 298px;
+  /* margin-top: 7px; */
+  /* margin-bottom: 15%; */
+  /* margin-left: 4px; */
+  padding-top: 15px;
   position: relative;
-  overflow: hidden;
-  height: 86%;
+  /* overflow: hidden; */
+  /* height: 70%; */
 }
 
 .timeline .entries {
-  opacity: 0.2;
-  padding: 7%;
+  /* float: left; */
+  /* width: 27px; */
+  transform-origin: 0 0;
+  /* width: 100%; */
+  /* font-size: 7px; */
+  /* transform: scale(42); */
+  /* background: #fff; */
+  /* opacity: 0.4; */
+  /* padding: 5%; */
   /* margin: 5%; */
   position: relative;
 }
+.timeline.middle .entries {
+    /* background: rgb(238, 229, 209); */
+}
+
+.timeline.small .entries {
+  /* opacity: 0; */
+}
+.outer {
+    /* float: left; */
+    transform-origin: 0 0;
+}
 
 .timeline .entry {
-  /* margin: 4px; */
+  border-bottom: 1px solid rgba(240, 238, 221, 0.08);
+  /* clear: both; */
+  /* overflow: hidden; */
+  /* height: 15px; */
+  padding-bottom: 7px;
+  margin-bottom: 5px;
+  /* transform-origin: 0 0; */
+  width: 100%;
+  position: relative;
+  /* background: rgb(255, 252, 233); */
+  /* transform: scale(4); */
+  /* transition: font-size 0.1s; */
+  /* line-height: 1em; */
+  /* font-size: 1em; */
+  /* display: list-item; */
+  /* margin-bottom: 2px; */
+  /* margin-left: 2px; */
   /* list-style-position: inside; */
-  list-style-type: circle;
+  /* list-style-type: circle; */
   /* font-size: 11px; */
+  float: left;
+}
+
+.left {
+    float: left;
+    width: 45%;
+}
+
+.title {
+    /* width: 45%; */
+    text-transform: uppercase;
+    font-size: 9px;
+    /* padding-left: 8px; */
+    font-weight: bold;
+    /* float: left; */
+    padding: 2px;
+    color: #000;
+    background: rgb(247, 239, 205);
+}
+
+.jahr {
+    display: none;
+    opacity: 0.5;
+    float: right;
+}
+
+.text {
+    /* background: rgb(247, 239, 205); */
+    padding: 2px;
+    /* font-family: Helvetica Neue; */
+    /* float: left; */
+    /* width: 45%; */
+    font-size: 6px;
+    /* opacity: 0.7; */
+    padding-top: 4px;
+    /* clear: both; */
+    /* color: #000; */
+}
+
+.extra {
+    /* font-family: "Helvetica Neue"; */
+    width: 48%;
+    /* -webkit-column-count: 3; */
+    font-size: 4px;
+    /* opacity: 0.1; */
+    /* padding-top: 2px; */
+    /* clear: both; */
+    float: right;
+    line-height: 6px;
 }
 
 .timeline .year {
+  text-align: center;
   /* display: none; */
   /* pointer-events: auto; */
   /* -webkit-text-stroke-width: .7px; */
@@ -165,7 +259,7 @@ svg {
   border-bottom: 2px solid rgba(247, 239, 205, 0.31);
   /* border-left: 2px solid rgba(247, 239, 205, 0.99); */
   /* margin: auto auto; */
-  padding: 1%;
+  padding: 5%;
   /* margin-top: 11%; */
   /* margin: 5%; */
 }
@@ -376,26 +470,28 @@ svg {
 }
 
 .detail.hide {
-  right:-480px !important;
+  right: -520px !important;
 }
 .detail {
     z-index: 100;
     height: 100%;
-    transition: right 0.2s ease-in-out;
+    transition: right 0.3s ease-out;
     box-shadow: 0 0px 56px rgba(0,0,0,0.26),0 0px 6px rgba(0,0,0,0.23);
     /* top: 20px; */
     right: 0px;
     position: absolute;
-    width: 500px;
+    width: 520px;
     color: #2D2D2D;
-    background: rgb(255, 253, 241);
+    background: rgb(255, 254, 250);
+    /* background: url("img/koenigspapier.png"); */
     font-size: 13px;
     line-height: 1.3em;
     overflow-y: scroll;
 }
 .detail .inner {
   float: left;
-  padding: 50px;
+  padding: 60px;
+  /* padding-left: 60px; */
 }
 
 .detail2 {
@@ -497,6 +593,7 @@ svg {
   /*-webkit-filter: drop-shadow( 5px 5px 1px #FFF );*/
 }
 .search {
+    display: none;
     font-weight: bold;
     z-index: 500;
     color: #FFF;
