@@ -26,19 +26,22 @@ a:hover {
 
 html,
 body {
+  width: 100%;
   height: 100%;
   background-color: #333;
 }
 body {
   color: #fff;
   text-align: center;
-  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+  /* text-shadow: 0 1px 3px rgba(0,0,0,.5); */
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
 .site-wrapper {
-  /* background-size: cover; */
-  /* background: url("img/92616.jpg") no-repeat center center fixed; */
+  background-position: center top;
+  /* background-size: 70%; */
+  background-size: cover;
+  /* background: url("../img/92616.jpg"); */
   display: table;
   width: 100%;
   height: 100%;/* For at least Firefox */
@@ -51,6 +54,7 @@ body {
   vertical-align: top;
 }
 .cover-container {
+  /* background: url("img/105599.jpg"); */
   margin-right: auto;
   margin-left: auto;
 }
