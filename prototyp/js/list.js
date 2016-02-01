@@ -733,7 +733,7 @@ function myListView() {
       .append("div")
       .classed("text", true)
       .text(function(d){ return d.text; })
-      
+
     e
       .append("div")
       .classed("extra", true)
@@ -758,6 +758,12 @@ function myListView() {
       .select(".outer")
       .style("transform", "scale("+ scale +")")
       .style("opacity", (scale/7));
+
+    select
+      .select(".inner")
+      .style("background", "rgba(247, 239, 205, "+ (1 - (scale/7)) +")");
+
+
 
 
   }

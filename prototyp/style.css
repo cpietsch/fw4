@@ -118,7 +118,7 @@ svg {
 .timeline .container {
   /* transition: font-size 0.1s; */
   /* margin-top: 10%; */
-  /* overflow: hidden; */
+  overflow: hidden;
   /* margin: 1%; */
   /* padding: 10px; */
   position: absolute;
@@ -127,6 +127,8 @@ svg {
 }
 
 .timeline .inner {
+  /* background: rgb(247, 239, 205); */
+  float: left;
   transform-origin: 0 0;
   transform: scale(0.1);
   /* float: left; */
@@ -162,6 +164,7 @@ svg {
   /* opacity: 0; */
 }
 .outer {
+    /* float: left; */
     transform-origin: 0 0;
 }
 
