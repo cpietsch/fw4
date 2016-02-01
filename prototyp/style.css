@@ -194,7 +194,7 @@ svg {
 
 .left {
     float: left;
-    width: 50%;
+    width: 45%;
 }
 
 .title {
@@ -204,6 +204,9 @@ svg {
     /* padding-left: 8px; */
     font-weight: bold;
     /* float: left; */
+    padding: 2px;
+    color: #000;
+    background: rgb(247, 239, 205);
 }
 
 .jahr {
@@ -213,22 +216,28 @@ svg {
 }
 
 .text {
+    /* background: rgb(247, 239, 205); */
+    padding: 2px;
+    /* font-family: Helvetica Neue; */
     /* float: left; */
     /* width: 45%; */
     font-size: 6px;
-    opacity: 1;
+    /* opacity: 0.7; */
     padding-top: 4px;
     /* clear: both; */
+    /* color: #000; */
 }
 
 .extra {
+    /* font-family: "Helvetica Neue"; */
     width: 48%;
     /* -webkit-column-count: 3; */
     font-size: 4px;
-    /* opacity: 0.2; */
+    /* opacity: 0.1; */
     /* padding-top: 2px; */
     /* clear: both; */
     float: right;
+    line-height: 6px;
 }
 
 .timeline .year {
