@@ -683,22 +683,24 @@ function myListView() {
     })
   }
 
+  var timelineScale = d3.scale.threshold()
+    .domain([2,8,20])
+    .range(["none", "small", "middle", "large"])
+
+  var fontScale = d3.scale.linear()
+    .domain([1,9])
+    .range([9,20])
+    .clamp(true)
+
+  var timelineFontScale = d3.scale.linear()
+    .domain([2,8,20])
+    .range([9, 14, 19])
+    .clamp(true)
+
   function updateDomain(x1,x2){
+    // console.time("timeline");
 
-    var timelineScale = d3.scale.threshold()
-      .domain([2,8,20])
-      .range(["none", "small", "middle", "large"])
-
-    var fontScale = d3.scale.linear()
-      .domain([1,9])
-      .range([9,20])
-      .clamp(true)
-
-    var timelineFontScale = d3.scale.linear()
-      .domain([2,8,20])
-      .range([9, 14, 19])
-      .clamp(true)
-
+    console.log(x1,x2)
 
     console.log(timelineFontScale(scale), scale)
     
@@ -778,7 +780,10 @@ function myListView() {
       })
       .style("height", rangeBand*scale + "px")
       .style("width", rangeBand*scale + "px")
-      
+      .style("display", function(d){
+        var p = (x(d.key)-x1)*scale;
+        return (p > (-rangeBand*scale) && p < width+100) ? "block" : "none";
+      })
 
     select
       .select(".year")
@@ -789,7 +794,7 @@ function myListView() {
     //   .style("transform", "scale("+ scale +")")
     //   .style("opacity", (scale/7));
 
-    
+    // console.timeEnd("timeline");
   }
 
   function updateDomain2(x1,x2){

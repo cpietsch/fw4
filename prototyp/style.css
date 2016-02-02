@@ -147,7 +147,7 @@ svg {
   /* overflow: hidden; */
   /* font-size: 13px; */
   margin-bottom: 5px;
-  width: 100%;
+  width: 92%;
   position: relative;
   background: #F0ECDE;
   float: left;
@@ -523,7 +523,7 @@ svg {
 }
 .detail .label {
   font-size: 13px;
-  font-family: euclid flex;
+  font-family: "euclid-flex";
   margin-bottom: 2px;
   margin-top: 0;
   float: left;
@@ -535,7 +535,7 @@ svg {
 
 .info span:nth-child(0n+1) {
   font-weight: bold;
-  font-family: euclid flex;
+  font-family: "euclid-flex";
   color: rgba(0, 0, 0, 0.28);
   width: 117px;
   /* font-weight: 500; */
@@ -563,7 +563,7 @@ svg {
 }
 
 .detail h1, .infobar h1 {
-    font-family: euclid flex;
+    font-family: "euclid-flex";
     line-height: 1.2em;
     margin-top: 0;
     font-size: 19px;
