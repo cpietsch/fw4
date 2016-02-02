@@ -149,7 +149,7 @@ svg {
   margin-bottom: 5px;
   width: 100%;
   position: relative;
-  background: #F7EECB;
+  background: #F0ECDE;
   float: left;
   padding: 4%;
 }
@@ -201,16 +201,27 @@ svg {
   transition: display 0s, opacity 1s;
 }
 
-.timeline.large {
-    font-size: 19px;
+.timeline.small .small {
+    font-size: 1em;
+}
+
+.timeline.middle .middle {
+    font-size: 0.5em;
+}
+
+.timeline.large .large {
+    font-size: 0.4em;
+}
+/*.timeline.small {
+    font-size: 9px;
 }
 .timeline.middle {
     font-size: 14px;
 }
+.timeline.large {
+    font-size: 19px;
+}*/
 
-.timeline.small {
-    font-size: 9px;
-}
 
 .small .title {
 
@@ -428,7 +439,7 @@ svg {
 }
 
 .detail.hide {
-  right: -520px !important;
+  right: -600px !important;
 }
 .detail {
     font-size: 15px;
@@ -440,7 +451,7 @@ svg {
     /* top: 20px; */
     right: 0px;
     position: absolute;
-    width: 520px;
+    width: 600px;
     color: #2D2D2D;
     background: rgb(255, 254, 250);
     /* background: url("img/koenigspapier.png"); */
@@ -473,6 +484,7 @@ svg {
   margin-bottom: 2em;
 }
 .detail .description {
+    line-height: 1.4em;
     float: left;
     position: relative;
     margin-top: 0em;
@@ -523,7 +535,7 @@ svg {
     margin-top: 0;
     font-size: 19px;
     margin-bottom: 25px;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 
 .detail p.info {

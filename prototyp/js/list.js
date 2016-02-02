@@ -659,8 +659,9 @@ function myListView() {
       stage5.addChild(sprite);
     });
     // img.src = "data/bilder_4000/" + d.id + ".jpg";
-    img.src = "data/large/105599.jpg";
-    // img.src = "https://s3.eu-central-1.amazonaws.com/fw4/large/105626.jpg";
+    // img.src = "data/large/105599.jpg";
+    img.crossOrigin = "";
+    img.src = "https://s3.eu-central-1.amazonaws.com/fw4/large/" + d.id + ".jpg";
 
   
   }
@@ -708,10 +709,24 @@ function myListView() {
       .range([9,20])
       .clamp(true)
 
+    var timelineFontScale = d3.scale.linear()
+      .domain([2,8,20])
+      .range([9, 14, 19])
+      .clamp(true)
 
-    console.log(timelineScale(scale), scale)
+
+    console.log(timelineFontScale(scale), scale)
     
     timeline.attr("class", "timeline "+ timelineScale(scale))
+    
+    timeline.style("font-size", function(){
+      // return timelineFontScale(scale) + "px";
+      var s = 2*scale;
+      if(s<9) s = 9;
+      // if(s>40) s = 40;
+
+      return s + "px";
+    });
 
     var select = timeline.selectAll(".container")
       .data(timeDomain)
