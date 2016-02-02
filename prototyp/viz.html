@@ -32,37 +32,34 @@
     <p class="info"><span>Datierung:</span><span>{{ zeit }}</span></p>
     <p class="info"><span>Material:</span><span>{{ material }}</span></p>
     <p class="info"><span>Maße:</span><span>{{ hoehe }}mm * {{ breite }}mm</span></p>
-    <p class="info"><span>Thementexte:</span><span>{{ thementexte.length ? "Ja" : "Nein"}}</span></p>
+    <p class="info"><span>Thementexte:</span><span class="thementexte">{{ thementexte.length ? "Ja" : "Nein"}}</span></p>
     <p class="info"><span>Stichworte:</span><span>{{ keywords.join(", ") }}</span></p>
     <p class="info"><span>Inventarnr.:</span><span>{{ id }}</span></p>
     <p class="info"><span>Literatur:</span><span>{{ literatur ? literatur : "Keine Literatur" }}</span></p>
-    
-    
   </div>
 </div>
 
-<div class="search">Suche</div>
 <div class="page">
-  
-  <div id="render" class="detail hide"></div>
-</div>
-
-
-<div class="splash" >
-  <div class="center">
-    <p>Welcome to the vikus prototype.</p>
-    <p>You are now viewing historical drawings of Friedrich Wilhelm IV of Prussia from 1810 - 1856</p>
-    <p>Every drawing is previewed in a small picture located at its creation timeframe. Zoom in to discover details.</p>
-    <p>Select a keyword at the top to filter the collection and the keyword list itself.</p>
-    <div class="btn">GOT IT</div>
-    <div class="credits">
-      <p>Design and implementation: Christopher Pietsch</p>
-      <p>Theory and Research: Katrin Glinka</p>
-      <p>Scientific supervision: Prof. Dr. Marian Dörk</p>
-      <p>Data: Stiftung Preußische Schlösser und Gärten</p>
-      </div>
+  <div id="render" class="detail hide">
+    <div class="inner">
+      <h1></h1>
+      <p class="label">Beschreibung</p>
+      <p class="beschreibung description">{{ beschreibung }}</p>
+      <p class="label">Kommentar</p>
+      <p class="description comment">{{ kommentar }}</p>
+      <!-- <p class="info">zur <a target="_blank" href="http://bestandskataloge.spsg.de/FWIV/{{ id }}">spsg.de</a></p> -->
+      <p class="info"><span>Bezeichnungen:</span><span>{{ bezeichnungen ? bezeichnungen : "Keine Bezeichnungen" }}</span></p>
+      <p class="info"><span>Datierung:</span><span>{{ zeit }}</span></p>
+      <p class="info"><span>Material:</span><span>{{ material }}</span></p>
+      <p class="info"><span>Maße:</span><span>{{ hoehe }}mm * {{ breite }}mm</span></p>
+      <p class="info"><span>Thementexte:</span><span>{{ thementexte.length ? "Ja" : "Nein"}}</span></p>
+      <p class="info"><span>Stichworte:</span><span>{{ keywords.join(", ") }}</span></p>
+      <p class="info"><span>Inventarnr.:</span><span>{{ id }}</span></p>
+      <p class="info"><span>Literatur:</span><span>{{ literatur ? literatur : "Keine Literatur" }}</span></p>
+    </div>
   </div>
 </div>
+
 
 <script>
 

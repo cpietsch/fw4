@@ -610,9 +610,28 @@ function myListView() {
 
   function showDetail(d){
     console.log("show detail")
+
     detailContainer
       .html(detailTemplate(d))
       .classed("hide", false)
+
+    // todo: fix this hacky template stuff
+    var s = detailContainer
+      .select(".thementexte")
+      .text(d.thementexte.length ? "" : "Keine")
+      .selectAll("a")
+      .data(d.thementexte)
+
+    s.enter().append("a")
+    s.exit().remove()
+    s
+      .attr("href", function(d){ 
+        return "/thementexte/" + d.file;
+      })
+      .attr("target", "_blank")
+      .attr("title", "zum PDF")
+      .text(function(d){ return d.full_title; })
+
   }
 
   var loadedBigInterval = null;
@@ -936,7 +955,7 @@ function myListView() {
     }
 
     //domain
-    updateDomain(x1,x2);
+    //updateDomain(x1,x2);
 
     var timeY = ( (height) * scale-(-1*translate[1]) - rangeBandImage*scale );
     timeline
