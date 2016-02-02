@@ -660,6 +660,7 @@ function myListView() {
     });
     // img.src = "data/bilder_4000/" + d.id + ".jpg";
     img.src = "data/large/105599.jpg";
+    // img.src = "https://s3.eu-central-1.amazonaws.com/fw4/large/105626.jpg";
 
   
   }
@@ -754,7 +755,7 @@ function myListView() {
       m
         .append("div")
         .classed("text", true)
-        .text(function(d){ return d.text; })
+        .text(function(d){ return d.text + "..."; })
 
     var l = e
       .append("div")
@@ -768,7 +769,7 @@ function myListView() {
       l
         .append("div")
         .classed("text", true)
-        .text(function(d){ return d.extra; })
+        .html(function(d){ return d.text + "<br><br>" + d.extra; })
     
     select
       .style("transform", function(d){
@@ -955,7 +956,7 @@ function myListView() {
     }
 
     //domain
-    //updateDomain(x1,x2);
+    updateDomain(x1,x2);
 
     var timeY = ( (height) * scale-(-1*translate[1]) - rangeBandImage*scale );
     timeline

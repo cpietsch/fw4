@@ -10,6 +10,31 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "lyon-text";
+  src: url("font/lyon/lyontext-regular-no2.eot");
+  src: url("font/lyon/lyontext-regular-no2.eot?#iefix") format("embedded-opentype"),
+       url("font/lyon/lyontext-regular-no2.woff") format("woff"),
+       url("font/lyon/lyontext-regular-no2.ttf") format("truetype"),
+       url("font/lyon/lyontext-regular-no2.svg") format("svg");
+  font-weight:  400;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: "lyon-text";
+  src: url("font/lyon/lyontext-regular-no2-italic.eot");
+  src: url("font/lyon/lyontext-regular-no2-italic.eot?#iefix") format("embedded-opentype"),
+       url("font/lyon/lyontext-regular-no2-italic.woff") format("woff"),
+       url("font/lyon/lyontext-regular-no2-italic.ttf") format("truetype"),
+       url("font/lyon/lyontext-regular-no2-italic.svg") format("svg");
+  font-weight:  400;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
 
 body {
   -webkit-font-smoothing: antialiased;
@@ -119,6 +144,7 @@ svg {
 }
 
 .timeline .entry {
+  /* overflow: hidden; */
   /* font-size: 13px; */
   margin-bottom: 5px;
   width: 100%;
@@ -129,6 +155,7 @@ svg {
 }
 
 .timeline .title {
+    font-size: 1em;
     text-transform: uppercase;
     font-weight: bold;
     /* padding: 4px; */
@@ -136,7 +163,6 @@ svg {
 }
 
 .timeline .text {
-    font-size: 15px;
     font-size: 0.8em;
     /* padding: 4px; */
     padding-top: 8px;
@@ -174,16 +200,23 @@ svg {
 }
 
 .timeline.large {
-    font-size: 18px;
+    font-size: 19px;
+}
+.timeline.middle {
+    font-size: 14px;
 }
 
-.small .title {font-size: 9px;}
+.timeline.small {
+    font-size: 9px;
+}
+
+.small .title {
+
+}
 .middle .title {
   
 }
-.big .title {
-  
-}
+
 
 /* ------------------------------------- */
 
@@ -396,6 +429,8 @@ svg {
   right: -520px !important;
 }
 .detail {
+    font-size: 15px;
+    font-family: "lyon-text";
     z-index: 100;
     height: 100%;
     transition: right 0.3s ease-out;
@@ -407,7 +442,7 @@ svg {
     color: #2D2D2D;
     background: rgb(255, 254, 250);
     /* background: url("img/koenigspapier.png"); */
-    font-size: 13px;
+    /* font-size: 13px; */
     line-height: 1.3em;
     overflow-y: scroll;
 }
@@ -441,24 +476,31 @@ svg {
     margin-top: 0em;
 }
 .detail .label {
-  margin-bottom: 0.2em;
+  font-family: euclid flex;
+  margin-bottom: 5px;
   margin-top: 0;
   float: left;
   position: relative;
-  color: #808080;
+  color: rgba(0, 0, 0, 0.24);
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .info span:nth-child(0n+1) {
-  color: #808080;
-  width: 100px;
+  font-weight: bold;
+  font-family: euclid flex;
+  color: rgba(0, 0, 0, 0.28);
+  width: 117px;
   /* font-weight: 500; */
   float: left;
   text-align: right;
   padding-right: 10px;
+  text-transform: uppercase;
+  font-size: 13px;
 }
 
 .info span:nth-child(0n+2) {
-  width: 270px;
+  width: 253px;
   float: left;
 }
 
@@ -474,17 +516,18 @@ svg {
 }
 
 .detail h1 {
+    font-family: euclid flex;
     line-height: 1.2em;
     margin-top: 0;
     font-size: 19px;
     margin-bottom: 25px;
-    /* text-transform: uppercase; */
+    text-transform: uppercase;
 }
 
 .detail p.info {
     /* clear: both; */
     margin-top: 0;
-    margin-bottom: 3px;
+    margin-bottom: 7px;
     position: relative;
     float: left;
 }
