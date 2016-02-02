@@ -230,7 +230,7 @@ function myListView() {
       .on("click", function(){
         var s = !detailContainer.classed("sneak");
         detailContainer.classed("sneak", s)
-        d3.select(this).style({ transform: "rotate(" + 180*s + "deg)" });
+        //d3.select(this).style({ transform: "rotate(" + 180*s + "deg)" });
       })
 
   };
@@ -952,7 +952,7 @@ function myListView() {
 
       showAllImages();
       clearBigImages();
-      detailContainer.classed("hide", true)
+      detailContainer.classed("hide", true).classed("sneak", false)
     }
 
     //domain
