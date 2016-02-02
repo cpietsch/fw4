@@ -123,21 +123,23 @@ svg {
   margin-bottom: 5px;
   width: 100%;
   position: relative;
-  background: rgb(255, 252, 233);
+  background: #F7EECB;
   float: left;
-  padding: 6%;
+  padding: 4%;
 }
 
 .timeline .title {
     text-transform: uppercase;
     font-weight: bold;
     /* padding: 4px; */
-    padding-bottom: 2%;
+    /* padding-bottom: 2%; */
 }
 
 .timeline .text {
+    font-size: 15px;
     font-size: 0.8em;
     /* padding: 4px; */
+    padding-top: 8px;
 }
 
 .timeline .year {
@@ -147,19 +149,28 @@ svg {
 }
 
 .none .entries {
-  display: none;
+    display: none; 
+  opacity: 0;
 }
 
 .small .middle, .small .large {
-  display: none;
+    display: none; 
+  opacity: 0;
 }
 
 .middle .small, .middle .large {
-  display: none;
+    display: none; 
+  opacity: 0;
 }
 
 .large .small, .large .middle {
-  display: none;
+    display: none;
+    opacity: 0;
+    /* visibility: hidden; */
+}
+
+.small, .middle, .large {
+  transition: display 0s, opacity 1s;
 }
 
 .timeline.large {

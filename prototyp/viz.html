@@ -32,7 +32,7 @@
     <p class="info"><span>Datierung:</span><span>{{ zeit }}</span></p>
     <p class="info"><span>Material:</span><span>{{ material }}</span></p>
     <p class="info"><span>Maße:</span><span>{{ hoehe }}mm * {{ breite }}mm</span></p>
-    <p class="info"><span>Thementextef:</span><span>{{ thementexte }}</span></p>
+    <p class="info"><span>Thementexte:</span><span>{{ thementexte.length ? "Ja" : "Nein"}}</span></p>
     <p class="info"><span>Stichworte:</span><span>{{ keywords.join(", ") }}</span></p>
     <p class="info"><span>Inventarnr.:</span><span>{{ id }}</span></p>
     <p class="info"><span>Literatur:</span><span>{{ literatur ? literatur : "Keine Literatur" }}</span></p>
@@ -85,7 +85,7 @@ var ping = utils.ping();
 
 d3.csv("data/timeline.csv", function(timeline){
 d3.csv("data/spsg.csv", function(data){
-d3.json("data/spsg_texte.json", function(texte){
+d3.csv("data/themen.csv", function(texte){
 // Loader("data/spsg.csv").finished(function(data){
 // Loader("data/neu_100.csv").finished(function(images){
 
@@ -93,6 +93,7 @@ d3.json("data/spsg_texte.json", function(texte){
   window.data = data;
 
 
+  c(texte)
   // data cleaning
   utils.clean(data,texte);
   
