@@ -33,6 +33,8 @@ utils.fullscreen = function(){
 }	
 
 utils.clean = function(data,texte) {
+	var texteMap = d3.map(texte, function(d){ return d.name; });
+
 	data.forEach(function(d,i){
 		d.id = +d.id;
 		d.alpha = 1;
@@ -65,19 +67,18 @@ utils.clean = function(data,texte) {
 
 		//d.keywords = d.tip;
 
-		d.thementexte = _(d.index)
+		d.thementexte = _(d.thementexte)
 		  .chain()
 		  .split(";")
-		  .trim()
-		  .value();
+		  .map(_.trim)
+		  .value()
+		  .filter(function(d){ return d != ""; })
+		  .map(function(d1){
+		  	return texteMap.get(d1);
+		  })
 
-		if(d.thementexte){
-			var link = texte[d.thementexte];
-			if(link == undefined){
-				//c("undefined", d.thementexte,d)
-			}
-			
-		}
+
+		// }
 		// if(d.thementexte!=""){
 		//   d.keywords =_(d.thementexte)
 		//     .chain()
