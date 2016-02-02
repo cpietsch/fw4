@@ -559,7 +559,8 @@ function myListView() {
 
   var zoomedToImage = false;
   var zoomedToImageScale = 0;
-  var zoomBarrier = 10;
+  var zoomBarrier = 2;
+  // todo: zoombarrier as d3.scale.threshold()
 
   function zoomToImage(d, duration){
 
