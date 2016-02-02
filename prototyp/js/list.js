@@ -66,7 +66,8 @@ function myListView() {
 
   _.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
   var detailTemplate = _.template(d3.select("#detailTemplate").html());
-  var detailContainer = d3.select("#render");
+  var detailContainer = d3.select(".sidebar");
+
 
   var filter;
   var myTooltip;
@@ -128,29 +129,6 @@ function myListView() {
     stage2.addChild(stage3);
     stage2.addChild(stage4);
     stage2.addChild(stage5);
-
-
-    // var blurFilter = new PIXI.filters.BlurFilter();
-    // blurFilter.blurX = 1;
-    // blurFilter.blurY = 1;
-
-    // blurFilter = new PIXI.filters.PixelateFilter();
-    // blurFilter.size.x = blurFilter.size.y = 10;
-    
-    // filter = new PIXI.filters.ShockwaveFilter();
-    // filter.params.y = 0.2;
-    // filter.time = 10;
-
-    // window.filter = filter;
-
-    // var displaceFiltert = new PIXI.filters.DisplacementFilter();
-    // var rgbFilter = new PIXI.filters.RGBSplitFilter();
-    
-    // stage.filters = [filter];
-
-    // var texture = PIXI.Texture.fromImage('img/back.png');
-    // var tilingSprite = new PIXI.extras.TilingSprite(texture, renderer.width, renderer.height);
-    // stageBack.addChild(tilingSprite);
 
 
     // add preview pics
@@ -248,7 +226,12 @@ function myListView() {
     //zoomToImage(data[2])
     animate();
 
-    
+    d3.select(".slidebutton")
+      .on("click", function(){
+        var s = !detailContainer.classed("sneak");
+        detailContainer.classed("sneak", s)
+        d3.select(this).style({ transform: "rotate(" + 180*s + "deg)" });
+      })
 
   };
 
@@ -612,8 +595,10 @@ function myListView() {
     console.log("show detail")
 
     detailContainer
-      .html(detailTemplate(d))
       .classed("hide", false)
+      .select(".inner")
+      .html(detailTemplate(d))
+      
 
     // todo: fix this hacky template stuff
     var s = detailContainer

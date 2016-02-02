@@ -21,7 +21,6 @@
 
 
 <div id="detailTemplate" class="detail" style="display:none;">
-  <div class="inner">
     <h1>{{ bezeichnungen ? bezeichnungen : "Kein Titel" }}</h1>
     <p class="label">Beschreibung</p>
     <p class="description">{{ beschreibung }}</p>
@@ -36,26 +35,17 @@
     <p class="info"><span>Stichworte</span><span>{{ keywords.join(", ") }}</span></p>
     <p class="info"><span>Inventarnr.</span><span>{{ id }}</span></p>
     <p class="info"><span>Literatur</span><span>{{ literatur ? literatur : "Keine Literatur" }}</span></p>
-  </div>
 </div>
 
 <div class="page">
-  <div id="render" class="detail hide">
+  <div class="sidebar detail hide">
+    <div class="slidebutton"></div>
+    <div id="render" class="inner"></div>  
+  </div>
+
+  <div class="infobar hide">
     <div class="inner">
-      <h1></h1>
-      <p class="label">Beschreibung</p>
-      <p class="beschreibung description">{{ beschreibung }}</p>
-      <p class="label">Kommentar</p>
-      <p class="description comment">{{ kommentar }}</p>
-      <!-- <p class="info">zur <a target="_blank" href="http://bestandskataloge.spsg.de/FWIV/{{ id }}">spsg.de</a></p> -->
-      <p class="info"><span>Bezeichnungen:</span><span>{{ bezeichnungen ? bezeichnungen : "Keine Bezeichnungen" }}</span></p>
-      <p class="info"><span>Datierung:</span><span>{{ zeit }}</span></p>
-      <p class="info"><span>Material:</span><span>{{ material }}</span></p>
-      <p class="info"><span>Maße:</span><span>{{ hoehe }}mm * {{ breite }}mm</span></p>
-      <p class="info"><span>Thementexte:</span><span>{{ thementexte.length ? "Ja" : "Nein"}}</span></p>
-      <p class="info"><span>Stichworte:</span><span>{{ keywords.join(", ") }}</span></p>
-      <p class="info"><span>Inventarnr.:</span><span>{{ id }}</span></p>
-      <p class="info"><span>Literatur:</span><span>{{ literatur ? literatur : "Keine Literatur" }}</span></p>
+      
     </div>
   </div>
 </div>
@@ -132,6 +122,13 @@ d3.select(".splash .btn").on("click", function(){
   d3.select(".splash").style({ display: "none" });
   //utils.fullscreen();
 })
+
+
+window.onbeforeunload = function() {
+    // todo: tracking stuff
+
+};
+
 
 </script>
 
