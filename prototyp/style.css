@@ -439,28 +439,6 @@ svg {
 }
 
 
-.infobar {
-    font-size: 15px;
-    font-family: "lyon-text";
-    z-index: 100;
-    height: 100%;
-    transition: left 0.3s ease-out;
-    box-shadow: 0 0px 56px rgba(0,0,0,0.66),0 0px 6px rgba(0,0,0,0.23);
-    left: 0px;
-    position: absolute;
-    width: 400px;
-    color: #2D2D2D;
-    background-color: #555;
-    /* background: url("img/koenigspapier.png"); */
-    /* font-size: 13px; */
-    line-height: 1.3em;
-    overflow-y: scroll;
-    direction:rtl;
-}
-
-.infobar .inner {
-  direction:ltr;
-}
 
 
 
@@ -485,6 +463,7 @@ svg {
 .detail.hide {
   right: -600px !important;
 }
+
 .detail {
     font-size: 15px;
     font-family: "lyon-text";
@@ -574,7 +553,7 @@ svg {
   text-decoration: underline;
 }
 
-.detail h1 {
+.detail h1, .infobar h1 {
     font-family: euclid flex;
     line-height: 1.2em;
     margin-top: 0;
@@ -583,7 +562,7 @@ svg {
     text-transform: uppercase;
 }
 
-.detail p.info {
+.detail p.info, .infobar p.info {
     /* clear: both; */
     margin-top: 0;
     margin-bottom: 7px;
