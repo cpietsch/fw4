@@ -680,6 +680,101 @@ function myListView() {
   function updateDomain(x1,x2){
 
     var timelineScale = d3.scale.threshold()
+      .domain([2,8,20])
+      .range(["none", "small", "middle", "large"])
+
+    var fontScale = d3.scale.linear()
+      .domain([1,9])
+      .range([9,20])
+      .clamp(true)
+
+
+    console.log(timelineScale(scale), scale)
+    
+    timeline.attr("class", "timeline "+ timelineScale(scale))
+
+    var select = timeline.selectAll(".container")
+      .data(timeDomain)
+
+    var enter = select
+      .enter()
+      .append("div")
+      .classed("container", true)
+     
+
+    enter.append("div")
+      .classed("year", true)
+      // .text(function(d){ return "'"+(1800-d.key)*-1; })
+      .text(function(d){ return d.key; })
+
+    var e = enter
+      .append("div")
+      .classed("entries", true)
+      .selectAll(".entry")
+      .data(function(d){ return d.values; })
+      .enter()
+      .append("div")
+      .classed("entry", true)
+
+    e
+      .append("div")
+      .classed("small", true)
+      .append("div")
+      .classed("title", true)
+      .text(function(d){ return d.titel; })
+
+    var m = e
+      .append("div")
+      .classed("middle", true)
+
+      m
+        .append("div")
+        .classed("title", true)
+        .text(function(d){ return d.titel; })
+      
+      m
+        .append("div")
+        .classed("text", true)
+        .text(function(d){ return d.text; })
+
+    var l = e
+      .append("div")
+      .classed("large", true)
+
+      l
+        .append("div")
+        .classed("title", true)
+        .text(function(d){ return d.titel; })
+      
+      l
+        .append("div")
+        .classed("text", true)
+        .text(function(d){ return d.extra; })
+    
+    select
+      .style("transform", function(d){
+        var pos = ((x(d.key)-x1)*scale);
+        return "translate(" + pos + "px,0px)";
+      })
+      .style("height", rangeBand*scale + "px")
+      .style("width", rangeBand*scale + "px")
+      
+
+    select
+      .select(".year")
+      .style("font-size", fontScale(scale) + "px")
+
+    // select
+    //   .select(".outer")
+    //   .style("transform", "scale("+ scale +")")
+    //   .style("opacity", (scale/7));
+
+    
+  }
+
+  function updateDomain2(x1,x2){
+
+    var timelineScale = d3.scale.threshold()
       .domain([10,20])
       .range(["small", "middle", "deep"])
 
@@ -767,12 +862,7 @@ function myListView() {
     select
       .select(".inner")
       // .style("background", "rgba(247, 239, 205, "+ (1 - (scale/7)) +")");
-
-
-
-
   }
-
 
   function zoomed() {
 

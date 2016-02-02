@@ -102,192 +102,79 @@ svg {
   z-index: 100;
 }
 
+
+
+
 .timeline {
-    /* display: none; */
-    /* font-family: Helvetica Neue; */
     z-index: 200;
-    color: rgb(247, 239, 205);
-    font-size: 9px;
-    /* font-weight: bold; */
-    /* margin-top: 10%; */
-    }
+    color: #000;
+}
+
 .timeline * {
   /* pointer-events:none; */
 }
 
 .timeline .container {
-  /* transition: font-size 0.1s; */
-  /* margin-top: 10%; */
-  overflow: hidden;
-  /* margin: 1%; */
-  /* padding: 10px; */
   position: absolute;
-  height: 10px;
-  /* background: rgba(232, 220, 184, 0.82); */
-}
-
-.timeline .inner {
-  /* background: rgb(247, 239, 205); */
-  float: left;
-  transform-origin: 0 0;
-  transform: scale(0.1);
-  /* float: left; */
-  /* left: -5%; */
-  width: 262px;
-  /* margin-top: 7px; */
-  /* margin-bottom: 15%; */
-  /* margin-left: 4px; */
-  padding-top: 15px;
-  position: relative;
-  /* overflow: hidden; */
-  /* height: 70%; */
-}
-
-.timeline .entries {
-  /* float: left; */
-  /* width: 27px; */
-  transform-origin: 0 0;
-  /* width: 100%; */
-  /* font-size: 7px; */
-  /* transform: scale(42); */
-  /* background: #fff; */
-  /* opacity: 0.4; */
-  /* padding: 5%; */
-  /* margin: 5%; */
-  position: relative;
-}
-.timeline.middle .entries {
-    /* background: rgb(238, 229, 209); */
-}
-
-.timeline.small .entries {
-  /* opacity: 0; */
-}
-.outer {
-    /* float: left; */
-    transform-origin: 0 0;
 }
 
 .timeline .entry {
-  /* border-bottom: 1px solid rgba(240, 238, 221, 0.08); */
-  /* clear: both; */
-  /* overflow: hidden; */
-  /* height: 15px; */
-  padding-bottom: 7px;
+  /* font-size: 13px; */
   margin-bottom: 5px;
-  /* transform-origin: 0 0; */
   width: 100%;
   position: relative;
-  /* background: rgb(255, 252, 233); */
-  /* transform: scale(4); */
-  /* transition: font-size 0.1s; */
-  /* line-height: 1em; */
-  /* font-size: 1em; */
-  /* display: list-item; */
-  /* margin-bottom: 2px; */
-  /* margin-left: 2px; */
-  /* list-style-position: inside; */
-  /* list-style-type: circle; */
-  /* font-size: 11px; */
+  background: rgb(255, 252, 233);
   float: left;
+  padding: 6%;
 }
 
-
-.deep .title {
-    opacity: 1;
-}
-
-.middle .text {
-    opacity: 1;
-}
-
-.deep .text {
-    opacity: 1;
-}
-
-.deep .extra {
-    opacity: 1;
-    /* display: block; */
-}
-
-.left {
-    float: left;
-    width: 49%;
-}
-
-.title {
-    transition: opacity 1s;
-    /* width: 45%; */
+.timeline .title {
     text-transform: uppercase;
-    font-size: 9px;
-    /* padding-left: 8px; */
     font-weight: bold;
-    /* float: left; */
-    padding: 2px;
-    color: #000;
-    background: rgb(247, 239, 205);
+    /* padding: 4px; */
+    padding-bottom: 2%;
 }
 
-.jahr {
-    display: none;
-    opacity: 0.5;
-    float: right;
-}
-
-.text {
-    opacity: 0;
-    /* background: rgb(247, 239, 205); */
-    padding: 2px;
-    /* font-family: Helvetica Neue; */
-    /* float: left; */
-    /* width: 45%; */
-    font-size: 6px;
-    /* opacity: -0.3; */
-    padding-top: 4px;
-    /* clear: both; */
-    /* color: #000; */
-    transition: opacity 1s;
-}
-
-.extra {
-    opacity: 0;
-    /* visibility: hidden; */
-    /* display: none; */
-    /* font-family: "Helvetica Neue"; */
-    width: 47%;
-    /* -webkit-column-count: 3; */
-    font-size: 4px;
-    /* opacity: 0.1; */
-    /* padding-top: 2px; */
-    /* clear: both; */
-    float: right;
-    line-height: 6px;
-    transition: opacity 1s;
+.timeline .text {
+    font-size: 0.8em;
+    /* padding: 4px; */
 }
 
 .timeline .year {
   text-align: center;
-  /* display: none; */
-  /* pointer-events: auto; */
-  /* -webkit-text-stroke-width: .7px; */
-  /* vertical-align: middle; */
-  /* height: 29px; */
-  /* border: 1px solid #4C4C4C; */
-  /* background: rgba(232, 220, 184, 0.12); */
-  /* text-align: center; */
-  /* text-anchor: initial; */
-  /* line-height: 1em; */
-  /* top: -1em; */
-  /* font-size: 10px; */
-  /* font-weight: bold; */
   color: rgb(247, 239, 205);
-  border-bottom: 2px solid rgba(247, 239, 205, 0.31);
-  /* border-left: 2px solid rgba(247, 239, 205, 0.99); */
-  /* margin: auto auto; */
   padding: 5%;
-  /* margin-top: 11%; */
-  /* margin: 5%; */
 }
+
+.none .entries {
+  display: none;
+}
+
+.small .middle, .small .large {
+  display: none;
+}
+
+.middle .small, .middle .large {
+  display: none;
+}
+
+.large .small, .large .middle {
+  display: none;
+}
+
+.timeline.large {
+    font-size: 18px;
+}
+
+.small .title {font-size: 9px;}
+.middle .title {
+  
+}
+.big .title {
+  
+}
+
+/* ------------------------------------- */
 
 .overlay text {
   font-weight: bold;
