@@ -77,7 +77,10 @@ function myListView() {
 
   chart.loadTimeline = function(_data){
     _data.forEach(function(d){
+      // if(d.jahr.split("-").length > 1) c(d.jahr);
+      d.jahr = d.jahr.split("-")[0];
       d.jahr = d.jahr *1;
+      //c(d.jahr);
     })
 
     timelineData = _data.filter(function(d){
