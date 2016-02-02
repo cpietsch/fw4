@@ -11,7 +11,8 @@ function myTagCloud() {
   var wordBackground;
   var keywordsNestGlobal;
 
-  var filterWords = ["Potsdam"];
+  // var filterWords = ["Potsdam"];
+  var filterWords = [];
   var data, filteredData;
   var activeWord;
 

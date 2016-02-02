@@ -676,7 +676,7 @@ function myListView() {
   function updateDomain(x1,x2){
 
     var timelineScale = d3.scale.threshold()
-      .domain([2,4])
+      .domain([10,20])
       .range(["small", "middle", "deep"])
 
     var fontScale = d3.scale.linear()
@@ -686,6 +686,7 @@ function myListView() {
 
 
     console.log(timelineScale(scale), scale)
+    
     timeline.attr("class", "timeline "+ timelineScale(scale))
 
     var select = timeline.selectAll(".container")
@@ -761,7 +762,7 @@ function myListView() {
 
     select
       .select(".inner")
-      .style("background", "rgba(247, 239, 205, "+ (1 - (scale/7)) +")");
+      // .style("background", "rgba(247, 239, 205, "+ (1 - (scale/7)) +")");
 
 
 
