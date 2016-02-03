@@ -2,6 +2,10 @@
 
 session_start();
 
+// create empty log file or add nothing
+$file = fopen("./logs/" . session_id() . ".csv", "a+");
+fwrite($file, "");
+
 ?><!doctype html>
 <html>
 
@@ -165,7 +169,7 @@ session_start();
 
         <img src="img/vis-preview.jpg">
 
-        <a href="#" target="_blank" class="visible-desktop">
+        <a href="vis/" class="visible-desktop">
           <div class="link-to-vis">
             <div class="link-to-vis-inner">
               <h3 class="link-to-vis-title">Vergangene Visionen</h3>
@@ -177,7 +181,8 @@ session_start();
 
         <div class="vis-info">
           <strong>Entwickelt für die aktuellen Versionen von Chrome, Edge, Firefox und Safari</strong><br>
-          Minimum 100 MB Datenverbrauch
+					Zur anonymen Auswertung der Nutzung werden Cookies verwendet.<br>
+          Minimum 100 MB Datenverbrauch.
         </div>
 
 
