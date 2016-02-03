@@ -13,6 +13,7 @@
   line-height: 1.3em;
   /* overflow: auto; */
   direction:rtl;
+  z-index: 300;
 }
 
 
