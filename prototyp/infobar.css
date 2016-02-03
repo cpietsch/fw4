@@ -16,19 +16,20 @@
 }
 
 .infobar h1 {
-	font-size: 25px;
+	font-size: 20px;
 	text-align: left;
 	margin: 0;
+	text-align: left;
 }
 
 .infobar h2 {
 	text-align: left;
-	font-size: 20px;
+  font-size: 20px;
 	line-height: 30px;
 	font-family: "euclid flex";
 	font-weight: normal;
 	margin-top: 0;
-	margin-bottom: 40px;
+	margin-bottom: 30px;
 }
 
 .infobar .inner {
@@ -36,13 +37,15 @@
 }
 
 .infobar img {
-	width: 250px;
-	padding: 5px 40px 0 40px;
+	xborder: 1px solid #999;
+	width: 275px;
+	padding: 5px 50px 0 50px;
 }
 
 .infobar img.scroll {
-	width: 110px; 
-	padding: 0 110px;
+	width: 100px; 
+	padding: 0 140px;
+	margin-top: 10px;
 }
 
 .infobar .label {
@@ -51,9 +54,6 @@
   margin-bottom: 2px;
   text-transform: uppercase;
   margin-top: 0;
- 	xxfloat: left;
-  xposition: relative;
-  xcolor: rgba(0, 0, 0, 0.24);
   font-weight: bold;
 }
 
@@ -89,7 +89,6 @@
   margin-bottom: 2px;
 	margin-top: 1.5rem;
 	border: 2px solid #999;
- xtext-transform: uppercase;
   font-weight: none;	
 	color: #fff;
 	padding: 10px;
