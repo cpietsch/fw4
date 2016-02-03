@@ -214,13 +214,11 @@ function myListView() {
       .call(zoom)
       .on("mousemove", mousemove)
       .on("click", function(){
-
-        // console.log("click",drag,zoomedToImage)
-        c("click", scale,  zoomedToImageScale);
-        
+        if(selectedImage && !selectedImage.id) return;
+        // console.log(selectedImage, zoomedToImageScale)
+      
         if (drag) return;
-
-
+        
         if(Math.abs(zoomedToImageScale-scale) < 0.1 ) chart.resetZoom();
         else zoomToImage(selectedImage, 1400/Math.sqrt(Math.sqrt(scale)));
 
