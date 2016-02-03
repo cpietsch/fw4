@@ -1071,7 +1071,7 @@ function myListView() {
 
     svg
       .call(zoom.translate(translate).event)
-      // .transition().duration(time)
+      .transition().duration(time)
       .call(zoom.scale(1).translate([0,y]).event)
       //.each("end", chart.split)
   }

@@ -21,7 +21,7 @@ function Logger(){
 	var _buffer = [];
 	var _view = "";
 	var _startTime = new Date()*1;
-	var _maxBufferSize = 3;
+	var _maxBufferSize = 10;
 
 	self.register = function(view){
 		_view = view;
@@ -44,13 +44,13 @@ function Logger(){
 
 	self.sync = function(){
 		console.warn("uploading");
-
-		d3.json("http://uclab.fh-potsdam.de/fw4beta/log2.php")
-			.header("Content-Type", "application/json")
-			.post(JSON.stringify(_buffer), function(error, data) {
-		  	console.warn("done uploading")
-		  	_buffer.length = 0;
-		  });
+		_buffer.length = 0;
+		// d3.json("http://uclab.fh-potsdam.de/fw4beta/log2.php")
+		// 	.header("Content-Type", "application/json")
+		// 	.post(JSON.stringify(_buffer), function(error, data) {
+		//   	console.warn("done uploading")
+		//   	_buffer.length = 0;
+		//   });
 	}
 
 	self.buffer = function(){
