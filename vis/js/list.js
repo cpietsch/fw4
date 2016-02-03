@@ -721,7 +721,7 @@ function myListView() {
     .domain([3,10,20])
     .range(["none", "small", "middle", "large"])
 
-    console.log(scale, timelineFontScale(scale))
+    //console.log(scale, timelineFontScale(scale))
 
     timeDomain.forEach(function(d){
       d.pos = ((x(d.key)-x1)*scale);

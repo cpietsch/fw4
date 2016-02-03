@@ -528,9 +528,14 @@ svg {
     line-height: 1.3em;
     /* overflow-y: scroll; */
 }
+.detail .outer {
+ height: 100%;
+ overflow-y: auto;
+ overflow-x: hidden;
+}
 .detail .inner {
-  height: 100%;
-  overflow-y: scroll;
+  /*height: 100%;
+  overflow-y: scroll;*/
   float: left;
   padding: 60px;
   /* padding-left: 60px; */
