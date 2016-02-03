@@ -17,6 +17,7 @@
 <script src="js/tags.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/Tween.js"></script>
+<script src="js/log.js"></script>
 
 <div id="hiddenreload"></div>
 
@@ -88,7 +89,7 @@
   			<p class="feedback">
   				<a href="https://katringlinka.typeform.com/to/ZIIgIe?cid=foo">Zum Fragebogen</a>
   			</p>
-      
+
 		</div>
     
     </div>
@@ -113,35 +114,16 @@ var cloud = myTagCloud();
 var list = myListView();
 
 var ping = utils.ping();
+var logger = Logger().register("vis");
 
-d3.select(window)
-  .on("resize", function(){
-    clearTimeout(window.resizedFinished);
-      window.resizedFinished = setTimeout(function(){
-          list.resize();
-          cloud.resize();
-      }, 250);
-  })
-
-d3.select(".slidebutton")
-  .on("click", function(){
-    var s = !d3.select(".sidebar").classed("sneak");
-    d3.select(".sidebar").classed("sneak", s)
-  })
-
-d3.select(".infobutton")
-  .on("click", function(){
-    var s = !d3.select(".infobar").classed("sneak");
-    d3.select(".infobar").classed("sneak", s)
-  })
-
+logger.log({ action: "enter vis" });
 
 d3.csv("data/timeline.csv", function(timeline){
 d3.csv("data/spsg.csv", function(data){
 d3.csv("data/themen.csv", function(texte){
 // Loader("data/spsg.csv").finished(function(data){
 // Loader("data/neu_100.csv").finished(function(images){
-
+  logger.log({ action: "loaded csv" });
 
   window.data = data;
 
@@ -180,15 +162,27 @@ d3.csv("data/themen.csv", function(texte){
 });
 });
 
-d3.select("#hiddenreload").on("click", function(){
-  location.reload();
-})
+d3.select(window)
+  .on("resize", function(){
+    clearTimeout(window.resizedFinished);
+      window.resizedFinished = setTimeout(function(){
+          list.resize();
+          cloud.resize();
+          logger.log({ action: "resize",  });
+      }, 250);
+  })
 
-d3.select(".splash .btn").on("click", function(){
-  d3.select(".splash").style({ display: "none" });
-  //utils.fullscreen();
-})
+d3.select(".slidebutton")
+  .on("click", function(){
+    var s = !d3.select(".sidebar").classed("sneak");
+    d3.select(".sidebar").classed("sneak", s)
+  })
 
+d3.select(".infobutton")
+  .on("click", function(){
+    var s = !d3.select(".infobar").classed("sneak");
+    d3.select(".infobar").classed("sneak", s)
+  })
 
 window.onbeforeunload = function() {
     // todo: tracking stuff

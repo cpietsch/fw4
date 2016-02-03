@@ -123,27 +123,6 @@ var list = myListView();
 
 var ping = utils.ping();
 
-d3.select(window)
-  .on("resize", function(){
-    clearTimeout(window.resizedFinished);
-      window.resizedFinished = setTimeout(function(){
-          list.resize();
-          cloud.resize();
-      }, 250);
-  })
-
-d3.select(".slidebutton")
-  .on("click", function(){
-    var s = !d3.select(".sidebar").classed("sneak");
-    d3.select(".sidebar").classed("sneak", s)
-  })
-
-d3.select(".infobutton")
-  .on("click", function(){
-    var s = !d3.select(".infobar").classed("sneak");
-    d3.select(".infobar").classed("sneak", s)
-  })
-
 
 d3.csv("data/timeline.csv", function(timeline){
 d3.csv("data/spsg.csv", function(data){
@@ -189,14 +168,26 @@ d3.csv("data/themen.csv", function(texte){
 });
 });
 
-d3.select("#hiddenreload").on("click", function(){
-  location.reload();
-})
+d3.select(window)
+  .on("resize", function(){
+    clearTimeout(window.resizedFinished);
+      window.resizedFinished = setTimeout(function(){
+          list.resize();
+          cloud.resize();
+      }, 250);
+  })
 
-d3.select(".splash .btn").on("click", function(){
-  d3.select(".splash").style({ display: "none" });
-  //utils.fullscreen();
-})
+d3.select(".slidebutton")
+  .on("click", function(){
+    var s = !d3.select(".sidebar").classed("sneak");
+    d3.select(".sidebar").classed("sneak", s)
+  })
+
+d3.select(".infobutton")
+  .on("click", function(){
+    var s = !d3.select(".infobar").classed("sneak");
+    d3.select(".infobar").classed("sneak", s)
+  })
 
 
 window.onbeforeunload = function() {
