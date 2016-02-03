@@ -81,6 +81,15 @@ var list = myListView();
 
 var ping = utils.ping();
 
+d3.select(window)
+  .on("resize", function(){
+    clearTimeout(window.resizedFinished);
+      window.resizedFinished = setTimeout(function(){
+          list.resize();
+          cloud.resize();
+      }, 250);
+  })
+
 
 d3.csv("data/timeline.csv", function(timeline){
 d3.csv("data/spsg.csv", function(data){

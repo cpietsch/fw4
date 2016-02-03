@@ -37,7 +37,19 @@ function myTagCloud() {
       .append("div")
       //.attr("transform", "translate("+ margin.left +","+ margin.top +")")
       
-      
+    chart.update();
+  }
+
+  chart.resize = function(){
+
+    width = window.innerWidth - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+    container
+      .style("width", width + margin.left + margin.right)
+      .style("height", height + margin.top + margin.bottom)
+
+    x.rangeBands([0, width]);
 
     chart.update();
   }

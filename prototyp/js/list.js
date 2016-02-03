@@ -11,6 +11,7 @@ function myListView() {
 
   var scale1 = 1;
   var scale2 = 1;
+  var scale3 = 1;
 
   var translate = [0,0];
   var scale = 1;
@@ -74,6 +75,8 @@ function myListView() {
 
   var timelineData;
 
+  var stage, stage1, stage2, stage3, stage4, stage5;
+
   function chart(){ }
 
   chart.loadTimeline = function(_data){
@@ -93,6 +96,44 @@ function myListView() {
     })
 
     console.log("timeline",timelineData[0]);
+  }
+
+  chart.resize = function(){
+    console.log("resize")
+    width = window.innerWidth - margin.left - margin.right;
+    height = window.innerHeight < minHeight ? minHeight : window.innerHeight;
+
+    renderer.resize(width+ margin.left + margin.right,height);
+
+    chart.makeScales();
+    chart.flip();
+  }
+
+  chart.makeScales = function(){
+    x.rangeBands([margin.left, width + margin.left],0.2)
+
+    rangeBand = x.rangeBand();
+    rangeBandImage = x.rangeBand()/3;
+    imgPadding = rangeBand / collumns / 2;
+
+    scale1 = imageSize/(x.rangeBand()/collumns);
+    scale2 = imageSize2/(x.rangeBand()/collumns);
+    scale3 = imageSize3/(x.rangeBand()/collumns);
+
+    //stage.x = margin.left;
+
+    stage3.scale.x = 1/scale1;
+    stage3.scale.y = 1/scale1;
+    stage3.y = height;
+
+    stage4.scale.x = 1/scale2;
+    stage4.scale.y = 1/scale2;
+    stage4.y = height;
+
+    stage5.scale.x = 1/scale3;
+    stage5.scale.y = 1/scale3;
+    stage5.y = height;
+
   }
 
   chart.init = function(_data) {
@@ -151,28 +192,7 @@ function myListView() {
 
     // var yearsExtent = _.uniq(data.map(function(d){ return d.jahr; })).sort(d3.ascending);
     // x.domain(yearsExtent);
-
-    rangeBand = x.rangeBand();
-    rangeBandImage = x.rangeBand()/3;
-    imgPadding = rangeBand / collumns / 2;
-
-    scale1 = imageSize/(x.rangeBand()/collumns);
-    scale2 = imageSize2/(x.rangeBand()/collumns);
-    scale3 = imageSize3/(x.rangeBand()/collumns);
-
-    //stage.x = margin.left;
-
-    stage3.scale.x = 1/scale1;
-    stage3.scale.y = 1/scale1;
-    stage3.y = height;
-
-    stage4.scale.x = 1/scale2;
-    stage4.scale.y = 1/scale2;
-    stage4.y = height;
-
-    stage5.scale.x = 1/scale3;
-    stage5.scale.y = 1/scale3;
-    stage5.y = height;
+    chart.makeScales();
 
     //make x Axis
     // x.domain().forEach(function(d){
@@ -699,10 +719,13 @@ function myListView() {
 
   function updateDomain(x1,x2){
     // console.time("timeline");
+    // console.log(x1,x2)
+    // console.log(timelineFontScale(scale), scale)
 
-    console.log(x1,x2)
-
-    console.log(timelineFontScale(scale), scale)
+    timeDomain.forEach(function(d){
+      d.pos = ((x(d.key)-x1)*scale);
+      d.visible = (d.pos > (-rangeBand*scale) && d.pos < width+100);
+    })
     
     timeline.attr("class", "timeline "+ timelineScale(scale))
     
@@ -775,14 +798,12 @@ function myListView() {
     
     select
       .style("transform", function(d){
-        var pos = ((x(d.key)-x1)*scale);
-        return "translate(" + pos + "px,0px)";
+        return "translate(" + d.pos + "px,0px)";
       })
       .style("height", rangeBand*scale + "px")
       .style("width", rangeBand*scale + "px")
       .style("display", function(d){
-        var p = (x(d.key)-x1)*scale;
-        return (p > (-rangeBand*scale) && p < width+100) ? "block" : "none";
+        return d.visible ? "block" : "none";
       })
 
     select
