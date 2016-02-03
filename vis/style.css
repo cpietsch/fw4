@@ -106,6 +106,7 @@ margin-top: -100px;}
 }
 
 #hiddenreload {
+  display: none;
   width: 40px;
   height: 40px;
   /* background: #FFF; */
@@ -268,7 +269,7 @@ svg {
 #stats {
     position: absolute;
     z-index: 200;
-    /* display: none; */
+    display: none;
 }
 
 .loader {
@@ -454,24 +455,25 @@ svg {
   display: none;
 }
 .infobar.sneak {
-    left: -390px;
+    left: -495px;
 }
 
 .infobar .infobutton {
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  right: 20px;
-  width: 20px;
-  height: 30px;
+  right: -40px;
+  width: 40px;
+  height: 40px;
   position: absolute;
-  background-image: url("img/infobutton.svg");
+  background-image: url("img/sideinfo.svg");
   top: 50%;
-  opacity: 0.33;
+  /* opacity: 0.33; */
   cursor: pointer;
-  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), right 0.3s;
 }
 .infobar.sneak .infobutton {
-    transform: rotate(180deg);
+    /* transform: rotate(180deg); */
+    right: -40px;
 }
 
 

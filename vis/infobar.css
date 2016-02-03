@@ -7,13 +7,14 @@
   box-shadow: 0 0px 56px rgba(0,0,0,0.66),0 0px 6px rgba(0,0,0,0.23);
   left: 0px;
   position: absolute;
-  width: 450px;
+  width: 500px;
   color: #fff;
   background-color: #555;
   line-height: 1.3em;
-  overflow: auto;
+  /* overflow: auto; */
   direction:rtl;
 }
+
 
 .infobar h1 {
 	font-size: 20px;
@@ -32,7 +33,17 @@
 	margin-bottom: 30px;
 }
 
+.infobar .outer {
+ height: 100%;
+ overflow-y: auto;
+ overflow-x: hidden;
+}
+
 .infobar .inner {
+  /* height: 100%; */
+  /* overflow-y: scroll; */
+  padding: 60px 60px;
+  float: left;
   direction:ltr;
 }
 
@@ -74,9 +85,7 @@
 }
 
 
-.infobar .inner {
-	padding: 60px 30px;
-}
+
 
 .infobar .feedback {
 	margin: 3em;
