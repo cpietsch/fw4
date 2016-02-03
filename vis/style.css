@@ -457,25 +457,30 @@ svg {
 .infobar.sneak {
     left: -495px;
 }
-
+.infobar.sneak:hover {
+    left: -490px;
+}
 .infobar .infobutton {
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  right: -40px;
+  right: 10px;
   width: 40px;
-  height: 40px;
+  height: 30px;
   position: absolute;
-  background-image: url("img/sideinfo.svg");
+  opacity: 0.5;
+  background-image: url("img/infobutton.svg");
   top: 50%;
   /* opacity: 0.33; */
   cursor: pointer;
-  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), right 0.3s;
+  transition: transform 0.3s , right 0.3s;
 }
 .infobar.sneak .infobutton {
     /* transform: rotate(180deg); */
     right: -40px;
+    background-image: url("img/infobutton2.svg");
+    width: 40px;
+    height: 40px;
 }
-
 
 .detail .slidebutton {
     background-size: 100% 100%;
@@ -491,6 +496,9 @@ svg {
     transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     /* transform: rotate(180deg); */
 }
+
+
+
 .detail.sneak {
     right: -540px;
 }
