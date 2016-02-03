@@ -94,7 +94,7 @@ body {
      -moz-font-feature-settings: 'onum';
       -ms-font-feature-settings: 'onum' 1;
           font-feature-settings: 'onum';
-  font-size: 1.25rem;
+  font-size: 1.12rem;
 }
 
 
@@ -239,6 +239,10 @@ blockquote {
 
 .about {
   background-color: #555;
+}
+
+.about.clearfix {
+  margin-bottom: 0px;
 }
 
 
