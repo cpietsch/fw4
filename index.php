@@ -1,4 +1,8 @@
-<!doctype html>
+<?php
+
+session_start();
+
+?><!doctype html>
 <html>
 
 
@@ -147,7 +151,8 @@
       <div class="container">
 
         <p>Die folgende Visualisierung ist ein Prototyp und dient der Forschung.<br /> Sie können uns unterstützen, indem Sie zum Abschluss einen Fragebogen ausfüllen.</p>
-        <a class="btn-feedback" href="#" target="_blank">Zum Fragebogen</a>
+        <a class="btn-feedback" href="https://katringlinka.typeform.com/to/ZIIgIe?cid=<?php echo session_id();
+ ?>" target="_blank">Zum Fragebogen</a>
 
       </div>
 
