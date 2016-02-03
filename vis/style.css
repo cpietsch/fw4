@@ -614,6 +614,9 @@ svg {
     margin-bottom: 25px;
     text-transform: uppercase;
 }
+.detail h1 {
+    display: none;
+}
 
 .detail p.info, .infobar p.info {
     /* clear: both; */
