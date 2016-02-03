@@ -45,6 +45,7 @@
   </div>
 
   <div class="infobar ">
+    <div class="infobutton"></div>
     <div class="inner">
 			
 			<!-- <h1>Hinweise</h1>		 -->
@@ -70,7 +71,7 @@
 				<!-- Zeichnungen, die nicht den ausgewählten Themen entsprechen werden unter die Zeitleiste etwas dunkler angezeigt. -->
 			</p>
 			
-<!-- Two fingers scroll up by VectorBakery from the Noun Project -->
+      <!-- Two fingers scroll up by VectorBakery from the Noun Project -->
 			<!-- Mouse by Calvin Goodman from the Noun Project -->
 			<img class="scroll" src="img/infobar_scroll.svg">
 			<!-- <img class="scroll" src="img/infobar_scrollwheel.svg"> -->
@@ -119,9 +120,14 @@ d3.select(window)
 
 d3.select(".slidebutton")
   .on("click", function(){
-    var s = !detailContainer.classed("sneak");
-    detailContainer.classed("sneak", s)
-    //d3.select(this).style({ transform: "rotate(" + 180*s + "deg)" });
+    var s = !d3.select(".sidebar").classed("sneak");
+    d3.select(".sidebar").classed("sneak", s)
+  })
+
+d3.select(".infobutton")
+  .on("click", function(){
+    var s = !d3.select(".infobar").classed("sneak");
+    d3.select(".infobar").classed("sneak", s)
   })
 
 

@@ -453,11 +453,30 @@ svg {
 .infobar.hide {
   display: none;
 }
+.infobar.sneak {
+    left: -390px;
+}
+
+.infobar .infobutton {
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  right: 20px;
+  width: 20px;
+  height: 30px;
+  position: absolute;
+  background-image: url("img/infobutton.svg");
+  top: 50%;
+  opacity: 0.33;
+  cursor: pointer;
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.infobar.sneak .infobutton {
+    transform: rotate(180deg);
+}
 
 
 .detail .slidebutton {
     background-size: 100% 100%;
-    pointer-events: all;
     background-repeat: no-repeat;
     left: 20px;
     width: 20px;
