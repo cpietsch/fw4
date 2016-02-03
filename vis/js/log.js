@@ -49,6 +49,7 @@ function Logger(){
 			.header("Content-Type", "application/json")
 			.post(JSON.stringify(_buffer), function(error, data) {
 		  	console.warn("done uploading")
+		  	_buffer.length = 0;
 		  });
 	}
 

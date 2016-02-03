@@ -122,7 +122,7 @@ d3.csv("data/timeline.csv", function(timeline){
 d3.csv("data/spsg.csv", function(data){
 d3.csv("data/themen.csv", function(texte){
 // Loader("data/spsg.csv").finished(function(data){
-// Loader("data/neu_100.csv").finished(function(images){
+Loader("data/neu_100.csv").finished(function(images){
   logger.log({ action: "loaded csv" });
 
   window.data = data;
@@ -132,13 +132,13 @@ d3.csv("data/themen.csv", function(texte){
   // data cleaning
   utils.clean(data,texte);
   
-  imagesMap = d3.map(utils.fakeDataSmall(data), function(d){ return d.id; });
-  // imagesMap = d3.map(images, function(d){ return d.id; });
-  imagesMap2 = d3.map(utils.fakeDataBig(data), function(d){ return d.id; });
+  // imagesMap = d3.map(utils.fakeDataSmall(data), function(d){ return d.id; });
+  imagesMap = d3.map(images, function(d){ return d.id; });
+  // imagesMap2 = d3.map(utils.fakeDataBig(data), function(d){ return d.id; });
 
-  // Loader("data/neu_1000.csv").finished(function(images2){
-  //   imagesMap2 = d3.map(images2, function(d){ return d.id; });
-  // });
+  Loader("data/neu_1000.csv").finished(function(images2){
+    imagesMap2 = d3.map(images2, function(d){ return d.id; });
+  });
 
 
   cloud.init(data);
@@ -157,7 +157,7 @@ d3.csv("data/themen.csv", function(texte){
 
 
  
-// });
+});
 });
 });
 });
