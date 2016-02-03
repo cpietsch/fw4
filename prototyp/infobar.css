@@ -17,15 +17,15 @@
 
 .infobar h1 {
 	font-size: 25px;
-	text-align: center;
+	text-align: left;
 	margin: 0;
 }
 
 .infobar h2 {
-	text-align: center;
-  font-size: 20px;
+	text-align: left;
+	font-size: 20px;
 	line-height: 30px;
-  font-family: "euclid flex";
+	font-family: "euclid flex";
 	font-weight: normal;
 	margin-top: 0;
 	margin-bottom: 40px;
@@ -67,9 +67,10 @@
 .infobar p em {
   font-family: "euclid flex";
   text-transform: uppercase;
-	font-style: normal;
+  font-style: normal;
   font-weight: bold;
-	color: #F4ECC2;
+  color: #F4ECC2;
+  font-size: 0.94em;
 }
 
 

@@ -140,13 +140,14 @@ svg {
 }
 
 .timeline .container {
+  /* overflow: hidden; */
   position: absolute;
 }
 
 .timeline .entry {
   /* overflow: hidden; */
   /* font-size: 13px; */
-  margin-bottom: 5px;
+  margin-bottom: 3%;
   width: 92%;
   position: relative;
   background: #F0ECDE;
@@ -171,30 +172,39 @@ svg {
 }
 
 .timeline .year {
+  transition: padding 0.2s;
   text-align: center;
   color: rgb(247, 239, 205);
-  padding: 5%;
+  padding: 8%;
+  /* border-bottom: 1px solid #eee; */
 }
 
-.none .entries {
-    display: none; 
+/*.none .entries {
+  display: none; 
   opacity: 0;
+}*/
+
+.none .small .title {
+  display: none;
+}
+.none .middle, .none .large {
+  display: none;
 }
 
 .small .middle, .small .large {
-    display: none; 
+  display: none; 
   opacity: 0;
 }
 
 .middle .small, .middle .large {
-    display: none; 
+  display: none; 
   opacity: 0;
 }
 
 .large .small, .large .middle {
-    display: none;
-    opacity: 0;
-    /* visibility: hidden; */
+  display: none;
+  opacity: 0;
+  /* visibility: hidden; */
 }
 
 .small, .middle, .large {
@@ -206,11 +216,11 @@ svg {
 }
 
 .timeline.middle .middle {
-    font-size: 0.5em;
+    font-size: 0.45em;
 }
 
 .timeline.large .large {
-    font-size: 0.4em;
+    font-size: 0.3em;
 }
 /*.timeline.small {
     font-size: 9px;

@@ -115,6 +115,13 @@ d3.select(window)
       }, 250);
   })
 
+d3.select(".slidebutton")
+  .on("click", function(){
+    var s = !detailContainer.classed("sneak");
+    detailContainer.classed("sneak", s)
+    //d3.select(this).style({ transform: "rotate(" + 180*s + "deg)" });
+  })
+
 
 d3.csv("data/timeline.csv", function(timeline){
 d3.csv("data/spsg.csv", function(data){

@@ -246,12 +246,7 @@ function myListView() {
     //zoomToImage(data[2])
     animate();
 
-    d3.select(".slidebutton")
-      .on("click", function(){
-        var s = !detailContainer.classed("sneak");
-        detailContainer.classed("sneak", s)
-        //d3.select(this).style({ transform: "rotate(" + 180*s + "deg)" });
-      })
+    
 
   };
 
@@ -703,9 +698,7 @@ function myListView() {
     })
   }
 
-  var timelineScale = d3.scale.threshold()
-    .domain([2,8,20])
-    .range(["none", "small", "middle", "large"])
+  
 
   var fontScale = d3.scale.linear()
     .domain([1,9])
@@ -720,7 +713,12 @@ function myListView() {
   function updateDomain(x1,x2){
     // console.time("timeline");
     // console.log(x1,x2)
-    // console.log(timelineFontScale(scale), scale)
+
+    var timelineScale = d3.scale.threshold()
+    .domain([3,10,20])
+    .range(["none", "small", "middle", "large"])
+
+    console.log(scale, timelineFontScale(scale))
 
     timeDomain.forEach(function(d){
       d.pos = ((x(d.key)-x1)*scale);
@@ -732,7 +730,7 @@ function myListView() {
     timeline.style("font-size", function(){
       // return timelineFontScale(scale) + "px";
       var s = 2*scale;
-      if(s<9) s = 9;
+      // if(s<9) s = 9;
       // if(s>40) s = 40;
 
       return s + "px";
