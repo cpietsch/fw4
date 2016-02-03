@@ -4,7 +4,7 @@ session_start();
 
 // redirect to intro page if it's a new session
 if (!file_exists("../logs/".session_id().".csv")) {
-	header("Location: http://uclab.fh-potsdam.de/fw4/");
+	header("Location: http://uclab.fh-potsdam.de/fw4beta/");
 	die();
 }
 
@@ -55,7 +55,10 @@ if (!file_exists("../logs/".session_id().".csv")) {
   </div>
 
   <div class="infobar ">
-    <div class="inner">
+
+    <div class="infobutton"></div>
+    <div class="outer">
+      <div class="inner">
 			
 			<!-- <h1>Hinweise</h1>		 -->
 			<h1>Vergangene Visionen</h1>
@@ -80,7 +83,7 @@ if (!file_exists("../logs/".session_id().".csv")) {
 				<!-- Zeichnungen, die nicht den ausgewählten Themen entsprechen werden unter die Zeitleiste etwas dunkler angezeigt. -->
 			</p>
 			
-<!-- Two fingers scroll up by VectorBakery from the Noun Project -->
+      <!-- Two fingers scroll up by VectorBakery from the Noun Project -->
 			<!-- Mouse by Calvin Goodman from the Noun Project -->
 			<img class="scroll" src="img/infobar_scroll.svg">
 			<!-- <img class="scroll" src="img/infobar_scrollwheel.svg"> -->
@@ -95,7 +98,8 @@ if (!file_exists("../logs/".session_id().".csv")) {
 				<a href="https://katringlinka.typeform.com/to/ZIIgIe?cid=<?php echo session_id();
  ?>">Zum Fragebogen</a>
 			</p>
-			
+		</div>
+    
     </div>
   </div>
 </div>
@@ -130,9 +134,14 @@ d3.select(window)
 
 d3.select(".slidebutton")
   .on("click", function(){
-    var s = !detailContainer.classed("sneak");
-    detailContainer.classed("sneak", s)
-    //d3.select(this).style({ transform: "rotate(" + 180*s + "deg)" });
+    var s = !d3.select(".sidebar").classed("sneak");
+    d3.select(".sidebar").classed("sneak", s)
+  })
+
+d3.select(".infobutton")
+  .on("click", function(){
+    var s = !d3.select(".infobar").classed("sneak");
+    d3.select(".infobar").classed("sneak", s)
   })
 
 
