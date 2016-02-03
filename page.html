@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>VERGANGENE VISIONEN aus der Feder von Friedrich Wilhelm IV.</title>
+    <title>Vergangene Visionen aus der Feder von Friedrich Wilhelm IV.</title>
 
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -161,22 +161,30 @@
 
         <img src="img/vis-preview.jpg">
 
-        <a href="vis/" class="visible-desktop">
+        <!-- <a href="vis/" class="visible-desktop">
           <div class="link-to-vis">
             <div class="link-to-vis-inner">
               <h3 class="link-to-vis-title">Vergangene Visionen</h3>
               Zur Visualisierung
             </div>
           </div>
-        </a>
+        </a> -->
 
+        <a href="#" class="visible-desktop">
+          <div class="link-to-vis">
+            <div class="link-to-vis-inner">
+              <h3 class="link-to-vis-title">Launch am</h3>
+               4. Februar 2016
+            </div>
+          </div>
+        </a>
        <!--  <a href="#" class="visible-desktop">
           <div class="link-to-vis">
             <div class="link-to-vis-inner">
               <h3 class="link-to-vis-title">Online am</h3>
               04.01.2016
-            </div><!-- .link-to-vis-inner -->
-          </div><!-- .link-to-vis -->
+            </div>
+          </div>
         </a> -->
 
         <div class="vis-info">
@@ -215,7 +223,7 @@
           <ul>
             <li>Wissenschaftliche Leitung:<br>Prof. Dr. Marian Dörk</li>
             <li>Wissenschaftliche Mitarbeit, inhaltliche Betreuung und Recherche:<br>Katrin Glinka</li>
-            <li>Design, Entwicklung und Programmierung des Prototyps:<br>Christopher Pietsch</li>
+            <li>Design, Entwicklung und Programmierung der Visualisierung:<br>Christopher Pietsch</li>
             <li>Wissenschaftliche Betreuung seitens der SPSG:<br>Dr. Carsten Dilba</li>
             <li>Wissenschaftliche Beratung:<br>Dr. Jörg Meiner</li>
             <li>Workshop und Unterstützung:<br>Stephanie Neumann, Matthias Graf, Sebastian Meier, Till Nagel, Jan-Erik Stange</li>
@@ -317,6 +325,10 @@
           speed: 300,
           namespace: "slider",
         });
+
+        $('.visible-desktop').click(function(){
+          return false;
+        })
       });
 
     </script>
