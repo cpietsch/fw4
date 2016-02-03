@@ -21,6 +21,7 @@ function Logger(){
 	var _buffer = [];
 	var _view = "";
 	var _startTime = new Date()*1;
+	var _maxBufferSize = 3;
 
 	self.register = function(view){
 		_view = view;
@@ -33,9 +34,22 @@ function Logger(){
 		obj.time = new Date()*1;
 
 		_buffer.push(obj);
-
 		console.warn("logger",obj);
+
+		if(_buffer.length > _maxBufferSize){
+			self.sync();
+		}
 		return self;
+	}
+
+	self.sync = function(){
+		console.warn("uploading");
+
+		d3.json("http://uclab.fh-potsdam.de/fw4beta/log2.php")
+			.header("Content-Type", "application/json")
+			.post(JSON.stringify(_buffer), function(error, data) {
+		  	console.warn("done uploading")
+		  });
 	}
 
 	self.buffer = function(){
