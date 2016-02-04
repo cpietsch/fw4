@@ -24,7 +24,7 @@
 
 utils.welcome();
 
-var local = true;
+var local = false;
 var s3 = local ? "" : "http://s3.eu-central-1.amazonaws.com/fw4/";
 
 var data;
