@@ -16,14 +16,14 @@ function myListView() {
   // var margin = {top: 20, right: 20, bottom: 30, left: 40},
   //     width = 1300* scale - margin.left - margin.right ,
   //     height = 600*scale - margin.top - margin.bottom;
-
+  var scale; 
   var scale1 = 1;
   var scale2 = 1;
   var scale3 = 1;
 
   var translate = [0,0];
   var scale = 1;
-  window.scale = scale;
+  // window.scale = scale;
 
   var timeDomain = d3.range(1810,1857).map(function(d){ return { key: d };});
   // var timeDomain = d3.range(1795,1862).map(function(d){ return { key: d };});
@@ -121,6 +121,7 @@ function myListView() {
     x.domain(timeDomain.map(function(d){ return d.key; }))
 
     timeDomain.forEach(function(d1){
+      d1.type = "timeline";
       d1.values = timelineData.filter(function(d2){ return d2.jahr == d1.key; });
       d1.id = d1.key;
     })
@@ -947,10 +948,8 @@ function myListView() {
 
   function zoomed() {
 
-
     translate = d3.event.translate;
     scale = d3.event.scale;
-
 
     // check borders
     // this shit cost me a lot of nerves...
@@ -977,9 +976,7 @@ function myListView() {
         translate[0] = ((widthOuter*scale)-widthOuter)*-1;
       }
       
-      // if( translate[1] > y3){
-      //   translate[1] = y3;
-      // }
+
       if( translate[1] < y2){
         translate[1] = y2;
       }
@@ -990,9 +987,12 @@ function myListView() {
       x2 = (x1+(width/scale))
     }
 
-    if(zoomedToImageScale!= 0 && scale > zoomedToImageScale && !zoomedToImage){
+    if(zoomedToImageScale!= 0 && scale > zoomedToImageScale && !zoomedToImage && selectedImage && selectedImage.type == "image"){
       // c("-zoomedto", selectedImage)
       // zoomToImage(selectedImage,500);
+
+      // console.log(slectedImage);
+
       zoomedToImage = true;
       
       zoom.center(null);
@@ -1001,6 +1001,8 @@ function myListView() {
       hideTheRest(selectedImage);
       
       showDetail(selectedImage)
+
+
     }
 
     

@@ -492,16 +492,18 @@ svg {
     position: absolute;
     background-image: url("img/sideclose.svg");
     top: 50%;
-    opacity: 0.33;
+    opacity: 0.2;
     cursor: pointer;
     transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     /* transform: rotate(180deg); */
 }
-
+.detail .slidebutton:hover {
+    opacity: 0.3;
+}
 
 
 .detail.sneak {
-    right: -540px;
+    right: -460px;
 }
 .detail.sneak .slidebutton {
     transform: rotate(180deg);
@@ -521,7 +523,7 @@ svg {
     /* top: 20px; */
     right: 0px;
     position: absolute;
-    width: 600px;
+    width: 520px;
     color: #2D2D2D;
     background: rgb(255, 254, 250);
     /* background: url("img/koenigspapier.png"); */

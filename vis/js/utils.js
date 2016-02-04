@@ -88,6 +88,7 @@ utils.clean = function(data,texte) {
 		d.jahr = +d.jahr;
 		d.active = 1;
 		d.loaded = false;
+		d.type = "image";
 		// d.jahr = format.parse(d.jahr);
 		d.hochkant = d.breite < d.hoehe;
 		d.keywords = _(d.index)
