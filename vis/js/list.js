@@ -646,7 +646,7 @@ function myListView() {
     s.exit().remove()
     s
       .attr("href", function(d){ 
-        return "/thementexte/" + d.file;
+        return "thementexte/" + d.file;
       })
       .attr("target", "_blank")
       .attr("title", "zum PDF")

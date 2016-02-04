@@ -106,6 +106,9 @@
 // www.chrispie.com
 // 2015
 
+// this is not meant for your eyes ;)
+// not yet at least - will publish the code on github soon
+
 utils.welcome();
 
 var data;
@@ -123,20 +126,18 @@ var logger = Logger().register("vis");
 logger.log({ action: "enter vis" });
 
 d3.csv("data/timeline.csv", function(timeline){
-d3.csv("data/spsg.csv", function(data){
 d3.csv("data/themen.csv", function(texte){
-// Loader("data/spsg.csv").finished(function(data){
+Loader("data/spsg.csv").finished(function(data){
 Loader("data/neu_100.csv").finished(function(images){
   logger.log({ action: "loaded csv" });
 
   window.data = data;
 
-
   // c(texte)
   // data cleaning
   utils.clean(data,texte);
 
-  // utils.printkeyowords(data);
+  //utils.printkeyowords(data);
 
   // imagesMap = d3.map(utils.fakeDataSmall(data), function(d){ return d.id; });
   imagesMap = d3.map(images, function(d){ return d.id; });
