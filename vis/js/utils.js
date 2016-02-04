@@ -1,5 +1,30 @@
 window.utils = {};
 
+utils.welcome = function(){
+
+    if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1)
+    {
+        var args = [
+            '\n %c %c %c FW4 visualisation prototype ✰ Christoper Pietsch  %c ' + ' %c ' + ' https://twitter.com/chrispiecom  %c %c ♥%c♥%c♥ \n\n',
+            'background: #EFDAAB; padding:5px 0;',
+            'background: #EFDAAB; padding:5px 0;',
+            'color: #EFDAAB; background: #030307; padding:5px 0;',
+            'background: #EFDAAB; padding:5px 0;',
+            'background: #F7EFCD; padding:5px 0;',
+            'background: #EFDAAB; padding:5px 0;',
+            'color: #EFDAAB; background: #fff; padding:5px 0;',
+            'color: #EFDAAB; background: #fff; padding:5px 0;',
+            'color: #EFDAAB; background: #fff; padding:5px 0;'
+        ];
+
+        window.console.log.apply(console, args); //jshint ignore:line
+    }
+    else if (window.console)
+    {
+        window.console.log('FW4 visualisation prototype - http://www.chrispie.com/'); //jshint ignore:line
+    }
+}
+
 utils.ping = function(){
 	var time = +new Date();
 	var timeout = 2 * 60 * 1000;

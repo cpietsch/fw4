@@ -70,7 +70,13 @@ function myListView() {
 
   _.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
   var detailTemplate = _.template(d3.select("#detailTemplate").html());
-  var detailContainer = d3.select(".sidebar");
+  var detailContainer = d3.select(".sidebar")
+    .on("mouseenter", function(d){
+      logger.log({ action: "enter", scale: scale, target: "detail" });
+    })
+    .on("mouseleave", function(d){
+      logger.log({ action: "exit", scale: scale, target: "detail" });
+    })
 
 
   var filter;
@@ -98,13 +104,14 @@ function myListView() {
 
     timeDomain.forEach(function(d1){
       d1.values = timelineData.filter(function(d2){ return d2.jahr == d1.key; });
+      d1.id = d1.key;
     })
 
-    console.log("timeline",timelineData[0]);
+    // console.log("timeline",timelineData[0]);
   }
 
   chart.resize = function(){
-    console.log("resize")
+    // console.log("resize")
     width = window.innerWidth - margin.left - margin.right;
     height = window.innerHeight < minHeight ? minHeight : window.innerHeight;
 
@@ -218,6 +225,7 @@ function myListView() {
       .call(zoom)
       .on("mousemove", mousemove)
       .on("click", function(){
+        // console.log("DRAG", drag)
         if(selectedImage && !selectedImage.id) return;
         if (drag) return;
         if(selectedImageDistance > 15) return;
@@ -225,8 +233,13 @@ function myListView() {
 
         // console.log(selectedImage)
 
-        if(Math.abs(zoomedToImageScale-scale) < 0.1 ) chart.resetZoom();
-        else zoomToImage(selectedImage, 1400/Math.sqrt(Math.sqrt(scale)));
+        if(Math.abs(zoomedToImageScale-scale) < 0.1 ) {
+          logger.log({ action: "zoomback", scale: scale, target: selectedImage ? selectedImage.id : "" });
+          chart.resetZoom();
+        } else {
+          logger.log({ action: "zoomto", scale: scale, target: selectedImage ? selectedImage.id : "" });
+          zoomToImage(selectedImage, 1400/Math.sqrt(Math.sqrt(scale)));
+        }
 
         // if(zoomedToImage) zoomToImage(selectedImage, 500);
         // if(!zoomedToImage) zoomToImage(selectedImage, 1000);
@@ -341,7 +354,7 @@ function myListView() {
 
 
   chart.click = function(d){
-    c("click")
+    // c("click")
 
   }
 
@@ -371,7 +384,7 @@ function myListView() {
   }
 
   chart.mouseover = function(d){
-    c("mouseover");
+    // c("mouseover");
     if(cloud.lock) return;
 
 
@@ -406,7 +419,7 @@ function myListView() {
   }
 
   chart.mouseout = function(d){
-    console.log("mouseout")
+    // console.log("mouseout")
     if(cloud.lock) return;
 
     //d.target.alpha = 1;
@@ -452,7 +465,7 @@ function myListView() {
 
     }
 
-    c(key);
+    // c(key);
 
     if( !/[^a-zA-Z0-9]/.test( charkey ) ){
       search += charkey;
@@ -463,7 +476,7 @@ function myListView() {
       var dir = key == "Right" ? -1 : 1;
       var next = getSiblingImage(selectedImage, dir);
 
-      c(dir, next)
+      // c(dir, next)
       clearBigImages();
       zoomToImage(next, 500);
     }
@@ -574,7 +587,7 @@ function myListView() {
 
   function zoomToImage(d, duration){
 
-    console.log("detail", d)
+    // console.log("detail", d)
 
     zoom.center(null);
 
@@ -609,14 +622,12 @@ function myListView() {
 
         loadBigImage(d);
 
-        
       })
-  
-    
   }
 
   function showDetail(d){
-    console.log("show detail")
+    // console.log("show detail")
+    logger.log({ action: "zoomToDetail", target: d.id });
 
     detailContainer
       .classed("hide", false)
@@ -645,7 +656,7 @@ function myListView() {
 
   var loadedBigInterval = null;
   function loadBigImage(d, callback){
-    c("loadBig", d.id);
+    // c("loadBig", d.id);
     
     var img = new Image();
 
@@ -684,7 +695,7 @@ function myListView() {
 
 
   function hideTheRest(d){
-    c("hide", d.id)
+    // c("hide", d.id)
     data.forEach(function(d2){
       if(d2.id !== d.id){
         // d2.sprite.alpha = 0;
@@ -719,13 +730,13 @@ function myListView() {
     .range([9, 14, 19])
     .clamp(true)
 
+  var timelineScale = d3.scale.threshold()
+    .domain([3,10,20])
+    .range(["none", "small", "middle", "large"])
+
   function updateDomain(x1,x2){
     // console.time("timeline");
     // console.log(x1,x2)
-
-    var timelineScale = d3.scale.threshold()
-    .domain([3,10,20])
-    .range(["none", "small", "middle", "large"])
 
     //console.log(scale, timelineFontScale(scale))
 
@@ -837,7 +848,7 @@ function myListView() {
       .clamp(true)
 
 
-    console.log(timelineScale(scale), scale)
+    // console.log(timelineScale(scale), scale)
     
     timeline.attr("class", "timeline "+ timelineScale(scale))
 
@@ -963,7 +974,7 @@ function myListView() {
     }
 
     if(zoomedToImageScale!= 0 && scale > zoomedToImageScale && !zoomedToImage){
-      c("-zoomedto", selectedImage)
+      // c("-zoomedto", selectedImage)
       // zoomToImage(selectedImage,500);
       zoomedToImage = true;
       
@@ -980,7 +991,7 @@ function myListView() {
 
 
     if(zoomedToImage && zoomedToImageScale-20 >scale){
-      c("clear")
+      // c("clear")
       zoomedToImage = false;
 
       showAllImages();
@@ -1031,12 +1042,10 @@ function myListView() {
 
   function zoomend(d) {
     drag = translate!==startTranslate;
-
     zooming = false;
 
     filterVisible();
 
-    drag = translate!==startTranslate;
     // c(drag)
     //c("zoomed")
 
@@ -1045,11 +1054,16 @@ function myListView() {
     // console.time("filter")
     // filterVisible();
     // console.timeEnd("filter")
+    // if(drag){
+    //   logger.log({ action: "drag", scale: scale, target: selectedImage ? selectedImage.id : "" });
+    // } else {
+    //   logger.log({ action: "zoomend", scale: scale, target: selectedImage ? selectedImage.id : "" });
+    // }
 
     logger.log({ action: "zoomend", scale: scale, target: selectedImage ? selectedImage.id : "" });
 
     if(zoomedToImage && !selectedImage.big && startScale-scale< 0.1){
-      c("loadbig after zoom")
+      // c("loadbig after zoom")
       loadBigImage(selectedImage);
     }
   }
@@ -1084,7 +1098,7 @@ function myListView() {
 
   chart.flip = function(){
 
-    console.log("flip")
+    // console.log("flip")
 
     chart.split();
 
@@ -1099,14 +1113,20 @@ function myListView() {
     var unten = data.filter(function(d){ return !d.active; })
     stackLayout(unten, true);
 
-    var add = x.domain().map(function(d){ return { x: x(d) + rangeBand/3, y: 0 }; });
-    console.log(add);
+    timeDomain.forEach(function(d){
+      d.x = x(d.key) + rangeBand/3;
+      d.y = 0;
+    });
 
-    console.time("Quadtree")
+    // console.log(timeDomain);
+
+    // console.time("Quadtree")
     // quadtree = Quadtree(data);
-    quadtree = Quadtree(add.concat(data));
-    console.timeEnd("Quadtree");
+    quadtree = Quadtree(timeDomain.concat(data));
+    // console.timeEnd("Quadtree");
     // console.log(quadtree)
+
+    // console.log(timeDomain);
   }
 
   function nearest(x, y, best, node) {

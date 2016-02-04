@@ -64,7 +64,7 @@ function myTagCloud() {
     });
 
     var anzahl = data.filter(function(d){ return d.active; }).length;
-    c("anzahl", anzahl)
+    // c("anzahl", anzahl)
   }
 
   chart.update = function() {
@@ -155,7 +155,7 @@ function myTagCloud() {
   }
 
   chart.draw = function(words) {
-    c(words)   
+    // c(words)   
 
     var select = container
       .selectAll(".tag")
@@ -226,9 +226,11 @@ function myTagCloud() {
     } else {
       filterWords.push(d.key);
     }
-    c(filterWords);
+    // c(filterWords);
 
     chart.update();
+
+    logger.log({ action: "click" , target: d.key });
 
     //mouseclickCallback(d);
 
@@ -251,6 +253,8 @@ function myTagCloud() {
   chart.mouseleave = function (d) {
     if(lock) return;
 
+    logger.log({ action: "exit" , target: d.key });
+
     container
       .selectAll(".tag")
       .style("opacity", 1)
@@ -262,8 +266,9 @@ function myTagCloud() {
 
   chart.mouseenter = function (d1) {
     if(lock) return;
-    
-    console.log(d1.key,d1);
+
+    logger.log({ action: "enter" , target: d1.key });
+    // console.log(d1.key,d1);
 
     var tempFilterWords = _.clone(filterWords);
     tempFilterWords.push(d1.key)
@@ -346,7 +351,7 @@ function myTagCloud() {
       d.active = matches.length > 0;
     });
 
-    c(words);
+    // c(words);
 
     list.highlight();
     
