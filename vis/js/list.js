@@ -17,8 +17,8 @@ function myListView() {
   var scale = 1;
   window.scale = scale;
 
-  // var timeDomain = d3.range(1810,1857).map(function(d){ return { key: d };});
-  var timeDomain = d3.range(1795,1862).map(function(d){ return { key: d };});
+  var timeDomain = d3.range(1810,1857).map(function(d){ return { key: d };});
+  // var timeDomain = d3.range(1795,1862).map(function(d){ return { key: d };});
 
   var x = d3.scale.ordinal()
     .rangeBands([margin.left, width + margin.left],0.2)
@@ -101,6 +101,17 @@ function myListView() {
     // })
     
     timelineData = _data;
+
+    timelineData.forEach(function(d){
+      if(timeDomain.filter(function(dd){ return dd.key == d.jahr; }).length == 0){
+        // console.log("not", d);
+        timeDomain.push({ key: d.jahr });
+      }
+    })
+
+    timeDomain.sort(function(a,b){ return a.key - b.key; })
+
+    x.domain(timeDomain.map(function(d){ return d.key; }))
 
     timeDomain.forEach(function(d1){
       d1.values = timelineData.filter(function(d2){ return d2.jahr == d1.key; });
@@ -1060,7 +1071,7 @@ function myListView() {
     //   logger.log({ action: "zoomend", scale: scale, target: selectedImage ? selectedImage.id : "" });
     // }
 
-    logger.log({ action: "zoomend", scale: scale, target: selectedImage ? selectedImage.id : "" });
+    logger.log({ action: "zoomend", translate: translate, scale: scale, target: selectedImage ? selectedImage.id : "" });
 
     if(zoomedToImage && !selectedImage.big && startScale-scale< 0.1){
       // c("loadbig after zoom")
