@@ -1,3 +1,8 @@
+// christopher pietsch
+// cpietsch@gmail.com
+// tweet me @chrispiecom
+// 2015-2016
+
 function Logger(){
 
 	function self(){}

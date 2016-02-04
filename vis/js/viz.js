@@ -1,8 +1,23 @@
-
-// copyright christopher pietsch
+                                                                                  
+//                                   ,--,                                     ,----, 
+//        ,---,.           .---.      ,--.'|                       ,---,       .'   .`| 
+//      ,'  .' |          /. ./|   ,--,  | :               ,---.,`--.' |    .'   .'   ; 
+//    ,---.'   |      .--'.  ' ;,---.'|  : '              /__./||   :  :  ,---, '    .' 
+//    |   |   .'     /__./ \ : |;   : |  | ;         ,---.;  ; |:   |  '  |   :     ./  
+//    :   :  :   .--'.  '   \' .|   | : _' |        /___/ \  | ||   :  |  ;   | .'  /   
+//    :   |  |-,/___/ \ |    ' ':   : |.'  |        \   ;  \ ' |'   '  ;  `---' /  ;    
+//    |   :  ;/|;   \  \;      :|   ' '  ; :         \   \  \: ||   |  |    /  ;  /     
+//    |   |   .' \   ;  `      |\   \  .'. |          ;   \  ' .'   :  ;   ;  /  /--,   
+//    '   :  '    .   \    .\  ; `---`:  | '           \   \   '|   |  '  /  /  / .`|   
+//    |   |  |     \   \   ' \ |      '  ; |            \   `  ;'   :  |./__;       :   
+//    |   :  \      :   '  |--"       |  : ;             :   \ |;   |.' |   :     .'    
+//    |   | ,'       \   \ ;          '  ,/               '---" '---'   ;   |  .'       
+//    `----'          '---"           '--'                              `---'           
+                                                                                  
+// christopher pietsch
 // cpietsch@gmail.com
-// www.chrispie.com
-// 2015
+// tweet me @chrispiecom
+// 2015-2016
 
 // this is not meant for your eyes ;)
 // not yet at least - will publish the code on github soon
@@ -10,7 +25,7 @@
 utils.welcome();
 
 var local = true;
-var s3 = local ? "" : "https://s3.eu-central-1.amazonaws.com/fw4/";
+var s3 = local ? "" : "http://s3.eu-central-1.amazonaws.com/fw4/";
 
 var data;
 var imagesMap;

@@ -1,9 +1,17 @@
+// christopher pietsch
+// cpietsch@gmail.com
+// tweet me @chrispiecom
+// 2015-2016
+
+// this is not meant for your eyes ;)
+// not yet at least - will publish the code on github soon
 
 function myListView() {
   var margin = {top: 20, right: 50, bottom: 30, left: 50};
 
   var minHeight = 400;
   var width = window.innerWidth - margin.left - margin.right;
+  var widthOuter = window.innerWidth;
   var height = window.innerHeight < minHeight ? minHeight : window.innerHeight;
   // var margin = {top: 20, right: 20, bottom: 30, left: 40},
   //     width = 1300* scale - margin.left - margin.right ,
@@ -28,7 +36,6 @@ function myListView() {
   //   .domain([2,6])
   //   .range([9,15])
   //   .clamp(true)
-
 
   var Quadtree = d3.geom.quadtree()
       // .extent([[0, 0], [width, -height]])
@@ -568,7 +575,6 @@ function myListView() {
   function animate(time) {
 
     requestAnimationFrame( animate );
-    TWEEN.update(time);
     //filter.time = (filter.time+0.02) % 1;
 
     loadImages();
@@ -809,7 +815,7 @@ function myListView() {
       m
         .append("div")
         .classed("text", true)
-        .text(function(d){ return d.text + "..."; })
+        .text(function(d){ return d.text + "."; }) //…
 
     var l = e
       .append("div")
@@ -823,7 +829,7 @@ function myListView() {
       l
         .append("div")
         .classed("text", true)
-        .html(function(d){ return d.text + "<br><br>" + d.extra; })
+        .html(function(d){ return d.text + ".<br><br>" + d.extra; })
     
     select
       .style("transform", function(d){
@@ -950,7 +956,7 @@ function myListView() {
     // this shit cost me a lot of nerves...
 
     var x1 = -1*translate[0]/scale;
-    var x2 = (x1+(width/scale));
+    var x2 = (x1+(widthOuter/scale));
 
     var y1 = (translate[1] + height*scale);
 
@@ -967,8 +973,8 @@ function myListView() {
     if(d3.event.sourceEvent!=null){
       if( x1 < 0 ) {
         translate[0] = 0;
-      } else if( x2 > width ){
-        translate[0] = ((width*scale)-width)*-1;
+      } else if( x2 > widthOuter ){
+        translate[0] = ((widthOuter*scale)-widthOuter)*-1;
       }
       
       // if( translate[1] > y3){
@@ -1126,7 +1132,7 @@ function myListView() {
 
     timeDomain.forEach(function(d){
       d.x = x(d.key) + rangeBand/3;
-      d.y = 0;
+      d.y = 5;
     });
 
     // console.log(timeDomain);

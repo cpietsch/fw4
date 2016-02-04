@@ -1,3 +1,11 @@
+// copyright christopher pietsch
+// cpietsch@gmail.com
+// tweet me @chrispiecom
+// 2015-2016
+
+// this is not meant for your eyes ;)
+// not yet at least - will publish the code on github soon
+
 window.utils = {};
 
 utils.welcome = function(){

@@ -1,3 +1,9 @@
+// christopher pietsch
+// cpietsch@gmail.com
+// tweet me @chrispiecom
+// 2015-2016
+
+
 function Loader(url){
   var width = 100,
       height = 100,
