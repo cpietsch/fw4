@@ -14,6 +14,18 @@ utils.ping = function(){
 	}
 }
 
+utils.printkeywords = function(data){
+	var keywords = {};
+	data.forEach(function(d){
+		d.keywords.forEach(function(d){
+		  keywords[d] = 0;
+		})
+	})
+	d3.keys(keywords).forEach(function(d){
+		console.log(d);
+	})
+}
+
 utils.fullscreen = function(){
 	document.fullscreenEnabled = document.fullscreenEnabled || document.mozFullScreenEnabled || document.documentElement.webkitRequestFullScreen;
 

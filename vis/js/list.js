@@ -17,8 +17,8 @@ function myListView() {
   var scale = 1;
   window.scale = scale;
 
-  var timeDomain = d3.range(1810,1857).map(function(d){ return { key: d };});
-  // var timeDomain = d3.range(1795,1862).map(function(d){ return { key: d };});
+  // var timeDomain = d3.range(1810,1857).map(function(d){ return { key: d };});
+  var timeDomain = d3.range(1795,1862).map(function(d){ return { key: d };});
 
   var x = d3.scale.ordinal()
     .rangeBands([margin.left, width + margin.left],0.2)
@@ -61,6 +61,8 @@ function myListView() {
   var svg,timeline;
   var svgscale, voronoi;
 
+  var selectedImageDistance = 0;
+
   var drag = false;
 
   var stagePadding = 40;
@@ -88,11 +90,11 @@ function myListView() {
       //c(d.jahr);
     })
 
-    timelineData = _data.filter(function(d){
-      return d.jahr >= 1810 && d.jahr <= 1856;
-    })
+    // timelineData = _data.filter(function(d){
+    //   return d.jahr >= 1810 && d.jahr <= 1856;
+    // })
     
-    // timelineData = _data;
+    timelineData = _data;
 
     timeDomain.forEach(function(d1){
       d1.values = timelineData.filter(function(d2){ return d2.jahr == d1.key; });
@@ -210,15 +212,19 @@ function myListView() {
 
     //stackLayout(data, false);
 
+    
+
     d3.select(".viz")
       .call(zoom)
       .on("mousemove", mousemove)
       .on("click", function(){
         if(selectedImage && !selectedImage.id) return;
-        // console.log(selectedImage, zoomedToImageScale)
-      
         if (drag) return;
-        
+        if(selectedImageDistance > 15) return;
+        if(selectedImage && !selectedImage.active) return;
+
+        // console.log(selectedImage)
+
         if(Math.abs(zoomedToImageScale-scale) < 0.1 ) chart.resetZoom();
         else zoomToImage(selectedImage, 1400/Math.sqrt(Math.sqrt(scale)));
 
@@ -264,8 +270,9 @@ function myListView() {
     var best = nearest(p[0]-imgPadding, p[1]-imgPadding, {d: 200, p: null}, quadtree);
     // console.timeEnd("search")
 
-   // console.log(best.p)
-
+    // console.log(best)
+    
+    selectedImageDistance = best.d;
 
     if(best.p && !zoomedToImage) {
       var d = best.p;
@@ -274,11 +281,12 @@ function myListView() {
       zoom.center(center);
 
       selectedImage = d;
+
       //d.alpha = 0.6;
     }
 
     container.style("cursor", function(){
-      return best.d < 5 ? "pointer" : "default";
+      return ((best.d < 5) && selectedImage.active )? "pointer" : "default";
     });
 
     // console.log(best)

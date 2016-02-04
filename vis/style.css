@@ -566,6 +566,7 @@ svg {
     margin-top: 0em;
 }
 .detail .label {
+  display: block;
   font-size: 13px;
   font-family: "euclid-flex";
   margin-bottom: 2px;
@@ -575,6 +576,7 @@ svg {
   color: rgba(0, 0, 0, 0.24);
   text-transform: uppercase;
   font-weight: bold;
+  width: 100%;
 }
 
 .info span:nth-child(0n+1) {

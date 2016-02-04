@@ -133,7 +133,9 @@ Loader("data/neu_100.csv").finished(function(images){
   c(texte)
   // data cleaning
   utils.clean(data,texte);
-  
+
+  // utils.printkeyowords(data);
+
   // imagesMap = d3.map(utils.fakeDataSmall(data), function(d){ return d.id; });
   imagesMap = d3.map(images, function(d){ return d.id; });
   // imagesMap2 = d3.map(utils.fakeDataBig(data), function(d){ return d.id; });
@@ -190,6 +192,8 @@ window.onbeforeunload = function() {
     // todo: tracking stuff
 
 };
+
+
 
 
 </script>

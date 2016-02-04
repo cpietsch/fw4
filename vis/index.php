@@ -1,9 +1,9 @@
 <?php
 
-session_start();
+include "../db.php";
 
-// redirect to intro page if it's a new session
-if (!file_exists("../logs/".session_id().".csv")) {
+//redirect to intro page if it's a new session
+if (!recognized()) {
 	header("Location: http://uclab.fh-potsdam.de/fw4beta/");
 	die();
 }
