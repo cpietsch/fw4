@@ -47,11 +47,11 @@ body {
   overflow: none;
   height: 100%;
   background: #131415;
-  -moz-user-select: none;
-  -webkit-user-select: none;
+  /*-moz-user-select: none;
+   -webkit-user-select: none; 
   -ms-user-select:none;
   user-select:none;
-  -o-user-select:none;
+  -o-user-select:none;*/
 }
 
 canvas {
