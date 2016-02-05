@@ -17,6 +17,37 @@
 }
 
 
+.infobar.hide {
+  display: none;
+}
+.infobar.sneak {
+    left: -495px;
+}
+.infobar.sneak:hover {
+    left: -490px;
+}
+.infobar .infobutton {
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  right: 10px;
+  width: 20px;
+  height: 30px;
+  position: absolute;
+  opacity: 0.5;
+  background-image: url("img/infobutton.svg");
+  top: 50%;
+  /* opacity: 0.33; */
+  cursor: pointer;
+  transition: transform 0.3s , right 0.3s;
+}
+.infobar.sneak .infobutton {
+    /* transform: rotate(180deg); */
+    right: -40px;
+    background-image: url("img/infobutton2.svg");
+    width: 40px;
+    height: 40px;
+}
+
 .infobar h1 {
 	font-size: 20px;
 	text-align: left;
@@ -34,10 +65,14 @@
 	margin-bottom: 20px;
 }
 
+
 .infobar .outer {
  height: 100%;
  overflow-y: auto;
  overflow-x: hidden;
+}
+.infobar .outer::-webkit-scrollbar * {
+  /*background: #555555;*/
 }
 
 .infobar .inner {
@@ -47,6 +82,7 @@
   float: left;
   direction:ltr;
 }
+
 
 .infobar img {
 	xborder: 1px solid #999;
