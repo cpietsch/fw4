@@ -349,6 +349,7 @@ function myListView() {
       d3.select(".viz")
           .call(zoom)
           .on("mousemove", mousemove)
+          .on("dblclick.zoom", null)
           .on("click", function() {
               // console.log("DRAG", drag)
               if (selectedImage && !selectedImage.id) return;
