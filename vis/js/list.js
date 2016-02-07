@@ -355,7 +355,7 @@ function myListView() {
               if (drag) return;
               if (selectedImageDistance > 15) return;
               if (selectedImage && !selectedImage.active) return;
-
+              if(timelineHover) return;
               // console.log(selectedImage)
 
               if (Math.abs(zoomedToImageScale - scale) < 0.1) {
@@ -416,7 +416,7 @@ function myListView() {
           p: null
       }, quadtree);
       // console.timeEnd("search")
-      console.log(best)
+      // console.log(best)
 
       selectedImageDistance = best.d;
 
@@ -736,6 +736,8 @@ function myListView() {
       var scale = 0.6 / (x.rangeBand() / 3 / width);
       var translateNow = [(-scale * (d.x - padding)) - sidbar, -scale * (height + d.y)];
 
+      console.log(scale, translateNow);
+
       zoomedToImageScale = scale;
 
       setTimeout(function() {
@@ -910,9 +912,32 @@ function myListView() {
             console.log("enter", d);
             timelineHover = true;
 
-            var center = [((d.x + imgPadding) * scale) + translate[0], (height + d.y + imgPadding) * scale + translate[1]];
-            zoom.center(center);
+            // var center = [((d.x + imgPadding) * scale) + translate[0], (height + d.y + imgPadding) * scale + translate[1]];
+            // zoom.center(center);
+            zoom.center(null);
 
+          })
+          .on("click", function(d){
+            console.log("clickTimline", d);
+
+            var duration = 1000 / Math.sqrt(Math.sqrt(scale));
+            var duration = 2000;
+            var padding = x.rangeBand() / 3 / 2;
+            // var padding = 0;
+            var scale = 0.2 / (x.rangeBand() / 3 / width);
+            var translateNow = [(-scale * (d.x - imgPadding*2)), -scale * (height + d.y - imgPadding*2)];
+
+            console.log(scale, translateNow)
+            // zoomedToImageScale = scale;
+
+            // setTimeout(function() {
+            //     hideTheRest(d);
+            // }, duration / 2);
+
+            svg
+                .call(zoom.translate(translate).event)
+                .transition().duration(duration)
+                .call(zoom.scale(scale).translate(translateNow).event)
 
           })
           .on("mouseleave", function(d){
