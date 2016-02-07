@@ -1,0 +1,7 @@
+<?
+
+include "db.php";
+
+logger();
+
+?>
