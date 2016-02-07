@@ -147,6 +147,7 @@ svg {
 }
 
 .timeline .entry {
+  /* transform: scale(0.5); */
   /* overflow: hidden; */
   /* font-size: 13px; */
   margin-bottom: 3%;
@@ -215,6 +216,8 @@ svg {
 }
 
 .timeline.small .small {
+    /* transform-origin: left top; */
+    /* transform: scale(0.5); */
     font-size: 1em;
 }
 
@@ -236,9 +239,7 @@ svg {
 }*/
 
 
-.small .title {
-
-}
+.small .title {font-size: 0.5em;}
 .middle .title {
   
 }
@@ -427,7 +428,19 @@ svg {
 }
 
 
-
+.detail .enSpoiler {
+    display: none;
+    margin-top: 0;
+    font-size: 13px;
+    font-family: "euclid-flex";
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+    color: #C2C1BE;
+}
+.en .enSpoiler.hide {
+    display: block;
+}
 
 .detail .slidebutton {
     background-size: 100% 100%;
