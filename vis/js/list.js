@@ -25,23 +25,23 @@ function myListView() {
   var scale1 = 1;
   var scale2 = 1;
   var scale3 = 1;
+  var allData = [];
 
   var translate = [0, 0];
   var scale = 1;
   // window.scale = scale;
 
-  var timeDomain = d3.range(1810, 1857).map(function(d) { 
-      return {
-          key: d
-      };
-  });
+  // var timeDomain = d3.range(1810, 1857).map(function(d) { 
+  //     return {
+  //         key: d
+  //     };
+  // });
+  var timeDomain = [];
   // var timeDomain = d3.range(1795,1862).map(function(d){ return { key: d };});
 
   var x = d3.scale.ordinal()
       .rangeBands([margin.left, width + margin.left], 0.2)
-      .domain(timeDomain.map(function(d) {
-          return d.key;
-      }))
+      // .domain(timeDomain.map(function(d) { return d.key; }))
 
   // var fontScale = d3.scale.linear()
   //   .domain([2,6])
@@ -123,41 +123,46 @@ function myListView() {
           // if(d.jahr.split("-").length > 1) c(d.jahr);
           d.jahr = d.jahr.split("-")[0];
           d.jahr = d.jahr * 1;
-          //c(d.jahr);
       })
 
-      // timelineData = _data.filter(function(d){
-      //   return d.jahr >= 1810 && d.jahr <= 1856;
+      d3.nest()
+        .key(function(d){ return d.jahr; })
+        .entries(_data)
+        .forEach(function(d){ timeDomain.push(d); })
+
+      // console.log(t);
+
+      // _.uniqBy(_data, "jahr").forEach(function(d){
+      //   timeDomain.push({ key: d.jahr });
       // })
 
-      timelineData = _data;
 
-      timelineData.forEach(function(d) {
-          if (timeDomain.filter(function(dd) {
-                  return dd.key == d.jahr;
-              }).length == 0) {
-              // console.log("not", d);
-              timeDomain.push({
-                  key: d.jahr
-              });
-          }
-      })
+      // timelineData = _data;
 
-      timeDomain.sort(function(a, b) {
-          return a.key - b.key;
-      })
+      // timelineData.forEach(function(d) {
+      //     if (timeDomain.filter(function(dd) {
+      //             return dd.key == d.jahr;
+      //         }).length == 0) {
+      //         // console.log("not", d);
+      //         timeDomain.push({
+      //             key: d.jahr
+      //         });
+      //     }
+      // })
 
-      x.domain(timeDomain.map(function(d) {
-          return d.key;
-      }))
+      // timeDomain.sort(function(a, b) { return a.key - b.key; })
 
-      timeDomain.forEach(function(d1) {
-          d1.type = "timeline";
-          d1.values = timelineData.filter(function(d2) {
-              return d2.jahr == d1.key;
-          });
-          d1.id = d1.key;
-      })
+      // x.domain(timeDomain.map(function(d) {
+      //     return d.key;
+      // }))
+
+      // timeDomain.forEach(function(d1) {
+      //     d1.type = "timeline";
+      //     d1.values = timelineData.filter(function(d2) {
+      //         return d2.jahr == d1.key;
+      //     });
+      //     d1.id = d1.key;
+      // })
 
       // console.log("timeline",timelineData[0]);
   }
@@ -200,7 +205,7 @@ function myListView() {
 
   }
 
-  chart.init = function(_data) {
+  chart.init = function(_data,_timeline) {
       data = _data;
 
       container = d3.select(".page").append("div").classed("viz", true);
@@ -257,9 +262,43 @@ function myListView() {
 
       })
 
+      console.log(_data[0])
 
-      // var yearsExtent = _.uniq(data.map(function(d){ return d.jahr; })).sort(d3.ascending);
-      // x.domain(yearsExtent);
+      // timeline cleaning
+      _timeline.forEach(function(d) {
+          d.jahr = d.jahr.split("-")[0];
+          d.jahr = d.jahr * 1;
+          d.type = "timeline";
+      });
+
+      allData = _data.concat(_timeline);
+
+      timeDomain = d3.nest()
+        .key(function(d){ return d.jahr; })
+        .key(function(d){ return d.type; })
+        .entries(allData);
+
+      timeDomain.sort(function(a, b) { return a.key - b.key; });
+      x.domain(timeDomain.map(function(d){ return d.key*1; }));
+
+      _timeline.forEach(function(d) {
+          d.x = x(d.key) + rangeBand / 3;
+          d.y = 5;
+      });
+
+      // add years to the timeline
+      // d3.nest()
+      //   .key(function(d){ return d.jahr; })
+      //   .entries(data)
+      //   .forEach(function(d){
+      //     console.log(d)
+      //     timeDomain.push({ key: d.key, values: [] })
+      //   })
+
+      // timeDomain.sort(function(a, b) { return a.key - b.key; });
+      // x.domain(timeDomain.map(function(d){ return d.key*1; }));
+
+      
       chart.makeScales();
 
       //make x Axis
@@ -273,10 +312,7 @@ function myListView() {
       //   stage3.addChild(text);
       // })
 
-      //stackLayout(data, false);
-
-
-
+    
       d3.select(".viz")
           .call(zoom)
           .on("mousemove", mousemove)
@@ -1227,16 +1263,16 @@ function myListView() {
       })
       stackLayout(unten, true);
 
-      timeDomain.forEach(function(d) {
-          d.x = x(d.key) + rangeBand / 3;
-          d.y = 5;
-      });
+      // timeDomain.forEach(function(d) {
+      //     d.x = x(d.key) + rangeBand / 3;
+      //     d.y = 5;
+      // });
 
       // console.log(timeDomain);
 
       // console.time("Quadtree")
       // quadtree = Quadtree(data);
-      quadtree = Quadtree(timeDomain.concat(data));
+      quadtree = Quadtree(allData);
       // console.timeEnd("Quadtree");
       // console.log(quadtree)
 

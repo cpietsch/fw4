@@ -67,8 +67,8 @@ Loader(s3 + "data/neu_100.csv").finished(function(images){
 
   cloud.init(data);
   
-  list.loadTimeline(timeline);
-  list.init(data);
+  // list.loadTimeline(timeline);
+  list.init(data,timeline);
 
 
   cloud.mouseenterCallback(function(d){
@@ -123,10 +123,10 @@ window.onbeforeunload = function() {
     logger.log({ action: "close" });
     logger.sync();
 };
-window.onerror = function(message, url, lineNumber) {  
-  //save error and send to server for example.
-  console.error(message, lineNumber, url);
-  logger.log({ action: "error", target: lineNumber + ": " + message });
-  return true;
-};  
+// window.onerror = function(message, url, lineNumber) {  
+//   //save error and send to server for example.
+//   console.error(message, lineNumber, url);
+//   logger.log({ action: "error", target: lineNumber + ": " + message });
+//   return true;
+// };  
 
