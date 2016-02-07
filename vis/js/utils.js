@@ -77,8 +77,11 @@ utils.fullscreen = function(){
 	}
 }	
 
-utils.clean = function(data,texte) {
+utils.clean = function(data,texte,transKeyword) {
+
+	// console.log(transKeyword);
 	var texteMap = d3.map(texte, function(d){ return d.name; });
+	var keywordMap = d3.map(transKeyword, function(d){ return d.de; });
 
 	data.forEach(function(d,i){
 		d.id = +d.id;
@@ -101,6 +104,13 @@ utils.clean = function(data,texte) {
 		  .uniq()
 		  .value()
 
+
+		if(lang == "en"){
+			d.keywords = d.keywords.map(function(d){
+				return keywordMap.get(d).en;
+			})
+		}
+		
 		d.tip = _(d.index)
 		  .chain()
 		  .split(";")

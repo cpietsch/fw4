@@ -25,6 +25,7 @@
 utils.welcome();
 
 var local = true;
+var lang = "en";
 var s3 = local ? "" : "http://s3.eu-central-1.amazonaws.com/fw4/";
 
 var data;
@@ -43,6 +44,7 @@ logger.log({ action: "enter vis" });
 
 d3.csv(s3 + "data/timeline.csv", function(timeline){
 d3.csv(s3 + "data/themen.csv", function(texte){
+d3.csv(s3 + "data/transKeyword.csv", function(transKeyword){
 Loader(s3 + "data/spsg.csv").finished(function(data){
 // Loader(s3 + "data/neu_100.csv").finished(function(images){
   logger.log({ action: "loaded csv" });
@@ -51,7 +53,7 @@ Loader(s3 + "data/spsg.csv").finished(function(data){
 
   // c(texte)
   // data cleaning
-  utils.clean(data,texte);
+  utils.clean(data,texte,transKeyword);
 
   // utils.printkeyowords(data);
 
@@ -81,6 +83,7 @@ Loader(s3 + "data/spsg.csv").finished(function(data){
 
  
 // });
+});
 });
 });
 });
