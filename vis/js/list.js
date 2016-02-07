@@ -314,10 +314,10 @@ function myListView() {
       // timeDomain.sort(function(a, b) { return a.key - b.key; });
       x.domain(chartDomain);
 
-      // _timeline.forEach(function(d) {
-      //     d.x = x(d.key) + rangeBand / 3;
-      //     d.y = 5;
-      // });
+      timeDomain.forEach(function(d) {
+          d.x = x(d.key) + rangeBand / 3;
+          d.y = 5;
+      });
 
       // add years to the timeline
       // d3.nest()
@@ -405,12 +405,10 @@ function myListView() {
 
 
   function mousemove(d) {
+      if(timelineHover) return;
       //ping();
       var mouse = d3.mouse(this);
-
       var p = toScreenPoint(mouse);
-
-      // console.log(mouse,p);
 
       // console.time("search")
       var best = nearest(p[0] - imgPadding, p[1] - imgPadding, {
@@ -418,8 +416,7 @@ function myListView() {
           p: null
       }, quadtree);
       // console.timeEnd("search")
-
-      // console.log(best)
+      console.log(best)
 
       selectedImageDistance = best.d;
 
@@ -878,6 +875,8 @@ function myListView() {
       .domain([3, 10, 20])
       .range(["none", "small", "middle", "large"])
 
+  var timelineHover = false;
+
   function updateDomain(x1, x2) {
       // console.time("timeline");
       // console.log(x1,x2)
@@ -907,6 +906,19 @@ function myListView() {
           .enter()
           .append("div")
           .classed("container", true)
+          .on("mouseenter", function(d){
+            console.log("enter", d);
+            timelineHover = true;
+
+            var center = [((d.x + imgPadding) * scale) + translate[0], (height + d.y + imgPadding) * scale + translate[1]];
+            zoom.center(center);
+
+
+          })
+          .on("mouseleave", function(d){
+            console.log("leave", d);
+            timelineHover = false;
+          })
 
 
       enter.append("div")
