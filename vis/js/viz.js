@@ -96,27 +96,7 @@ d3.select(window)
       }, 250);
   })
 
-d3.select(".slidebutton")
-  .on("click", function(){
-    var s = !d3.select(".sidebar").classed("sneak");
-    d3.select(".sidebar").classed("sneak", s);
-    logger.log({ action: !s ? "open" : "close" , target: "detail" });
-  })
 
-d3.select(".infobutton")
-  .on("click", function(){
-    var s = !d3.select(".infobar").classed("sneak");
-    d3.select(".infobar").classed("sneak", s)
-    logger.log({ action: !s ? "open" : "close" , target: "info" });
-  })
-
-d3.select(".infobar")
-  .on("mouseenter", function(d){
-    logger.log({ action: "enter", scale: scale, target: "infobar" });
-  })
-  .on("mouseleave", function(d){
-    logger.log({ action: "exit", scale: scale, target: "infobar" });
-  })
 
 window.onbeforeunload = function() {
     // todo: tracking stuff

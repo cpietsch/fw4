@@ -108,6 +108,27 @@ function myListView() {
           });
       })
 
+  d3.select(".slidebutton")
+    .on("click", function(){
+      var s = !d3.select(".sidebar").classed("sneak");
+      d3.select(".sidebar").classed("sneak", s);
+      logger.log({ action: !s ? "open" : "close" , target: "detail" });
+    })
+
+  d3.select(".infobutton")
+    .on("click", function(){
+      var s = !d3.select(".infobar").classed("sneak");
+      d3.select(".infobar").classed("sneak", s)
+      logger.log({ action: !s ? "open" : "close" , target: "info" });
+    })
+
+  d3.select(".infobar")
+    .on("mouseenter", function(d){
+      logger.log({ action: "enter", scale: scale, target: "infobar" });
+    })
+    .on("mouseleave", function(d){
+      logger.log({ action: "exit", scale: scale, target: "infobar" });
+    })
 
   var filter;
   var myTooltip;
@@ -271,20 +292,32 @@ function myListView() {
           d.type = "timeline";
       });
 
-      allData = _data.concat(_timeline);
+      // allData = _data.concat(_timeline);
 
-      timeDomain = d3.nest()
+      // timeDomain = d3.nest()
+      //   .key(function(d){ return d.jahr; })
+      //   .entries(_timeline);
+
+      var chartDomain = d3.nest()
         .key(function(d){ return d.jahr; })
-        .key(function(d){ return d.type; })
-        .entries(allData);
+        .entries(_data.concat(_timeline))
+        .sort(function(a, b) { return a.key - b.key; })
+        .map(function(d){ return d.key*1; })
 
-      timeDomain.sort(function(a, b) { return a.key - b.key; });
-      x.domain(timeDomain.map(function(d){ return d.key*1; }));
+      timeDomain = chartDomain.map(function(d){
+        return {
+          key: d,
+          values: _timeline.filter(function(e){ return d == e.jahr; })
+        }
+      })
 
-      _timeline.forEach(function(d) {
-          d.x = x(d.key) + rangeBand / 3;
-          d.y = 5;
-      });
+      // timeDomain.sort(function(a, b) { return a.key - b.key; });
+      x.domain(chartDomain);
+
+      // _timeline.forEach(function(d) {
+      //     d.x = x(d.key) + rangeBand / 3;
+      //     d.y = 5;
+      // });
 
       // add years to the timeline
       // d3.nest()
@@ -1272,7 +1305,7 @@ function myListView() {
 
       // console.time("Quadtree")
       // quadtree = Quadtree(data);
-      quadtree = Quadtree(allData);
+      quadtree = Quadtree(data);
       // console.timeEnd("Quadtree");
       // console.log(quadtree)
 
