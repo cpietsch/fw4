@@ -102,6 +102,12 @@ window.onbeforeunload = function() {
     logger.log({ action: "close" });
     logger.sync();
 };
+
+
+Ps.initialize(d3.select('.infobar .outer').node());
+
+
+
 // window.onerror = function(message, url, lineNumber) {  
 //   //save error and send to server for example.
 //   console.error(message, lineNumber, url);

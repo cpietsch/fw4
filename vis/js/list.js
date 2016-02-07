@@ -909,7 +909,7 @@ function myListView() {
           .append("div")
           .classed("container", true)
           .on("mouseenter", function(d){
-            console.log("enter", d);
+            // console.log("enter", d);
             timelineHover = true;
 
             // var center = [((d.x + imgPadding) * scale) + translate[0], (height + d.y + imgPadding) * scale + translate[1]];
@@ -917,7 +917,7 @@ function myListView() {
             zoom.center(null);
 
           })
-          .on("click", function(d){
+          .on("clicks", function(d){
             console.log("clickTimline", d);
 
             var duration = 1000 / Math.sqrt(Math.sqrt(scale));
@@ -941,7 +941,7 @@ function myListView() {
 
           })
           .on("mouseleave", function(d){
-            console.log("leave", d);
+            // console.log("leave", d);
             timelineHover = false;
           })
 
