@@ -16,6 +16,14 @@
     z-index: 300;
 }
 
+.de .infobar .en {
+    display: none;
+}
+
+.en .infobar .de {
+    display: none;
+}
+
 .infobar.hide {
     display: none;
 }

@@ -1,4 +1,4 @@
-                                                                                  
+
 //                                   ,--,                                     ,----, 
 //        ,---,.           .---.      ,--.'|                       ,---,       .'   .`| 
 //      ,'  .' |          /. ./|   ,--,  | :               ,---.,`--.' |    .'   .'   ; 
@@ -98,7 +98,8 @@ d3.select(window)
       }, 250);
   })
 
-
+ d3.select("body")
+    .attr("class", lang);
 
 window.onbeforeunload = function() {
     // todo: tracking stuff

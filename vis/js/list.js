@@ -66,7 +66,6 @@ function myListView() {
       .on("zoomstart", zoomstart)
 
   d3.select("body")
-    .classed("en", (lang=="en"));
       //.on("keydown", keydown);
 
   var canvas;
