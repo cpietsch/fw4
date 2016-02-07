@@ -130,6 +130,7 @@ utils.clean = function(data,texte,transKeyword) {
 		  .value()
 		  .filter(function(d){ return d != ""; })
 		  .map(function(d1){
+		  	if(!texteMap.get(d1)) console.log(d1,d)
 		  	return texteMap.get(d1);
 		  })
 
