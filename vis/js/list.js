@@ -66,6 +66,7 @@ function myListView() {
       .on("zoomstart", zoomstart)
 
   d3.select("body")
+    .classed("en", (lang=="en"));
       //.on("keydown", keydown);
 
   var canvas;
@@ -130,6 +131,7 @@ function myListView() {
       logger.log({ action: "exit", scale: scale, target: "infobar" });
     })
 
+
   var filter;
   var myTooltip;
 
@@ -138,55 +140,6 @@ function myListView() {
   var stage, stage1, stage2, stage3, stage4, stage5;
 
   function chart() {}
-
-  chart.loadTimeline = function(_data) {
-      _data.forEach(function(d) {
-          // if(d.jahr.split("-").length > 1) c(d.jahr);
-          d.jahr = d.jahr.split("-")[0];
-          d.jahr = d.jahr * 1;
-      })
-
-      d3.nest()
-        .key(function(d){ return d.jahr; })
-        .entries(_data)
-        .forEach(function(d){ timeDomain.push(d); })
-
-      // console.log(t);
-
-      // _.uniqBy(_data, "jahr").forEach(function(d){
-      //   timeDomain.push({ key: d.jahr });
-      // })
-
-
-      // timelineData = _data;
-
-      // timelineData.forEach(function(d) {
-      //     if (timeDomain.filter(function(dd) {
-      //             return dd.key == d.jahr;
-      //         }).length == 0) {
-      //         // console.log("not", d);
-      //         timeDomain.push({
-      //             key: d.jahr
-      //         });
-      //     }
-      // })
-
-      // timeDomain.sort(function(a, b) { return a.key - b.key; })
-
-      // x.domain(timeDomain.map(function(d) {
-      //     return d.key;
-      // }))
-
-      // timeDomain.forEach(function(d1) {
-      //     d1.type = "timeline";
-      //     d1.values = timelineData.filter(function(d2) {
-      //         return d2.jahr == d1.key;
-      //     });
-      //     d1.id = d1.key;
-      // })
-
-      // console.log("timeline",timelineData[0]);
-  }
 
   chart.resize = function() {
       // console.log("resize")
@@ -239,14 +192,9 @@ function myListView() {
           antialiasing: false
       };
       renderer = new PIXI.WebGLRenderer(width + margin.left + margin.right, height, renderOptions);
-      window.renderer = renderer;
-      // // renderer.backgroundColor = 0x2D322C;
-      // renderer.backgroundColor = 0x363A36;
-      // renderer.backgroundColor = 0x131415;
       renderer.backgroundColor = 0x1C1E1F;
-      // renderer.backgroundColor = 0x1e222d;
-      // renderer = new PIXI.CanvasRenderer(width, height); // geht mit 100er breite
-      // canvas = d3.select(document.body.appendChild(renderer.view))
+      window.renderer = renderer;
+     
       var renderElem = d3.select(container.node().appendChild(renderer.view));
 
       stats = new Stats();
@@ -270,10 +218,7 @@ function myListView() {
       data.forEach(function(d, i) {
           var texture = PIXI.Texture.fromImage("data:image/jpg;base64," + imagesMap.get(d.id).image);
           var sprite = new PIXI.Sprite(texture);
-          // sprite.interactive = true;
-          // sprite.on("mouseup",chart.mousedown);
-          // sprite.on("mouseover",chart.mouseover);
-          // sprite.on("mouseout",chart.mouseout);
+          
           sprite.anchor.x = 0.5;
           sprite.anchor.y = 0.5;
           sprite._data = d;
@@ -290,13 +235,13 @@ function myListView() {
           d.jahr = d.jahr.split("-")[0];
           d.jahr = d.jahr * 1;
           d.type = "timeline";
+
+          if(lang == "en"){
+            d.titel = d.titelEN;
+            d.text = d.textEN;
+            d.extra = d.extraEN;
+          }
       });
-
-      // allData = _data.concat(_timeline);
-
-      // timeDomain = d3.nest()
-      //   .key(function(d){ return d.jahr; })
-      //   .entries(_timeline);
 
       var chartDomain = d3.nest()
         .key(function(d){ return d.jahr; })
@@ -311,30 +256,17 @@ function myListView() {
         }
       })
 
-      // timeDomain.sort(function(a, b) { return a.key - b.key; });
       x.domain(chartDomain);
 
-      timeDomain.forEach(function(d) {
-          d.x = x(d.key) + rangeBand / 3;
-          d.y = 5;
-      });
+      // timeDomain.forEach(function(d) {
+      //     d.x = x(d.key) + rangeBand / 3;
+      //     d.y = 5;
+      // });
 
-      // add years to the timeline
-      // d3.nest()
-      //   .key(function(d){ return d.jahr; })
-      //   .entries(data)
-      //   .forEach(function(d){
-      //     console.log(d)
-      //     timeDomain.push({ key: d.key, values: [] })
-      //   })
 
-      // timeDomain.sort(function(a, b) { return a.key - b.key; });
-      // x.domain(timeDomain.map(function(d){ return d.key*1; }));
-
-      
       chart.makeScales();
 
-      //make x Axis
+      // // make x Axis
       // x.domain().forEach(function(d){
       //   var xpos = (x(d) + x.rangeBand()/collumns)*scale1;
 
@@ -894,12 +826,7 @@ function myListView() {
       timeline.attr("class", "timeline " + timelineScale(scale))
 
       timeline.style("font-size", function() {
-          // return timelineFontScale(scale) + "px";
-          var s = 2 * scale;
-          // if(s<9) s = 9;
-          // if(s>40) s = 40;
-
-          return s + "px";
+          return (2 * scale)+ "px";
       });
 
       var select = timeline.selectAll(".container")
@@ -910,46 +837,16 @@ function myListView() {
           .append("div")
           .classed("container", true)
           .on("mouseenter", function(d){
-            // console.log("enter", d);
             timelineHover = true;
-
-            // var center = [((d.x + imgPadding) * scale) + translate[0], (height + d.y + imgPadding) * scale + translate[1]];
-            // zoom.center(center);
             zoom.center(null);
-
-          })
-          .on("clicks", function(d){
-            console.log("clickTimline", d);
-
-            var duration = 1000 / Math.sqrt(Math.sqrt(scale));
-            var duration = 2000;
-            var padding = x.rangeBand() / 3 / 2;
-            // var padding = 0;
-            var scale = 0.2 / (x.rangeBand() / 3 / width);
-            var translateNow = [(-scale * (d.x - imgPadding*2)), -scale * (height + d.y - imgPadding*2)];
-
-            console.log(scale, translateNow)
-            // zoomedToImageScale = scale;
-
-            // setTimeout(function() {
-            //     hideTheRest(d);
-            // }, duration / 2);
-
-            svg
-                .call(zoom.translate(translate).event)
-                .transition().duration(duration)
-                .call(zoom.scale(scale).translate(translateNow).event)
-
           })
           .on("mouseleave", function(d){
-            // console.log("leave", d);
             timelineHover = false;
           })
 
 
       enter.append("div")
           .classed("year", true)
-          // .text(function(d){ return "'"+(1800-d.key)*-1; })
           .text(function(d) {
               return d.key;
           })
@@ -1498,40 +1395,7 @@ function myListView() {
 
 
 
-  var tooltip = function(div) {
 
-      var svg = div.append('g').classed("stooltip", true),
-          container = svg.append("g").style("display", "none"),
-          path = container.append("path"),
-          text = container.append("text").attr("dy", ".35em")
-
-      this.display = function(d) {
-          var a = d.x > (width / scale) / 2;
-          container.style("display", "block")
-              .attr("transform", "translate(" + (a ? d.x * scale + 2 * scale : d.x * scale + 8 * scale) + "," + d.y * scale + ")rotate(" + (a ? 5 : -5) + ")")
-              .interrupt()
-              .transition()
-              .ease("elastic")
-              .attr("transform", "translate(" + (a ? d.x * scale + 2 * scale : d.x * scale + 8 * scale) + "," + d.y * scale + ")rotate(0)")
-
-
-          text.style("text-anchor", a ? "end" : "start")
-              .attr("x", a ? -13 : 13)
-              // .text(d.bezeichnungen!=""? _.trunc(d.bezeichnungen,60) : "Kein Titel")
-              .text(d.tip.join(", "))
-
-
-
-          var n = text.node().getComputedTextLength() + 8;
-          path
-              .attr("d", a ? "M0,0l-12,-12h" + -n + "v24h" + n + "z" : "M0,0l12,-12h" + n + "v24h-" + n + "z")
-      }
-      this.hide = function() {
-          container.style("display", "none");
-      }
-
-      return this;
-  }
 
 
   return chart;
