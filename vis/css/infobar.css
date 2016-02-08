@@ -95,6 +95,7 @@
     /*direction: ltr;*/
 }
 .infobar .inner > div {
+    float: left;
     padding: 60px 60px;
 }
 
