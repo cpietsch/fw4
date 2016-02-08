@@ -22,7 +22,7 @@ function Logger() {
         obj.time = new Date() * 1;
 
         _buffer.push(obj);
-        //console.warn("logger",obj);
+        // console.warn("logger",obj);
 
         if (_buffer.length > _maxBufferSize) {
             self.sync();

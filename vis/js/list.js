@@ -703,6 +703,7 @@ function myListView() {
 
       detailContainer
           .classed("hide", false)
+          .classed("sneak", lang=="en")
           .select(".inner")
           .html(detailTemplate(d))
 
@@ -838,9 +839,21 @@ function myListView() {
           .on("mouseenter", function(d){
             timelineHover = true;
             zoom.center(null);
+            logger.log({
+              action: "enter timeline",
+              scale: scale,
+              translate, translate,
+              target: d.key,
+            });
           })
           .on("mouseleave", function(d){
             timelineHover = false;
+            logger.log({
+              action: "exit timeline",
+              scale: scale,
+              translate, translate,
+              target: d.key,
+            });
           })
 
 
@@ -1101,7 +1114,7 @@ function myListView() {
 
           showAllImages();
           clearBigImages();
-          detailContainer.classed("hide", true).classed("sneak", false)
+          detailContainer.classed("hide", true).classed("sneak", lang=="en")
       }
 
       //domain

@@ -22,7 +22,7 @@
 // this is not meant for your eyes ;)
 // not yet at least - will publish the code on github soon
 
-utils.welcome();
+// utils.welcome();
 
 var local = true;
 var lang = "en";
