@@ -20,5 +20,18 @@
 </head>
 
 <body>
-	<iframe src="https://fw4.typeform.com/to/ZIIgIe?cid=<?php echo session_id(); ?>">go to <a href="https://fw4.typeform.com/to/ZIIgIe?cid=<?php echo session_id(); ?>">https://fw4.typeform.com/to/ZIIgIe?cid=<?php echo session_id(); ?></a></iframe>
+	<iframe src="<?php
+	$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+	$url = "https://fw4.typeform.com/to/";
+	$ext = "?cid=". session_id();
+
+	if($lang == "de"){
+		$url .= "ZIIgIe";
+	} else {
+		$url .= "ZqM3Jo";
+	}
+
+	echo $url . $ext;
+
+	?>"></iframe>
 </body>
