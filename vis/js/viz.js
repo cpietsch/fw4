@@ -34,6 +34,7 @@ var list;
 var c = console.log.bind(console);
 var ping;
 var logger = Logger().register("vis");
+var feedbacked = false;
 
 logger.log({ action: "enter vis" });
 
@@ -146,7 +147,11 @@ d3.select(".infobutton")
     d3.select(".infobar").classed("sneak", s)
     logger.log({ action: !s ? "open" : "close" , target: "info" });
   })
-Ps.initialize(d3.select('.infobar .outer').node());
+
+d3.select("#feedback").on("click", function(){ feedbacked = true; })
+
+var infoscroll = d3.select('.infobar .outer').node();
+Ps.initialize(infoscroll);
 
 window.onbeforeunload = function() {
     // todo: tracking stuff
@@ -154,6 +159,14 @@ window.onbeforeunload = function() {
         action: "close"
     });
     logger.sync();
+
+    if(!feedbacked){
+      infoscroll.scrollTop = 500;
+      Ps.update(infoscroll);
+      
+      d3.select(".infobar").classed("sneak", false);
+      return "Sorry to bother you, but we would love to get your feedback on the FW4 Viz. If you have a minute, please stay on this webpage and share your thoughts.";
+    }
 };
 
 
