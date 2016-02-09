@@ -46,7 +46,7 @@ d3.csv(s3 + "data/timeline.csv", function(timeline){
 d3.csv(s3 + "data/themen.csv", function(texte){
 d3.csv(s3 + "data/transKeyword.csv", function(transKeyword){
 Loader(s3 + "data/spsg.csv").finished(function(data){
-Loader(s3 + "data/neu_100.csv").finished(function(images){
+// Loader(s3 + "data/neu_100.csv").finished(function(images){
   logger.log({ action: "loaded csv" });
 
   window.data = data;
@@ -57,13 +57,13 @@ Loader(s3 + "data/neu_100.csv").finished(function(images){
 
   // utils.printkeyowords(data);
 
-  // imagesMap = d3.map(utils.fakeDataSmall(data), function(d){ return d.id; });
-  // imagesMap2 = d3.map(utils.fakeDataBig(data), function(d){ return d.id; });
+  imagesMap = d3.map(utils.fakeDataSmall(data), function(d){ return d.id; });
+  imagesMap2 = d3.map(utils.fakeDataBig(data), function(d){ return d.id; });
 
-  imagesMap = d3.map(images, function(d){ return d.id; });
-  Loader(s3 + "data/neu_1000.csv").finished(function(images2){
-    imagesMap2 = d3.map(images2, function(d){ return d.id; });
-  });
+  // imagesMap = d3.map(images, function(d){ return d.id; });
+  // Loader(s3 + "data/neu_1000.csv").finished(function(images2){
+  //   imagesMap2 = d3.map(images2, function(d){ return d.id; });
+  // });
 
 
   cloud.init(data);
@@ -82,7 +82,7 @@ Loader(s3 + "data/neu_100.csv").finished(function(images){
 
 
  
-});
+// });
 });
 });
 });
