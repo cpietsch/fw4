@@ -104,8 +104,10 @@ body {
  * ----------------------------------------- */
 
  .language-container {
+    /* font-weight: bold; */
+    /* color: rgba(255, 255, 255, 0.38); */
     font-size: 0.8em;
-    padding: 9px;
+    padding: 5px;
     background: rgba(0, 0, 0, 0.55);
     right: 22px;
     position: fixed;
@@ -113,12 +115,33 @@ body {
     /* width: 200px; */
     /* top: 5px; */
     /* padding: 9px; */
-    padding-top: 2px;
+    /* padding-top: 2px; */
 }
 
 .language-container div {
-    padding: 5px;
+    padding-left: 7px;
     float: left;
+    padding-right: 6px;
+    /* margin: 6px; */
+    margin-bottom: 6px;
+    margin-top: 6px;
+}
+
+.language-container a {
+  color: rgba(255, 255, 255, 0.38);
+  border: none;
+}
+.language-container a:hover {
+  border: none;
+}
+
+.language-container .de {
+  border-right: 2px solid #7F7F7F;
+}
+
+.language-container .de.active a {
+    /* font-weight: bold; */
+    color: #FFF;
 }
 
 .container {
