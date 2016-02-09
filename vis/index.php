@@ -8,6 +8,6 @@ include "../db.php";
 // 	die();
 // }
 
-include "index.html";
+include "page.html";
 
 ?>

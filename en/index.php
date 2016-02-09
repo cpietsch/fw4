@@ -4,6 +4,6 @@ include "db.php";
 
 hello();
 
-include "index.html";
+include "page.html";
 
 ?>
