@@ -326,7 +326,9 @@ function myListView() {
       timeline = d3.select(".viz").append("div").classed("timeline2", true)
           .style("transform", "translate(" + 0 + "px," + (height - 30) + "px)");
 
-      timelineInner = timeline.append("div").classed("inner",true);
+      timelineInner = timeline
+        .append("div").classed("outer",true)
+        .append("div").classed("inner",true);
 
       // svgscale.on("mousemove", mousemove);
 
@@ -834,6 +836,11 @@ function myListView() {
   var timelineHover = false;
 
 
+  var invScaleMapping = d3.scale.linear()
+      .domain([1, 0.18])
+      .range([1, 0.18])
+      .clamp(true)
+
   function updateDomain(x1, x2) {
       // console.time("timeline");
       // console.log(x1,x2)
@@ -841,8 +848,18 @@ function myListView() {
       //console.log(scale, timelineFontScale(scale))
 
       var timeY = ((height) * scale - (-1 * translate[1]) - rangeBandImage * scale);
+
+      var transX = translate[0]/scale;
+      var transY = height-rangeBandImage+translate[1]/scale;
+
+      var transX2 = translate[0];
+      var transY2 = ((height-rangeBandImage)/scale) +translate[1];
+
       timeline
-          .style("transform", "translate(" + 0 + "px," + timeY + "px)")
+          // .style("transform", "scale(" + scale + ", " + scale + ") translate("+ transX + "px,"+ transY + "px)")
+          .style("transform", "translate("+ transX2 + "px,"+ timeY + "px) scale(" + scale + ") ")
+          // .style("transform", "translate3d("+ transX2 + "px,"+ timeY + "px,0px) matrix("+scale+", 0, 0, "+scale+", 0, 0) ")
+          // .style("transform", "translate(" + 0 + "px," + timeY + "px)")
           .attr("class", "timeline2 " + timelineScale(scale))
 
 
@@ -854,9 +871,9 @@ function myListView() {
 
       // timelineInner
       //   .style("transform", function(d) {
-      //       // return "scale(" + scale + ") translate("+ translate[0]/scale + "px,0px)";
+      //       return "scale(" + scale + ", " + scale + ") translate("+ translate[0]/scale + "px,0px)";
       //       // return "scale(" + scale + ") translate3d("+ translate[0]/scale + "px,0px,0px)";
-      //       return "translate("+ translate[0] + "px,0px)";
+      //       // return "translate("+ translate[0] + "px,0px)";
       //   })
       
       var select = timelineInner.selectAll(".container")
@@ -875,6 +892,9 @@ function myListView() {
           timelineHover = false;
           
         })
+        .style("transform", function(d) {
+            return "translate(" + d.x + "px,0px)";
+        })
 
 
       select
@@ -888,9 +908,9 @@ function myListView() {
         // .style("transform", function(d) {
         //     return "translate(" + d.pos + "px,0px) scale("+ scale +", "+ scale +")";
         // })
-        .style("transform", function(d) {
-            return "translate(" + d.pos + "px,0px) matrix("+scale+", 0, 0, "+scale+", 0, 0)";
-        })
+        // .style("transform", function(d) {
+        //     return "translate(" + d.pos + "px,0px) matrix("+scale+", 0, 0, "+scale+", 0, 0)";
+        // })
         // .style("width", function(d) {
         //     return rangeBand+"px";
         // })
@@ -899,16 +919,11 @@ function myListView() {
       var yearScale = invScale*invScale*invScale;
       // yearScale = yearScale < 0.3 ? 0.3 : yearScale;
 
-      var invScaleMapping = d3.scale.linear()
-          .domain([1, 0.18])
-          .range([1, 0.18])
-          .clamp(true)
-
       var iscale = 1-scale/450;
 
       var yearScaleMap = invScaleMapping(yearScale);
 
-      console.log(scale,yearScale,yearScaleMap);
+      // console.log(scale,yearScale,yearScaleMap);
 
       enter
         .append("div")
@@ -945,20 +960,20 @@ function myListView() {
         .classed("extra", true)
         .text(function(d) { return d.extra; })
       
-      select
-        .select(".year")
-        .style("transform", function(d) {
-            // return "scale(" + timelineFontScale2(scale) + ")";
-            return "scale(" + yearScaleMap + ")";
-        })
+      // select
+      //   .select(".year")
+      //   .style("transform", function(d) {
+      //       // return "scale(" + timelineFontScale2(scale) + ")";
+      //       return "scale(" + yearScaleMap + ")";
+      //   })
 
-      select
-        .select(".entries")
-        .style("transform", function(d) {
-            // return "scale(" + timelineFontScale2(scale) + ")";
-            // return "scale(" + invScaleMapping(yearScale) + ") translate(-10px,0px)";
-            return "translate(0px," + (-17*(1-yearScaleMap)) + "px)";
-        })
+      // select
+      //   .select(".entries")
+      //   .style("transform", function(d) {
+      //       // return "scale(" + timelineFontScale2(scale) + ")";
+      //       // return "scale(" + invScaleMapping(yearScale) + ") translate(-10px,0px)";
+      //       return "translate(0px," + (-17*(1-yearScaleMap)) + "px)";
+      //   })
 
 
  
@@ -1314,20 +1329,6 @@ function myListView() {
 
       filterVisible();
 
-      // c(drag)
-      //c("zoomed")
-
-      //drag = false;
-      //c("end",translate, zoom.translate(), d3.event, d)
-      // console.time("filter")
-      // filterVisible();
-      // console.timeEnd("filter")
-      // if(drag){
-      //   logger.log({ action: "drag", scale: scale, target: selectedImage ? selectedImage.id : "" });
-      // } else {
-      //   logger.log({ action: "zoomend", scale: scale, target: selectedImage ? selectedImage.id : "" });
-      // }
-
       logger.log({
           action: "zoomend",
           translate: translate,
@@ -1335,32 +1336,41 @@ function myListView() {
           target: selectedImage ? selectedImage.id : ""
       });
 
+      timeline
+        .style("display", "none")
+        .node()
+        .offsetHeight
+
+      timeline
+        .style("display", "block")
+
+
       // timelineInner
       //   .style("transform", function(d) {
       //       return "scale(" + scale + ") translate("+ translate[0]/scale + "px,0px)";
       //       // return "scale(" + scale + ") translate3d("+ translate[0]/scale + "px,0px,0px)";
       //   })
       
-      timelineInner
-        .selectAll(".container")
-        .style("display", "none")
-        .node()
-        .offsetHeight
+      // timelineInner
+      //   .selectAll(".container")
+      //   .style("display", "none")
+      //   .node()
+      //   .offsetHeight
 
-      timelineInner
-        .selectAll(".container")
-        .style("display", function(d) {
-              return d.visible ? "block" : "none";
-          })
+      // timelineInner
+      //   .selectAll(".container")
+      //   .style("display", function(d) {
+      //         return d.visible ? "block" : "none";
+      //     })
 
-      timelineInner
-        .selectAll(".container")
-        // .style("transform", function(d) {
-        //     return "translate3d(" + d.pos + "px,0px,0px) scale("+ scale +", "+scale +")";
-        // })
-        .style("transform", function(d) {
-            return "translate(" + d.pos + "px,0px) matrix("+scale+", 0, 0, "+scale+", 0, 0)";
-        })
+      // timelineInner
+      //   .selectAll(".container")
+      //   // .style("transform", function(d) {
+      //   //     return "translate3d(" + d.pos + "px,0px,0px) scale("+ scale +", "+scale +")";
+      //   // })
+      //   .style("transform", function(d) {
+      //       return "translate(" + d.pos + "px,0px) matrix("+scale+", 0, 0, "+scale+", 0, 0)";
+      //   })
 
       // timelineInner
       //   .selectAll(".container")
