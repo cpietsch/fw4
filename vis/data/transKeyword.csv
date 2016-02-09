@@ -1,16 +1,16 @@
 de,en
-Figurendarstellung,Figure representation
+Figurendarstellung,Human figure
 profan,Profane
 Ritter,Knight
-Literaturadaption,Literary adaption
+Literaturadaption,Literary adaptation
 Fouqué,Fouqué
-Zauberring,Zauberring
+Zauberring,Magic Ring (Zauberring)
 Arinbiörn,Arinbiörn
 Herdeegen,Herdeegen
 Hildiridur,Hildiridur
 Hugur,Hugur
 Otto von Trautwangen,Otto von Trautwangen
-Kopf,Head
+Kopf,Sketch of head
 weiblich,Female
 Architektur allgemein,Architecture
 Profanbau,Secular buildings
@@ -28,11 +28,11 @@ Shakespeare,Shakespeare
 Macbeth,Macbeth
 Banquo,Banquo
 Goethe,Goethe
-Faust,Fist
+Faust,Faust
 religiös,Religious
 Mönch,Monk
 Potsdam,Potsdam
-Park Sanssouci,Park Sanssouci
+Park Sanssouci,Sanssouci Park
 Profanbauten,Secular buildings
 Charlottenhof,Charlottenhof
 Schloss,Castle
@@ -53,21 +53,21 @@ Heilige,Saints
 St. Georg,St. Georg 
 Radcliffe,Radcliffe
 Udolpho,Udolpho
-Mischwesen,Hybrid creatures
+Mischwesen,Mythic creatures
 Drache,Dragon
-Sakralbau,Sacral buildings
+Sakralbau,Sacred buildings
 Kirche,Church
 Gotik und gotischer Stil,Gothic style
 Innenraum,Interior
 Krönung,Coronation
 Gretchen,Gretchen
 Mephisto,Mephisto
-Zeichnung fremder Hand,Drawing from foreign hand
+Zeichnung fremder Hand,Drawing from Foreign Hand
 unbekannt,Unknown
 Frau Minnetrost,Frau Minnetrost's Mizpah
 Bildmotiv,Motif
 Tod und Teufel,Death and devil
-Herrscher,Sovereign
+Herrscher,Ruler
 Alexander der Große,Alexander the Great
 Caesar,Caesar
 Kaiser,Emperor
@@ -76,9 +76,9 @@ Karte,Card
 Spielkarte,Playing card
 Dante,Dante
 Göttliche Komödie,Divine Comedy
-Friedrich II.,Frederick II.
+Friedrich II.,Frederick II
 Freiburg im Breisgau,Freiburg in Breisgau
-Sakralbauten,Sacral buildings
+Sakralbauten,Sacred buildings
 Münster Unseren Lieben Frau,Münster Unseren Lieben Frau
 Troyes,Troyes
 Kathedrale Saint-Pierre-et-Saint-Paul,Cathedral Saint-Pierre-et-Saint-Paul
@@ -88,7 +88,7 @@ Altes Testament,Old testament
 Goliath,Goliath
 König David,Kind David
 Napoléon Bonaparte,Napoléon Bonaparte
-Soldat,Soldier
+Soldat,Military figure
 Schnitt,Section
 Kuppelkirche,Domed church
 Neues Testament,New Testament
@@ -97,8 +97,8 @@ Jüngstes Gericht,Judgment Day
 Christus,Christ
 Frau Minnetrosts Warte,Frau Minnetrost's Mizpah
 männlich,Male
-Antikes Landhaus,Ancient farmhouse
-italienische Fabricca,Italian Fabricca
+Antikes Landhaus,Antique country villa
+italienische Fabricca,Italian manufacture
 Villa,Villa
 Turmvilla,Tower Villa
 allgemein,General
@@ -115,7 +115,7 @@ Personenliste,List of people
 Schulnotizen,School notes
 Sankt Petersburg,St. Petersburg
 Denkmal und Ehrenmonument,Memorial and Honorary Monument
-Denkmal für Alexander I.,Monument for Alexander I.
+Denkmal für Alexander I.,Monument for Alexander I
 Landschaft,Landscape
 Berge,Mountains
 Grundriss,Groundplan
@@ -125,44 +125,44 @@ Maria,Mary
 Basilika,Basilica
 Situationsplan,Site plan
 Aufriss,Front view
-Monument für Friedrich II. auf dem Mühlenberg,Monument for Frederick II. 
+Monument für Friedrich II. auf dem Mühlenberg,Monument for Frederick II
 Kurfürst,Prince-elector
 Friedrich Wilhelm IV.,Frederick William IV
 Königin von Borneo,Queen of Borneo
 Lustgartenforum,Lustgartenforum
-Monument für Friedrich II.,Monument for Frederick II. 
-Passage am Werderschen Markt,Passage at Werderscher Markt
+Monument für Friedrich II.,Monument for Frederick II
+Passage am Werderschen Markt,Passage at Werder Market
 Stadt,City
 Belvedere auf dem Pfingstberg,Belvedere on the Pfingstberg
 Christusmonument,Statue of Christ
 Schloss Belriguardo,Castle Belriguardo
 Porträt,Portrait
-Skulptur,Schulpture
+Skulptur,Sculpture
 bauliche Anlage auf dem Kieskutenberg,Building on the Kieskutenberg
 Kloster auf dem Brauhausberg,Monastery on Brauhausberg
 Hoffeste,Court festivities
 Lalla Rookh,Lalla Rookh
 italienisch,Italy or Italian style
 Beschriftung,Caption
-Kämpfer,Combatant
+Kämpfer,Fighting figure
 griechisch,Greek
 Brief oder Schreiben,Letter or writing
 Landhaus,Country house
 Italien oder im italienischen Stil,Italy or Italian style
 Schloss Sanssouci,Sanssouci Palace
 Säulenbau,Column structure
-Theater,Theater
+Theater,Theatre
 lateinisch,Latin
-Vortragsverzeichnis,Lecture directory
-Bauteil,Building component
+Vortragsverzeichnis,Directory of Lectures
+Bauteil,Building element
 Portikus,Portico
 orientalisch,Orient or Oriental style
 Kostümfigur,Costumed figure
 Kalligrafie,Calligraphy
 Landkarte,Map
-Kolonnade,Collonade
+Kolonnade,Colonnade
 Torbau,Gateway
-Zahlen,Numbers
+Zahlen,Numerals
 Tier,Animal
 Hund,Dog
 Hofgärtnerhaus und Römische Bäder,Court gardener house and Roman Baths
@@ -183,7 +183,7 @@ Belvedere auf dem Klausberg,Belvedere on the Klausberg
 Zeichen,Character
 Herrschaftszeichen,Symbol of reign
 Wappen,Coat of arms
-Umgebung,Surroundings
+Umgebung,Environment
 Tempel auf dem Zachelsberg,Temple on the Zachelsberg
 Heiliggeistkirche,Heiliggeistkirche
 Karl Friedrich Schinkel,Karl Friedrich Schinkel
@@ -195,24 +195,24 @@ normannischer Stil,Norman style
 Burg oder Kastell,Castle or fort
 Spätantike und Frühes Christentum,Late Antiquity and Early Christianity
 Kreuzkuppelkirche,Cross-domed church
-Selbstporträt Friedrich Wilhelms IV.,Self-portrait of Frederick William IV.
+Selbstporträt Friedrich Wilhelms IV.,Self-portrait of Frederick William IV
 Gebäudeansicht,Building view
 römisch (Antike),Roman (ancient)
 Medaille,Medal
 Zentralbau,Central building
 Hölle,Hell
-Vergil,Vergil
+Vergil,Virgil
 Ordensritter,Teutonic Knights 
 Schwarzer Adlerorden,Order of the Black Eagle
 Torquato Tasso,Torquato Tasso
 Rinaldo und Armida,Rinaldo and Armida
 Konstruktion,Construction
 unbestimmt,Undetermined
-Denkmal Friedrichs II.,Monument for Frederick II. 
+Denkmal Friedrichs II.,Monument for Frederick II
 Tempietto,Tempietto
 Stadtansicht,View of the city
 Panorama,Panorama
-Kolossalstatue Friedrichs II.,Monument for Frederick II. 
+Kolossalstatue Friedrichs II.,Monument for Frederick II
 Balustrade,Balustrade
 Nische,Niche
 Tabernakel,Tabernacle
@@ -226,9 +226,9 @@ Pyramide,Pyramid
 König,King
 ägyptisch,Egypt or Egyptian
 Quadriga,Quadriga
-Antike und antikisierender Stil,Ancient and antique style
+Antike und antikisierender Stil,Ancient or antique style
 Park Babelsberg,Babelsberg Park
-Bedientenhaus (Damenhaus),Servants' house (women house)
+Bedientenhaus (Damenhaus),Servants' house (Damenhaus)
 Palast,Palace
 Wohnhaus,Residential building
 Augusta von Preußen,Augusta of Prussia
@@ -273,7 +273,7 @@ Casamicciola Terme,Casamicciola Terme
 Orden,Medal
 preußisch,Prussian
 Pour le mérite,Pour le mérite
-Palais Wilhelms I.,Palais Wilhelm I.
+Palais Wilhelms I.,Palais Wilhelm I
 Spätantike und Frühes Christentum und im spätantiken Stil,Late Antiquity and Early Christianity
 Symbol,Symbol
 Christusmonogramm,Christogram
@@ -281,10 +281,10 @@ Italien und italienischer Stil,Italy or Italian style
 Militaria,Militaria
 Schild,Shield
 Zauber der Weißen Rose,Magic of the White Rose
-Pentagramm,Petagram
+Pentagramm,Pentagram
 Schloss und Umgebung,Castle and surroundings
 Grundriss und Situationsplan,Floor plan and site plan
-Wohnung Friedrich Wilhelms IV.,Apartment of Frederick William IV.
+Wohnung Friedrich Wilhelms IV.,Apartment of Frederick William IV
 Rundbogenstil,Round arch style
 Kreuz,Cross 
 Renaissance und Renaissancestil,Renaissance or Renaissance style
@@ -294,7 +294,7 @@ Akademiegebäude,Academy building
 Schildhornsäule,Schildhorn column
 arabisch,Arabic
 Kleiner Schlosshof,Small castle courtyard
-basilikaler Stil,Basilican style
+basilikaler Stil,Basilica style
 Chor,Choir
 Schlossterrasse,Castle terrace
 Prophet,Prophet
@@ -314,7 +314,7 @@ Villentrakt,Villa block
 Detail,Detail
 Kapelle über Portal III,Chapel above Portal III
 Treppe,Stairway
-Antike oder im antiken Stil,Antique or antique-style
+Antike oder im antiken Stil,Ancient or antique style
 Obergaden,Clerestory
 Karikatur,Cartoon
 Pflanze,Plant
@@ -324,10 +324,10 @@ Helm,Helmet
 Atrium,Atrium
 Saal des Staatsrates,Hall of the State Council
 Westseite,West side
-Beleuchtungskörper,Lighting Equipment
+Beleuchtungskörper,Lighting equipment
 Doppelkirche,Simultaneum
 Kanzel,Pulpit
-Schwanenorden,Order of the swan
+Schwanenorden,Order of the Swan
 Sacrow,Sacrow
 Villa Pia,Villa Pia
 Fassade,Facade
@@ -345,7 +345,7 @@ Karl von Mecklenburg-Strelitz,Duke Charles of Mecklenburg
 Freistätte für Kunst und Wissenschaft,Sanctuary for art and science
 Ansicht,Elevation
 Stammbaum,Family tree
-Friedrich Wilhelm IV. und Königin Elisabeth,Frederick William IV. and Queen Elizabeth
+Friedrich Wilhelm IV. und Königin Elisabeth,Frederick William IV and Queen Elizabeth
 Terrasse,Terrace
 Kreuzabnahme,Deposition
 Romanik und romanischer Stil,Romanesque and Romanesque style
@@ -394,7 +394,7 @@ Exerzierplatz (Königsplatz),Parade ground (King's square)
 Pariser Platz,Pariser Platz
 Palais Redern,Palais Redern
 Papst,Pope
-Denkmäler Unter den Linden,Monuments Unter den Linden
+Denkmäler Unter den Linden,Unter den Linden Monuments 
 Logierhaus,Guest house
 Museum,Museum
 Perpendicular Style,Perpendicular Style
@@ -447,7 +447,7 @@ Maschinenhaus,Machine hall
 Begräbnis,Funeral
 Preußisch Eylau (Bagrationovsk),Preußisch Eylau (Bagrationovsk)
 Schlachtdenkmal,Battle monument
-Zepter,Scepter
+Zepter,Sceptre
 Kutsche,Carriage
 Siebenarmiger Leuchter,Seven-branched candelabrum
 Alte Fahrt,Alte Fahrt
@@ -480,7 +480,7 @@ Moskau,Moscow
 Glockenturm Iwan der Große,Bell tower Ivan the Great
 Alter Markt,Old market
 Obelisk,Obelisk
-Friedrich der Große,Frederick II.
+Friedrich der Große,Frederick II
 Babeli,Babeli
 Waldhain,Forest grove
 Tholos,Tholos
@@ -499,10 +499,10 @@ Französischer Dom,French Cathedral
 Deutscher Dom,German Cathedral
 venezianischer Stil,Venetian style
 Satyr,Satyr
-Theateradaption,Theater adaption
+Theateradaption,Theatre adaptation
 Mozart,Mozart
 Zauberflöte,The Magic Flute
-Doppeladler,Douple eagle
+Doppeladler,Double eagle
 Pferd,Horse
 Brandenburger Tor,Brandenburg Gate
 Paris,Paris
@@ -531,7 +531,7 @@ Paradiesgärtlein,Garden of Paradise
 Fontäne auf der oberen Terrasse,Fountain on the upper terrace
 Phantasiearchitektur,Imaginary architecture
 Fratze,Grimace
-Christus als Weltenrichter,Crist the Judge
+Christus als Weltenrichter,Christ the Judge
 Thron,Throne
 Triumphtor am Winzerberg,Triumphal arch at Winzerberg
 Höhenstraße,Höhenstraße
@@ -545,7 +545,7 @@ Tänzer,Dancer
 Baldachin,Baldachin
 Holzarchitektur,Wooden architecture
 Militär,Military
-Truppenaufstellung,Deployment of troops
+Truppenaufstellung,Order of battle
 Palazzo Vecchio,Palazzo Vecchio
 Schloss Lindstedt,Schloss Lindstedt
 Neues Palais,New Palace
@@ -568,5 +568,5 @@ Lützen,Lützen
 Gustav-Adolf-Denkmal,Gustav Adolf Memorial
 Kremmen,Kremmen
 Kreuz am Kremmener Damm,Cross at the Kremm embankment
-Elisabethkammern,Elizabeth chambers
+Elisabethkammern,Chambers of Elizabeth
 Modulsystem,Module system
