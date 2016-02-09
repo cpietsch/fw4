@@ -188,30 +188,30 @@ svg {
   opacity: 0;
 }*/
 
-.none .small .title {
+.timeline.none .small.title {
   display: none;
 }
-.none .middle, .none .large {
+.timeline.none .middle, .timeline.none .large {
   display: none;
 }
 
-.small .middle, .small .large {
+.timeline.small .middle, .timeline.small .large {
   display: none; 
   opacity: 0;
 }
 
-.middle .small, .middle .large {
+.timeline.middle .small, .timeline.middle .large {
   display: none; 
   opacity: 0;
 }
 
-.large .small, .large .middle {
+.timeline.large .small, .timeline.large .middle {
   display: none;
   opacity: 0;
   /* visibility: hidden; */
 }
 
-.small, .middle, .large {
+.timeline .small, .timeline .middle, .timeline .large {
   transition: display 0s, opacity 1s;
 }
 
@@ -239,8 +239,8 @@ svg {
 }*/
 
 
-.small .title {font-size: 0.5em;}
-.middle .title {
+.timeline .small .title {font-size: 0.5em;}
+.timeline .middle .title {
   
 }
 

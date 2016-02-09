@@ -843,7 +843,7 @@ function myListView() {
       var timeY = ((height) * scale - (-1 * translate[1]) - rangeBandImage * scale);
       timeline
           .style("transform", "translate(" + 0 + "px," + timeY + "px)")
-          .attr("class", "timeline2 " + timelineScale2(scale))
+          .attr("class", "timeline2 " + timelineScale(scale))
 
 
        timeDomain.forEach(function(d) {
@@ -886,10 +886,10 @@ function myListView() {
           })
         .filter(function(d) { return d.visible; })
         // .style("transform", function(d) {
-        //     return "translate3d(" + d.pos + "px,0px,0px) scale("+ scale +", "+ scale +")";
+        //     return "translate(" + d.pos + "px,0px) scale("+ scale +", "+ scale +")";
         // })
         .style("transform", function(d) {
-            return "translate3d(" + d.pos + "px,0px,0px) matrix("+scale+", 0, 0, "+scale+", 0, 0)";
+            return "translate(" + d.pos + "px,0px) matrix("+scale+", 0, 0, "+scale+", 0, 0)";
         })
         // .style("width", function(d) {
         //     return rangeBand+"px";
@@ -912,6 +912,8 @@ function myListView() {
 
       enter
         .append("div")
+        .classed("yearOuter", true)
+        .append("div")
         .classed("year", true)
         .text(function(d) {
             return d.key;
@@ -933,10 +935,15 @@ function myListView() {
         .classed("title", true)
         .text(function(d) { return d.titel; })
 
-      // entry
-      //   .append("div")
-      //   .classed("text", true)
-      //   .text(function(d) { return d.text + "."; })
+      entry
+        .append("div")
+        .classed("text", true)
+        .text(function(d) { return d.text + "."; })
+
+      entry
+        .append("div")
+        .classed("extra", true)
+        .text(function(d) { return d.extra; })
       
       select
         .select(".year")
