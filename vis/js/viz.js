@@ -25,7 +25,6 @@
 // utils.welcome();
 
 var local = true;
-var lang = "en";
 var s3 = local ? (lang=="en" ? "../../vis/" : "") : "http://s3.eu-central-1.amazonaws.com/fw4/";
 
 var data;
