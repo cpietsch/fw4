@@ -149,8 +149,7 @@ d3.select(".infobutton")
   })
 
 d3.select("#feedback").on("click", function(){ feedbacked = true; })
-d3.select(".intern").on("click", function(){ 
-  alert("intern");
+d3.select(".feedback, .language-container").on("click", function(){ 
   feedbacked = true;
   return true;
 })
