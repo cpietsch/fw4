@@ -347,6 +347,7 @@ function myListView() {
         // console.log("null");
         selectedImage = null;
         zoom.center(null);
+        container.style("cursor", "default");
       } else {
         // console.log("not null");
         if (best.p && !zoomedToImage) {
