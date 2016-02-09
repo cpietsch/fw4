@@ -1,13 +1,14 @@
 .infobar {
+    float: left;
     font-size: 15px;
-    font-family: "lyon-text";
+    /* font-family: "lyon-text"; */
     z-index: 100;
     height: 100%;
     transition: left 0.3s ease-out;
     box-shadow: 0 0px 56px rgba(0, 0, 0, 0.66), 0 0px 6px rgba(0, 0, 0, 0.23);
     left: 0px;
     position: absolute;
-    width: 500px;
+    width: 480px;
     max-width: 100%;
     color: #fff;
     background-color: #555;
@@ -22,7 +23,7 @@
 }
 
 .en .infobar .de {
-    display: none;
+    /* display: none; */
 }
 
 .infobar.hide {
@@ -30,14 +31,16 @@
 }
 
 .infobar.sneak {
-    left: -495px;
+    left: -477px;
 }
 
 .infobar.sneak:hover {
-    left: -490px;
+    left: -474px;
 }
 
 .infobar .infobutton {
+    z-index: 200;
+    /* display: none; */
     background-size: 100% 100%;
     background-repeat: no-repeat;
     right: 18px;
@@ -61,6 +64,7 @@
 }
 
 .infobar h1 {
+    float: left;
     font-size: 20px;
     text-align: left;
     margin: 0;
@@ -68,6 +72,7 @@
 }
 
 .infobar h2 {
+    float: left;
     text-align: left;
     font-size: 20px;
     line-height: 30px;
@@ -78,6 +83,8 @@
 }
 
 .infobar .outer {
+    /* width: 450px; */
+    float: left;
     height: 100%;
     /* overflow-y: auto; */
     /* overflow-x: hidden; */
@@ -88,21 +95,31 @@
 }
 
 .infobar .inner {
-    width: 100%;
+    /* padding: 60px 60px; */
+    /* width: 100%; */
     /* height: 100%; */
     /* overflow-y: scroll; */
     float: left;
     /*direction: ltr;*/
 }
 .infobar .inner > div {
+    /* height: 100%; */
+    position: relative;
+    width: 360px;
     float: left;
-    padding: 60px 60px;
+    padding: 60px;
 }
 
 .infobar img {
+    /* width: 50%; */
+    margin: 0 auto;
+    position: relative;
+    /* float: left; */
     xborder: 1px solid #999;
     width: 275px;
-    padding: 5px 50px 0 50px;
+    /* margin: auto auto; */
+    display: table;
+    margin: 0 auto;
 }
 
 .infobar img.scroll {

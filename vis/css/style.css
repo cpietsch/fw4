@@ -59,6 +59,53 @@ canvas {
   /* cursor: pointer; */
 }
 
+ .language-container {
+    /* float: left; */
+    /* display: none; */
+    top: 0px;
+    position: absolute;
+    font-weight: bold;
+    /* color: rgba(255, 255, 255, 0.38); */
+    font-size: 0.8em;
+    padding: 5px;
+    background: rgb(103, 103, 103);
+    right: 20px;
+    /* position: fixed; */
+    z-index: 100;
+    /* width: 30px; */
+    /* top: 5px; */
+    /* padding: 9px; */
+    /* padding-top: 2px; */
+}
+
+.language-container div {
+    text-transform: uppercase;*/;
+    padding-left: 7px;
+    float: left;
+    padding-right: 6px;
+    /* margin: 6px; */
+    margin-bottom: 6px;
+    margin-top: 6px;
+}
+
+.language-container a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.38);
+  border: none;
+}
+.language-container a:hover {
+  border: none;
+}
+
+.language-container .de {
+  border-right: 1px solid #AFAFAF;
+}
+
+.language-container .active a {
+    /* font-weight: bold; */
+    color: #FFF;
+}
+
 .splash {
   position: absolute;
   background: rgba(39, 39, 39, 0.92);
