@@ -103,6 +103,23 @@ body {
  * Layout
  * ----------------------------------------- */
 
+ .language-container {
+    padding: 9px;
+    background: rgba(0, 0, 0, 0.55);
+    right: 22px;
+    position: fixed;
+    z-index: 100;
+    /* width: 200px; */
+    /* top: 5px; */
+    /* padding: 9px; */
+    padding-top: 2px;
+}
+
+.language-container div {
+    padding: 5px;
+    float: left;
+}
+
 .container {
   margin: 0 auto;
   width: 80%;
