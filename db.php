@@ -33,6 +33,7 @@ function recognized(){
 
 function logger(){
 	$sid = session_id();
+	$ip = $_SERVER['REMOTE_ADDR'];
 	$payload = file_get_contents('php://input');
 	$data = json_decode($payload);
 	if(count($data) == 0) die;
@@ -42,7 +43,7 @@ function logger(){
 	foreach($data as $entry){
 		$payload = $db->real_escape_string(json_encode($entry));
 		// print_r($payload);
-		$db->query("INSERT INTO logs (sessionid, payload,modified) VALUES ('$sid', '$payload', now())");
+		$db->query("INSERT INTO logs (sessionid, payload,modified,ip) VALUES ('$sid', '$payload', now(), '$ip')");
 
 	}
 

@@ -20,6 +20,7 @@ function Logger() {
     self.log = function(obj) {
         obj.view = _view;
         obj.time = new Date() * 1;
+        obj.location = document.location.href;
 
         _buffer.push(obj);
         // console.warn("logger",obj);
