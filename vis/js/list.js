@@ -214,7 +214,7 @@ function myListView() {
 
       })
 
-      console.log(_data[0])
+      //console.log(_data[0])
 
       // timeline cleaning
       _timeline.forEach(function(d) {

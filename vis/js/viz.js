@@ -149,6 +149,12 @@ d3.select(".infobutton")
   })
 
 d3.select("#feedback").on("click", function(){ feedbacked = true; })
+d3.select(".intern").on("click", function(){ 
+  alert("intern");
+  feedbacked = true;
+  return true;
+})
+
 
 var infoscroll = d3.select('.infobar .outer').node();
 Ps.initialize(infoscroll);
