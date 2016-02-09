@@ -104,10 +104,10 @@ function myTagCloud() {
    var keywordsNest = keywordsNestGlobal
       .slice(0,sliceNum)
       .sort(function(a,b){
-        return d3.ascending(a.key, b.key);
+        return d3.ascending(a.key[0], b.key[0]);
       })
 
-    //c("keywordsNest", keywordsNest);
+    c("keywordsNest", keywordsNest);
 
     var keywordsExtent = d3.extent(keywordsNest, function (d) {
       return d.values.length;

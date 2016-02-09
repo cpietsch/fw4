@@ -103,13 +103,22 @@ utils.clean = function(data,texte,transKeyword) {
 		  .filter(function(d){ return (d!="sachlich" && d!="topographisch"); })
 		  .uniq()
 		  .value()
+		  // .map(function(d){ return d; })
 
+		// console.log(d.keywords)
 
 		if(lang == "en"){
 			d.keywords = d.keywords.map(function(d){
 				return keywordMap.get(d).en;
 			})
+		} else {
+			// omg plz make data cleaning
+			d.keywords = d.keywords.map(function(d){ 
+				return d.charAt(0).toUpperCase() + d.slice(1);
+			});
 		}
+
+		// console.log(d.keywords)
 		
 		d.tip = _(d.index)
 		  .chain()
