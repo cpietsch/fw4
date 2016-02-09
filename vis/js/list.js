@@ -655,7 +655,7 @@ function myListView() {
       var scale = 0.6 / (x.rangeBand() / 3 / width);
       var translateNow = [(-scale * (d.x - padding)) - sidbar, -scale * (height + d.y)];
 
-      console.log(scale, translateNow);
+      //console.log(scale, translateNow);
 
       zoomedToImageScale = scale;
 
@@ -689,6 +689,11 @@ function myListView() {
       });
 
       detailContainer
+       .select(".outer")
+       .node()
+       .scrollTop = 0;
+
+      detailContainer
           .classed("hide", false)
           .classed("sneak", lang=="en")
           .select(".inner")
@@ -706,7 +711,7 @@ function myListView() {
       s.exit().remove()
       s
           .attr("href", function(d) {
-              return "thementexte/" + d.file;
+              return (lang=="en" ? "../../vis/" : "") + "thementexte/" + d.file;
           })
           .attr("target", "_blank")
           .attr("title", "zum PDF")
