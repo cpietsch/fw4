@@ -668,7 +668,7 @@ function myListView() {
       var scale = 0.6 / (x.rangeBand() / 3 / width);
       var translateNow = [(-scale * (d.x - padding)) - sidbar, -scale * (height + d.y)];
 
-      console.log(scale, translateNow);
+      //console.log(scale, translateNow);
 
       zoomedToImageScale = scale;
 
