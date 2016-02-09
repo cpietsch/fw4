@@ -107,7 +107,7 @@ function myTagCloud() {
         return d3.ascending(a.key[0], b.key[0]);
       })
 
-    c("keywordsNest", keywordsNest);
+    // c("keywordsNest", keywordsNest);
 
     var keywordsExtent = d3.extent(keywordsNest, function (d) {
       return d.values.length;

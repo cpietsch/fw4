@@ -602,6 +602,7 @@ img {
 }
 
 .visible-desktop {
+  -webkit-target-new: window;
   display: inline-block;
 }
 
