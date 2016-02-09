@@ -21,9 +21,9 @@
 // this is not meant for your eyes ;)
 // not yet at least - will publish the code on github soon
 
-// utils.welcome();
+utils.welcome();
 
-var local = true;
+var local = false;
 var s3 = local ? (lang == "en" ? "../../vis/" : "") : "http://s3.eu-central-1.amazonaws.com/fw4/";
 
 var data;
@@ -46,7 +46,7 @@ if(utils.isMobile()){
       init();
     } else {
       logger.log({ action: "noWebGL" }).sync();
-      alert("sorry you need the latest browser") 
+      alert("sorry you need webGL") 
     }
 }
 
@@ -163,20 +163,15 @@ window.onbeforeunload = function() {
     if(!feedbacked){
       infoscroll.scrollTop = 500;
       Ps.update(infoscroll);
-      
+
       d3.select(".infobar").classed("sneak", false);
       return "Sorry to bother you, but we would love to get your feedback on the FW4 Viz. If you have a minute, please stay on this webpage and share your thoughts.";
     }
 };
 
-
-
-
-
-
-// window.onerror = function(message, url, lineNumber) {  
-//   //save error and send to server for example.
-//   console.error(message, lineNumber, url);
-//   logger.log({ action: "error", target: lineNumber + ": " + message });
-//   return true;
-// };
+window.onerror = function(message, url, lineNumber) {  
+  //save error and send to server for example.
+  // console.error(message, lineNumber, url);
+  logger.log({ action: "error", target: lineNumber + ": " + message });
+  return true;
+};
