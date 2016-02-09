@@ -611,8 +611,8 @@ svg {
 
 .detail a {
   float: left;
-  text-decoration: inherit;
-  color: rgb(72, 72, 72);
+  /* text-decoration: inherit; */
+  color: #2D2D2D;
   font-style: normal;
 }
 
