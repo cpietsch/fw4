@@ -165,7 +165,10 @@ window.onbeforeunload = function() {
       Ps.update(infoscroll);
 
       d3.select(".infobar").classed("sneak", false);
-      return "Sorry to bother you, but we would love to get your feedback on the FW4 Viz. If you have a minute, please stay on this webpage and share your thoughts.";
+      var infotext = "Entschuldigen Sie die Unterbrechung. Wir würden uns sehr über Ihre Teilnahme an der Umfrage freuen. Wenn Sie ein paar Minuten haben, bleiben Sie bitte auf der Webseite, um den Fragebogen erreichbar über die linke Seiteleiste auszufüllen";
+      if(lang=="en") infotext="Sorry to bother you, but we would love to get your feedback on the FW4 Viz. If you have a minute, please stay on this webpage and share your thoughts.";
+      
+      return infotext;
     }
 };
 
