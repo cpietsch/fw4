@@ -325,7 +325,10 @@ function myListView() {
 
   function mousemove(d) {
       if(timelineHover) return;
+
       //ping();
+     
+
       var mouse = d3.mouse(this);
       var p = toScreenPoint(mouse);
 
@@ -338,25 +341,35 @@ function myListView() {
       // console.log(best)
 
       selectedImageDistance = best.d;
+      //console.log(bottomZooming, best.p)
 
-      if (best.p && !zoomedToImage) {
-          var d = best.p;
-          // todo iprove that bitch
-          var center = [((d.x + imgPadding) * scale) + translate[0], (height + d.y + imgPadding) * scale + translate[1]];
-          zoom.center(center);
+      if(bottomZooming && best.p && best.p.y > -16){
+        // console.log("null");
+        selectedImage = null;
+        zoom.center(null);
+      } else {
+        // console.log("not null");
+        if (best.p && !zoomedToImage) {
+            var d = best.p;
+            // todo iprove that bitch
+            var center = [((d.x + imgPadding) * scale) + translate[0], (height + d.y + imgPadding) * scale + translate[1]];
+            zoom.center(center);
 
-          selectedImage = d;
+            selectedImage = d;
 
-          //d.alpha = 0.6;
+            //d.alpha = 0.6;
+        }
+
+        container.style("cursor", function() {
+            return ((best.d < 5) && selectedImage.active) ? "pointer" : "default";
+        });
       }
 
-      container.style("cursor", function() {
-          return ((best.d < 5) && selectedImage.active) ? "pointer" : "default";
-      });
+      
 
       // console.log(best)
-
-  }
+      // console.log(best.p.y);
+  } 
 
   var flipflop = false;
 
@@ -437,40 +450,7 @@ function myListView() {
       // c("mouse", mouse);
   }
 
-  chart.mouseover = function(d) {
-      // c("mouseover");
-      if (cloud.lock) return;
 
-
-      // c("ver", chart.distance(d.centroid(), [d.point.x, d.point.y]));
-
-      var d = d.point;
-
-      selectedImage = d;
-
-      //myTooltip.display(d);
-
-      //d.target.alpha = 0.6;
-
-      //var elm = d.target._data;
-
-      if (scale < zoomBarrier) {
-          //cloud.highlightWords(d);
-      }
-
-      // console.log(d)
-
-      var center = [((d.x + rangeBand / 3 / 2) * scale) + translate[0], (height + d.y + rangeBand / 3 / 2) * scale + translate[1]];
-      //c("center", center)
-      zoom.center(center);
-
-
-      // svg.attr("cursor", "pointer");
-
-
-      //cloud.filterWords(d.keywords);
-
-  }
 
   chart.mouseout = function(d) {
       // console.log("mouseout")
@@ -831,12 +811,14 @@ function myListView() {
           .on("mouseenter", function(d){
             timelineHover = true;
             zoom.center(null);
+            selectedImage = null;
             logger.log({
               action: "enter timeline",
               scale: scale,
               translate, translate,
               target: d.key,
             });
+            // console.log("enter")
           })
           .on("mouseleave", function(d){
             timelineHover = false;
@@ -1039,6 +1021,12 @@ function myListView() {
 
   function zoomed() {
 
+      if(bottomZooming){
+        // zoom.center(null);
+        // selectedImage = null;
+        // console.log("null");
+      } 
+
       translate = d3.event.translate;
       scale = d3.event.scale;
 
@@ -1196,8 +1184,9 @@ function myListView() {
 
 
 
-  var bottomPadding = 40;
-  var extent = [0, 0]
+  var bottomPadding = 50;
+  var extent = [0, 0];
+  var bottomZooming = true;
 
   chart.resetZoom = function() {
       var time = 1400;
@@ -1206,6 +1195,8 @@ function myListView() {
           return d.y;
       });
       var y = -extent[1] - bottomPadding;
+
+      bottomZooming = (y<-30 && y>-40);
 
       svg
           .call(zoom.translate(translate).event)
