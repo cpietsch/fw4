@@ -14,6 +14,10 @@ utils.isMobile = function(){
   return check;
 }
 
+utils.isSafari = function(){
+	return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+}
+
 utils.welcome = function(){
 
     if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1)

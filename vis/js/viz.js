@@ -23,6 +23,8 @@
 
 utils.welcome();
 
+_.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
+
 var local = false;
 var s3 = local ? (lang == "en" ? "../../vis/" : "") : "http://s3.eu-central-1.amazonaws.com/fw4/";
 
@@ -154,6 +156,20 @@ d3.select(".feedback, .language-container").on("click", function(){
   return true;
 })
 
+var browserInfo = d3.select(".browserInfo");
+if(utils.isSafari()){
+  browserInfo
+    .on("click", function(){ browserInfo.remove(); })
+    .classed("show", true)
+    .transition()
+    .delay(7000)
+    .each("end", function(){
+      d3.select(this).classed("show", false).remove();
+    })
+
+} else {
+  browserInfo.remove();
+}
 
 var infoscroll = d3.select('.infobar .outer').node();
 Ps.initialize(infoscroll);

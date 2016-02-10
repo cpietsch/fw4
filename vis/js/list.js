@@ -18,9 +18,7 @@ function myListView() {
   var width = window.innerWidth - margin.left - margin.right;
   var widthOuter = window.innerWidth;
   var height = window.innerHeight < minHeight ? minHeight : window.innerHeight;
-  // var margin = {top: 20, right: 20, bottom: 30, left: 40},
-  //     width = 1300* scale - margin.left - margin.right ,
-  //     height = 600*scale - margin.top - margin.bottom;
+
   var scale;
   var scale1 = 1;
   var scale2 = 1;
@@ -29,33 +27,19 @@ function myListView() {
 
   var translate = [0, 0];
   var scale = 1;
-  // window.scale = scale;
-
-  // var timeDomain = d3.range(1810, 1857).map(function(d) { 
-  //     return {
-  //         key: d
-  //     };
-  // });
   var timeDomain = [];
-  // var timeDomain = d3.range(1795,1862).map(function(d){ return { key: d };});
+  var loadImagesCue = [];
 
   var x = d3.scale.ordinal()
-      .rangeBands([margin.left, width + margin.left], 0.2)
-      // .domain(timeDomain.map(function(d) { return d.key; }))
-
-  // var fontScale = d3.scale.linear()
-  //   .domain([2,6])
-  //   .range([9,15])
-  //   .clamp(true)
+      .rangeBands([margin.left, width + margin.left], 0.2);
 
   var Quadtree = d3.geom.quadtree()
-      // .extent([[0, 0], [width, -height]])
       .x(function(d) {
           return d.x;
       })
       .y(function(d) {
           return d.y;
-      })
+      });
 
   var quadtree;
 
@@ -63,9 +47,9 @@ function myListView() {
       .scaleExtent([1, 450])
       .on("zoom", zoomed)
       .on("zoomend", zoomend)
-      .on("zoomstart", zoomstart)
+      .on("zoomstart", zoomstart);
 
-  d3.select("body")
+  // d3.select("body")
       //.on("keydown", keydown);
 
   var canvas;
@@ -90,7 +74,10 @@ function myListView() {
   var stagePadding = 40;
   var imgPadding;
 
-  _.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
+  var bottomPadding = 50;
+  var extent = [0, 0];
+  var bottomZooming = true;
+
   var detailTemplate = _.template(d3.select("#detailTemplate").html());
   var detailContainer = d3.select(".sidebar")
       .on("mouseenter", function(d) {
@@ -149,8 +136,6 @@ function myListView() {
       scale2 = imageSize2 / (x.rangeBand() / collumns);
       scale3 = imageSize3 / (x.rangeBand() / collumns);
 
-      //stage.x = margin.left;
-
       stage3.scale.x = 1 / scale1;
       stage3.scale.y = 1 / scale1;
       stage3.y = height;
@@ -163,6 +148,9 @@ function myListView() {
       stage5.scale.y = 1 / scale3;
       stage5.y = height;
 
+      timeDomain.forEach(function(d) {
+          d.x = x(d.key);
+      });
   }
 
   chart.init = function(_data,_timeline) {
@@ -244,24 +232,7 @@ function myListView() {
 
       x.domain(chartDomain);
 
-      // timeDomain.forEach(function(d) {
-      //     d.x = x(d.key) + rangeBand / 3;
-      //     d.y = 5;
-      // });
-
-
       chart.makeScales();
-
-      // // make x Axis
-      // x.domain().forEach(function(d){
-      //   var xpos = (x(d) + x.rangeBand()/collumns)*scale1;
-
-      //   var text = new PIXI.Text(d, {font:"70px Arial", fill:0x999999, align : 'center'});
-      //   text.x = xpos;
-      //   text.y = 4*scale;
-
-      //   stage3.addChild(text);
-      // })
 
     
       d3.select(".viz")
@@ -297,37 +268,19 @@ function myListView() {
               // if(!zoomedToImage) zoomToImage(selectedImage, 1000);
           })
 
-      svg = renderElem
-          // .classed("overlay", true)
-
-
-
-      // myTooltip = tooltip(svg);
-
+      svg = renderElem;
+          
       timeline = d3.select(".viz").append("div").classed("timeline", true)
           .style("transform", "translate(" + 0 + "px," + (height - 30) + "px)");
 
-
-      // svgscale.on("mousemove", mousemove);
-
-
-      //svg.call(zoom.scale(1).translate([0,0]).event)
-
       chart.flip();
-
-      //zoomToImage(data[2])
       animate();
-
-
 
   };
 
 
   function mousemove(d) {
       if(timelineHover) return;
-
-      //ping();
-     
 
       var mouse = d3.mouse(this);
       var p = toScreenPoint(mouse);
@@ -338,18 +291,14 @@ function myListView() {
           p: null
       }, quadtree);
       // console.timeEnd("search")
-      // console.log(best)
 
       selectedImageDistance = best.d;
-      //console.log(bottomZooming, best.p)
 
       if(bottomZooming && best.p && best.p.y > -16){
-        // console.log("null");
         selectedImage = null;
         zoom.center(null);
         container.style("cursor", "default");
       } else {
-        // console.log("not null");
         if (best.p && !zoomedToImage) {
             var d = best.p;
             // todo iprove that bitch
@@ -357,8 +306,6 @@ function myListView() {
             zoom.center(center);
 
             selectedImage = d;
-
-            //d.alpha = 0.6;
         }
 
         container.style("cursor", function() {
@@ -366,10 +313,6 @@ function myListView() {
         });
       }
 
-      
-
-      // console.log(best)
-      // console.log(best.p.y);
   } 
 
   var flipflop = false;
@@ -544,22 +487,7 @@ function myListView() {
   }
 
   function imageAnimation() {
-      // data.forEach(function(d,i){
-      //   var diff;
-      //   diff = (d.x1-d.sprite.position.x);
-      //   if(diff>1) d.sprite.position.x += diff*0.1;
 
-      //   diff = (d.y1-d.sprite.position.y);
-      //   if(diff>1) d.sprite.position.y += diff*0.1;
-
-      //   diff = (d.alpha-d.sprite.alpha);
-      //   if(diff>0.01) d.sprite.alpha += diff*0.1;
-
-      //   if(d.sprite2) {
-      //     diff = (d.alpha2-d.sprite2.alpha);
-      //     if(diff>0.01) d.sprite2.alpha += diff*0.1;
-      //   }
-      // });
       data.forEach(function(d, i) {
           var diff;
           diff = (d.x1 - d.sprite.position.x);
@@ -581,19 +509,12 @@ function myListView() {
               //else d.sprite2.visible = d.visible;
           }
       });
-      // data.forEach(function(d,i){
-      //   d.sprite.position.x = d.x1;
-      //   d.sprite.position.y = d.y1;
-
-      //   d.sprite.alpha = d.alpha;
-      //   if(d.sprite2) d.sprite2.alpha = d.alpha2;
-      // });
+    
   }
 
   function animate(time) {
 
       requestAnimationFrame(animate);
-      //filter.time = (filter.time+0.02) % 1;
 
       loadImages();
       imageAnimation();
@@ -763,11 +684,8 @@ function myListView() {
           d.alpha2 = d.visible ? 1 : 0;
           //d.sprite.visible = true;  
 
-
       })
   }
-
-
 
   var fontScale = d3.scale.linear()
       .domain([1, 9])
@@ -786,13 +704,9 @@ function myListView() {
   var timelineHover = false;
 
   function updateDomain(x1, x2) {
-      // console.time("timeline");
-      // console.log(x1,x2)
-
-      //console.log(scale, timelineFontScale(scale))
 
       timeDomain.forEach(function(d) {
-          d.pos = ((x(d.key) - x1) * scale);
+          d.pos = ((d.x - x1) * scale);
           d.visible = (d.pos > (-rangeBand * scale) && d.pos < width + 100);
       })
 
@@ -816,7 +730,7 @@ function myListView() {
             logger.log({
               action: "enter timeline",
               scale: scale,
-              translate, translate,
+              translate: translate,
               target: d.key,
             });
             // console.log("enter")
@@ -826,7 +740,7 @@ function myListView() {
             logger.log({
               action: "exit timeline",
               scale: scale,
-              translate, translate,
+              translate: translate,
               target: d.key,
             });
           })
@@ -908,131 +822,17 @@ function myListView() {
           .select(".year")
           .style("font-size", fontScale(scale) + "px")
 
-      // select
-      //   .select(".outer")
-      //   .style("transform", "scale("+ scale +")")
-      //   .style("opacity", (scale/7));
-
-      // console.timeEnd("timeline");
-  }
-
-  function updateDomain2(x1, x2) {
-
-      var timelineScale = d3.scale.threshold()
-          .domain([10, 20])
-          .range(["small", "middle", "deep"])
-
-      var fontScale = d3.scale.linear()
-          .domain([1, 9])
-          .range([9, 20])
-          .clamp(true)
-
-
-      // console.log(timelineScale(scale), scale)
-
-      timeline.attr("class", "timeline " + timelineScale(scale))
-
-      var select = timeline.selectAll(".container")
-          .data(timeDomain)
-
-      var enter = select
-          .enter()
-          .append("div")
-          .classed("container", true)
-
-
-      enter.append("div")
-          .classed("year", true)
-          // .text(function(d){ return "'"+(1800-d.key)*-1; })
-          .text(function(d) {
-              return d.key;
-          })
-
-      var e = enter
-          .append("div")
-          .classed("outer", true)
-          .append("div")
-          .classed("inner", true)
-          .append("div")
-          .classed("entries", true)
-          .selectAll(".entry")
-          .data(function(d) {
-              return d.values;
-          })
-          .enter()
-          .append("div")
-          .classed("entry", true)
-
-      var l = e
-          .append("div")
-          .classed("left", true)
-
-      l
-          .append("div")
-          .classed("jahr", true)
-          .text(function(d) {
-              return d.jahr;
-          })
-
-      l
-          .append("div")
-          .classed("title", true)
-          .text(function(d) {
-              return d.titel;
-          })
-
-      l
-          .append("div")
-          .classed("text", true)
-          .text(function(d) {
-              return d.text;
-          })
-
-      e
-          .append("div")
-          .classed("extra", true)
-          .text(function(d) {
-              return d.extra;
-          })
-
-      select
-          .style("transform", function(d) {
-              var pos = ((x(d.key) - x1) * scale);
-              return "translate(" + pos + "px,0px)";
-          })
-          .style("height", rangeBand * scale + "px")
-          .style("width", rangeBand * scale + "px")
-          // .style("font-size", fontScale(scale) + "px")
-          // .style("font-size", scale*2 + "px")
-          // .style("line-height", scale*2 + "px")
-
-      select
-          .select(".year")
-          .style("font-size", fontScale(scale) + "px")
-
-      select
-          .select(".outer")
-          .style("transform", "scale(" + scale + ")")
-          .style("opacity", (scale / 7));
-
-      select
-          .select(".inner")
-          // .style("background", "rgba(247, 239, 205, "+ (1 - (scale/7)) +")");
+  
   }
 
   function zoomed() {
-
-      if(bottomZooming){
-        // zoom.center(null);
-        // selectedImage = null;
-        // console.log("null");
-      } 
 
       translate = d3.event.translate;
       scale = d3.event.scale;
 
       // check borders
       // this shit cost me a lot of nerves...
+      // to be refactored
 
       var x1 = -1 * translate[0] / scale;
       var x2 = (x1 + (widthOuter / scale));
@@ -1047,7 +847,6 @@ function myListView() {
 
       // console.log(translate[1],e2, y3);
 
-      // var yy1 = 
 
       if (d3.event.sourceEvent != null) {
           if (x1 < 0) {
@@ -1068,25 +867,14 @@ function myListView() {
       }
 
       if (zoomedToImageScale != 0 && scale > zoomedToImageScale && !zoomedToImage && selectedImage && selectedImage.type == "image") {
-          // c("-zoomedto", selectedImage)
-          // zoomToImage(selectedImage,500);
-
-          // console.log(slectedImage);
-
+          
           zoomedToImage = true;
-
           zoom.center(null);
           zoomedToImageScale = scale;
-
           hideTheRest(selectedImage);
-
           showDetail(selectedImage)
 
-
       }
-
-
-      // d3.select(".stooltip").attr("transform", "translate("+translate[0]+"," + ((height+rangeBand/collumns/2) * scale-(-1*translate[1])) + ")");
 
 
       if (zoomedToImage && zoomedToImageScale - 20 > scale) {
@@ -1118,7 +906,6 @@ function myListView() {
       stage2.x = d3.event.translate[0];
       stage2.y = d3.event.translate[1];
 
-      // filterVisible();
   }
 
 
@@ -1131,12 +918,6 @@ function myListView() {
       zooming = true;
       startTranslate = translate;
       startScale = scale;
-      //drag = true;
-
-      // console.timeEnd("filter")
-      //c("start",translate, zoom.translate(), d3.event, d)
-      //zoomstartedzoom.translate([translate[0],translate[1]]);
-      // stage.filters = [blurFilter];
   }
 
 
@@ -1145,20 +926,6 @@ function myListView() {
       zooming = false;
 
       filterVisible();
-
-      // c(drag)
-      //c("zoomed")
-
-      //drag = false;
-      //c("end",translate, zoom.translate(), d3.event, d)
-      // console.time("filter")
-      // filterVisible();
-      // console.timeEnd("filter")
-      // if(drag){
-      //   logger.log({ action: "drag", scale: scale, target: selectedImage ? selectedImage.id : "" });
-      // } else {
-      //   logger.log({ action: "zoomend", scale: scale, target: selectedImage ? selectedImage.id : "" });
-      // }
 
       logger.log({
           action: "zoomend",
@@ -1177,17 +944,9 @@ function myListView() {
 
       data.forEach(function(d, i) {
           d.alpha = d.highlight ? 1 : 0.2;
-          //d.visible = d.active;
-          //if(d.sprite2) d.sprite2.alpha = d.active ? 1 : 0.4;
       });
 
   }
-
-
-
-  var bottomPadding = 50;
-  var extent = [0, 0];
-  var bottomZooming = true;
 
   chart.resetZoom = function() {
       var time = 1400;
@@ -1208,10 +967,7 @@ function myListView() {
 
   chart.flip = function() {
 
-      // console.log("flip")
-
       chart.split();
-
       chart.resetZoom();
 
   }
@@ -1226,13 +982,6 @@ function myListView() {
           return !d.active;
       })
       stackLayout(unten, true);
-
-      // timeDomain.forEach(function(d) {
-      //     d.x = x(d.key) + rangeBand / 3;
-      //     d.y = 5;
-      // });
-
-      // console.log(timeDomain);
 
       // console.time("Quadtree")
       // quadtree = Quadtree(data);
@@ -1365,8 +1114,6 @@ function myListView() {
       img.src = "data:image/jpg;base64," + imagesMap2.get(d.id).image;
   }
 
-  loadImagesCue = [];
-
   function loadImages() {
       if (zooming) return;
       if (zoomedToImage) return;
@@ -1378,20 +1125,7 @@ function myListView() {
               loadMiddleImage(d);
           }
       }
-
-      // loadImagesCue.forEach(function(d){
-      //   if(imagesMap2 && !d.loaded){
-      //     loadMiddleImage(d);
-      //   }
-      // })
-      // loadImagesCue = [];
-
-      //c("loadImagesCue", loadImagesCue.length)
   }
-
-
-
-
 
 
   return chart;
