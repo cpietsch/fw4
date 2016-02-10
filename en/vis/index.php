@@ -1,6 +1,6 @@
 <?php
 
-include "../db.php";
+include "../../db.php";
 
 //redirect to intro page if it's a new session
 // if (!recognized()) {
