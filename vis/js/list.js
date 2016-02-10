@@ -293,8 +293,10 @@ function myListView() {
       // console.timeEnd("search")
 
       selectedImageDistance = best.d;
+      // console.log(selectedImageDistance);
 
-      if(bottomZooming && best.p && best.p.y > -16){
+      if(bottomZooming && best.p && best.p.ii < 3 && selectedImageDistance > 7){
+        // console.log("bottom");
         selectedImage = null;
         zoom.center(null);
         container.style("cursor", "default");
@@ -336,6 +338,7 @@ function myListView() {
 
           year.values.forEach(function(d, i) {
               var row = (Math.floor(i / collumns) + 2);
+              d.ii = i;
 
               d.x = startX + ((i % collumns) * (rangeBand / collumns));
               d.y = (invert ? 1 : -1) * (row * (rangeBand / collumns));

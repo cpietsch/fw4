@@ -180,6 +180,7 @@ window.onbeforeunload = function() {
         action: "close"
     });
     logger.sync();
+    if(local) return;
 
     if(!feedbacked){
       infoscroll.scrollTop = 500;
