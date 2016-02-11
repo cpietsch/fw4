@@ -138,6 +138,8 @@
 
       </ul>
 
+      <a href="#" class="slider_nav slider1_nav down">Weiter</a>
+
     </header>
 
 
@@ -329,10 +331,15 @@
 
       $(function () {
         $( '.slider' ).responsiveSlides({
-          auto: false,
-          nav: true,
+          auto: true,
+          nav: false,
           speed: 300,
           namespace: "slider",
+        });
+        $(".down").click(function(){
+          $("html, body").stop().animate({scrollTop:window.innerHeight}, '500', 'swing', function() { 
+             
+          });
         });
 
         // $('.visible-desktop').click(function(){

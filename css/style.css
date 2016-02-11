@@ -102,6 +102,11 @@ body {
 /*
  * Layout
  * ----------------------------------------- */
+  a.slider_nav.slider1_nav.down {
+      top: 100%;
+      left: 50%;
+      transform: rotate(90deg);
+  }
 
  .language-container {
     /* font-weight: bold; */
