@@ -18,6 +18,41 @@
     z-index: 300;
 }
 
+.menu {
+    width: 420px;
+    padding-left: 10px;
+    float: left;
+    position: relative;
+    background: rgba(255, 255, 255, 0.25);
+    padding: 10px;
+    padding-right: 30px;
+    padding-left: 30px;
+    /* width: 100%; */
+    display: block;
+}
+
+.menu a {
+    text-decoration: none;
+    margin-right: 5px;
+    padding: 7px;
+    float: left;
+    /* border-right: 1px solid rgba(255, 255, 255, 0.78); */
+    color: #FFF;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 13px;
+    /* background: rgb(53, 53, 53); */
+}
+
+.menu .language {
+    float: right;
+    font-weight: normal;
+}
+
+.menu .active {
+    font-weight: bold;
+}
+
 .de .infobar .en {
     display: none;
 }
