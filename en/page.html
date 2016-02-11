@@ -333,7 +333,8 @@
         $( '.slider' ).responsiveSlides({
           auto: true,
           nav: false,
-          speed: 300,
+					timeout: 10000,
+          speed: 500,
           namespace: "slider",
         });
         $(".down").click(function(){
