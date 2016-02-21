@@ -202,6 +202,8 @@ function myListView() {
 
       })
 
+      // loadBigImage(data[0]);
+
       //console.log(_data[0])
 
       // timeline cleaning
@@ -540,7 +542,7 @@ function myListView() {
 
 
   var zoomedToImage = false;
-  var zoomedToImageScale = 0;
+  var zoomedToImageScale = 117;
   var zoomBarrier = 2;
   // todo: zoombarrier as d3.scale.threshold()
 
@@ -629,6 +631,60 @@ function myListView() {
   var loadedBigInterval = null;
 
   function loadBigImage(d, callback) {
+      c("loadBig", d.id);
+
+      var url = "https://s3.eu-central-1.amazonaws.com/fw4/large/" + d.id + ".jpg";
+
+      d3.xhr(url)
+        .responseType("blob")
+        // .mimeType('text/plain; charset=x-user-defined')
+        .on("progress", function() { 
+          console.log("progress", (d3.event.loaded/d3.event.total)*100);
+        })
+        .on("load", function(req) { 
+          console.log("success!", req, req.response);
+          var blobUrl = window.URL.createObjectURL(req.response);
+
+          // var texture = PIXI.Texture.fromImage(blobUrl);
+          // var sprite = new PIXI.Sprite(texture);
+
+          // //c(texture.baseTexture.hasLoaded, sprite);
+
+          // sprite.anchor.x = 0.5;
+          // sprite.anchor.y = 0.5;
+          // sprite.position.x = d.x * scale3 + imageSize3 / 2;
+          // sprite.position.y = d.y * scale3 + imageSize3 / 2;
+          // sprite._data = d;
+          // d.big = true;
+
+          // stage5.addChild(sprite);
+
+          var img = new Image();
+          img.addEventListener("load", function() {
+            var base = new PIXI.BaseTexture(img);
+            var texture = new PIXI.Texture(base);
+            var sprite = new PIXI.Sprite(texture);
+
+            // c(texture.baseTexture.hasLoaded, sprite);
+
+            sprite.anchor.x = 0.5;
+            sprite.anchor.y = 0.5;
+            sprite.position.x = d.x * scale3 + imageSize3 / 2;
+            sprite.position.y = d.y * scale3 + imageSize3 / 2;
+            sprite._data = d;
+            d.big = true;
+
+            stage5.addChild(sprite);
+          })
+          img.src = blobUrl;
+
+        })
+        .on("error", function(error) { console.log("failure!", error); })
+        .get();
+
+  }
+
+  function loadBigImage2(d, callback) {
       // c("loadBig", d.id);
 
       var img = new Image();
@@ -868,6 +924,8 @@ function myListView() {
           x1 = -1 * translate[0] / scale;
           x2 = (x1 + (width / scale))
       }
+
+
 
       if (zoomedToImageScale != 0 && scale > zoomedToImageScale && !zoomedToImage && selectedImage && selectedImage.type == "image") {
           
