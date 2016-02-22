@@ -63,6 +63,102 @@ canvas {
   /* cursor: pointer; */
 }
 
+.detailLoader {
+   box-shadow: 0 0px 56px rgba(0, 0, 0, 0.66), 0 0px 6px rgba(0, 0, 0, 0.23);
+   opacity: 1;
+   color: #F4E7C5;
+   z-index: 100;
+   position: absolute;
+   right: 0;
+   top: 0;
+   font-weight: bold;
+   height: 100%;
+   width: 30px;
+   background: rgb(53, 54, 54);
+}
+.detailLoader .indicator{
+  background: #545454;
+  width: 100%;
+  position: relative;
+  transition: height 1s;
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.16); */
+}
+.detailLoader .label {
+    color: rgba(255, 255, 255, 0.71);
+    font-size: 11px;
+    text-transform: uppercase;
+    position: absolute;
+    top: 0px;
+    left: 8px;
+    z-index: 200;
+    transform: rotate(90deg);
+    transform-origin: left bottom;
+}
+
+.preload-juggle {
+  z-index: 100;
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  top: 10%;
+  margin-top: -150px;
+  left: 10%;
+  margin-left: -150px;
+  transform:scale(0.5);
+}
+.preload-juggle div {
+  opacity: 0.6;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: #FFF;
+  margin-top: 150px;
+  margin-left: 150px;
+  animations: juggle 2.1s linear infinite;
+}
+.preload-juggle div:nth-child(1) {
+  animation-delay: -0.7s;
+}
+.preload-juggle div:nth-child(2) {
+  animation-delay: -1.4s;
+}
+
+@keyframes juggle {
+  0% {
+    transform: translateX(0px) translateY(0px);
+  }
+  12.5% {
+    transform: translateX(27.5px) translateY(-57px) scale(1.1);
+    background: #F7EFCD;
+  }
+  25% {
+    transform: translateX(55px) translateY(0px);
+    animation-timing-function: ease-out;
+  }
+  37.5% {
+    transform: translateX(27.5px) translateY(57px);
+  }
+  50% {
+    transform: translateX(0px) translateY(0px);
+  }
+  62.5% {
+    transform: translateX(-27.5px) translateY(-57px) scale(1.1);
+    animation-timing-function: ease-in;
+  }
+  75% {
+    transform: translateX(-55px) translateY(0px);
+    animation-timing-function: ease-out;
+  }
+  87.5% {
+    transform: translateX(-27.5px) translateY(57px);
+  }
+  100% {
+    transform: translateX(0px) translateY(0px);
+  }
+}
+
+
 @keyframes slideUp {
     0% {
         transform: translateY(100%);

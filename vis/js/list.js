@@ -202,7 +202,7 @@ function myListView() {
 
       })
 
-      // loadBigImage(data[0]);
+      //loadBigImage(data[parseInt(Math.random()*data.length)]);
 
       //console.log(_data[0])
 
@@ -629,17 +629,22 @@ function myListView() {
   }
 
   var loadedBigInterval = null;
+  var detailLoader = d3.select(".detailLoader");
 
   function loadBigImage(d, callback) {
       c("loadBig", d.id);
 
       var url = "https://s3.eu-central-1.amazonaws.com/fw4/large/" + d.id + ".jpg";
 
+      
+
       d3.xhr(url)
         .responseType("blob")
         // .mimeType('text/plain; charset=x-user-defined')
-        .on("progress", function() { 
-          console.log("progress", (d3.event.loaded/d3.event.total)*100);
+        .on("progress", function() {
+          var progress = parseInt((d3.event.loaded/d3.event.total)*100); 
+          console.log("progress", progress);
+          detailLoader.text(progress);
         })
         .on("load", function(req) { 
           console.log("success!", req, req.response);
@@ -675,6 +680,7 @@ function myListView() {
             d.big = true;
 
             stage5.addChild(sprite);
+
           })
           img.src = blobUrl;
 
