@@ -51,17 +51,23 @@ function Loader(url){
   return loader;
 }
 
-function LoaderMultiple(){
+
+
+
+
+
+
+function LoaderMultiple(url){
   var progress = 0,
       loaded = 0,
       total = 0;
 
-  var size = 11;
-  var url = "data/multiple1000/1000-";
-  var urls = d3.range(size).map(function(d){ return url + d + ".csv"});
+  var size = 10;
+  var urls = d3.range(size+1).map(function(d){ return url + d + ".csv"});
   var index = 0;
+  var itemsLoaded = 0;
 
-  var container,indicator;
+  var container,indicator,label;
 
   var loader = {};
   var finished = function(){};
@@ -73,10 +79,12 @@ function LoaderMultiple(){
   };
 
   loader.progress = function(){
-    total = (d3.event.total == 0) ? 80333701 : d3.event.total;
+    //console.log(d3.event.total, d3.event.loaded)
+    total = (d3.event.total == 0) ? 8497147 : d3.event.total;
     loaded = d3.event.loaded;
     progress = parseInt((loaded/total)*100);
 
+    label.text("loading " + (itemsLoaded + parseInt(progress*1.20)) + " sketches");
     indicator.style("height", progress + "%");
 
     console.log(progress);
@@ -86,15 +94,18 @@ function LoaderMultiple(){
     
     container = d3.select(".detailLoader")
     container.selectAll("div").remove();
-    container.append("div").classed("label", true).text("loading");
+    label = container.append("div").classed("label", true).text("loading");
     indicator = container.append("div").classed("indicator", true);
 
     d3.csv(url)
         .on("progress", loader.progress)
         .on("load", function(data){
           finished(data);
-          container.selectAll("div").remove();
-          if(index < size-1){
+
+          itemsLoaded += data.length;
+         // container.selectAll("div").remove();
+
+          if(index < size){
             index++;
             loader.load(urls[index]);
           }
