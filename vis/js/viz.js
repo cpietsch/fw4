@@ -81,7 +81,7 @@ function init() {
                             imagesMap = d3.map(images, function(d) {
                                 return d.id;
                             });
-                            LoaderMultiple(s3 + "multiple1000/1000-").finished(function(data){
+                            LoaderMultiple(s3 + "multiple1000-s/1000-").finished(function(data){
                                 //console.log("push", data);
 
                                 data.forEach(function(d){

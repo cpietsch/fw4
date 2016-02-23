@@ -114,7 +114,7 @@ function LoaderMultiple(url){
       loaded = 0,
       total = 0;
 
-  var size = 10;
+  var size = 9;
   var urls = d3.range(size+1).map(function(d){ return url + d + ".csv"});
   var index = 0;
   var itemsLoaded = 0;
