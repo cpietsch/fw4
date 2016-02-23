@@ -64,7 +64,7 @@ canvas {
 }
 
 .detailLoader {
-   box-shadow: 0 0px 56px rgba(0, 0, 0, 0.66), 0 0px 6px rgba(0, 0, 0, 0.23);
+   /* box-shadow: 0 0px 56px rgba(0, 0, 0, 0.66), 0 0px 6px rgba(0, 0, 0, 0.23); */
    opacity: 1;
    color: #F4E7C5;
    z-index: 100;
@@ -74,10 +74,10 @@ canvas {
    font-weight: bold;
    height: 100%;
    width: 30px;
-   background: rgb(53, 54, 54);
+   /* background: rgb(55, 55, 55); */
 }
 .detailLoader .indicator{
-  background: #545454;
+  background: rgba(255, 255, 255, 0.24);
   width: 100%;
   position: relative;
   transition: height 1s;

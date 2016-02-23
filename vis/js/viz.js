@@ -81,11 +81,22 @@ function init() {
                             imagesMap = d3.map(images, function(d) {
                                 return d.id;
                             });
-                            Loader(s3 + "data/neu_1000.csv").finished(function(images2) {
-                                imagesMap2 = d3.map(images2, function(d) {
-                                    return d.id;
-                                });
-                            });
+                            LoaderMultiple().finished(function(data){
+                                //console.log("push", data);
+
+                                data.forEach(function(d){
+                                    d.id = d.id*1;
+                                    imagesMap2.set(d.id, d);
+                                    //console.log(d.id, d.image);
+                                })
+
+                                //console.log(imagesMap2);
+                            })
+                            // Loader(s3 + "data/neu_1000.csv").finished(function(images2) {
+                            //     imagesMap2 = d3.map(images2, function(d) {
+                            //         return d.id;
+                            //     });
+                            // });
                         } else {
                             imagesMap = d3.map(utils.fakeDataSmall(data), function(d) {
                                 return d.id;

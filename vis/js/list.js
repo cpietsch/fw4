@@ -1178,6 +1178,8 @@ function myListView() {
       });
       d.loaded = true;
 
+      //console.log(imagesMap2.get(d.id), d.id)
+
       img.src = "data:image/jpg;base64," + imagesMap2.get(d.id).image;
   }
 
