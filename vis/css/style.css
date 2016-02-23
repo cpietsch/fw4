@@ -48,7 +48,6 @@ body {
   overflow: none;
   height: 100%;
   background: #131415;
-  
   /*-moz-user-select: none;
    -webkit-user-select: none; 
   -ms-user-select:none;
@@ -66,7 +65,7 @@ canvas {
 .detailLoader {
    /* box-shadow: 0 0px 56px rgba(0, 0, 0, 0.66), 0 0px 6px rgba(0, 0, 0, 0.23); */
    opacity: 1;
-   color: #F4E7C5;
+   color: #CCCBC8;
    z-index: 100;
    position: absolute;
    right: 0;
@@ -96,10 +95,10 @@ canvas {
     transform-origin: left bottom;
 }
 
-.sideLoader {
-   // box-shadow: 0 0px 56px rgba(0, 0, 0, 0.66), 0 0px 6px rgba(0, 0, 0, 0.23);
+.sideLoader {//
+   box-shadow: 0 0px 56px rgba(0, 0, 0, 0.66), 0 0px 6px rgba(0, 0, 0, 0.23);
    opacity: 1;
-   color: #F4E7C5;
+   color: #C1C1C1;
    z-index: 300;
    position: absolute;
    right: 0;
@@ -110,7 +109,8 @@ canvas {
    /* background: rgb(55, 55, 55); */
 }
 .sideLoader .indicator{
-  background: rgba(152, 152, 152, 0.24);
+  background: rgba(0, 0, 0, 0.24);
+  // background: #C1C1C1;
   width: 100%;
   position: relative;
   transition: height 1s;

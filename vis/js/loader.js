@@ -3,6 +3,7 @@
 // tweet me @chrispiecom
 // 2015-2016
 
+// need to refactor & clean this
 
 function Loader(url){
   var progress = 0,
@@ -82,7 +83,7 @@ function LoaderBlob(url){
     container = d3.select(".sideLoader");
     container.selectAll("div").remove();
 
-    container.append("div").classed("label", true).text("loading");
+    container.append("div").classed("label", true).text("loading hires");
 
     indicator = container.append("div").classed("indicator", true);
 
