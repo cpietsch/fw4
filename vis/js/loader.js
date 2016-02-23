@@ -116,7 +116,7 @@ function LoaderMultiple(url){
       total = 0;
 
   var size = 9;
-  var urls = d3.range(size+1).map(function(d){ return url + d + ".csv"});
+  var urls = d3.range(size+1).map(function(d){ return url + d + ".gz.csv"});
   var index = 0;
   var itemsLoaded = 0;
   var totalProgress = 0;
@@ -150,6 +150,7 @@ function LoaderMultiple(url){
     d3.csv(url)
         .on("progress", loader.progress)
         .on("load", function(data){
+          // console.log(data[0]);
           finished(data);
 
           itemsLoaded += data.length;
