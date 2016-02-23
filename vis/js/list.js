@@ -629,9 +629,37 @@ function myListView() {
   }
 
   var loadedBigInterval = null;
-  var detailLoader = d3.select(".detailLoader");
 
   function loadBigImage(d, callback) {
+      // c("loadBig", d.id);
+
+      var url = "https://s3.eu-central-1.amazonaws.com/fw4/large/" + d.id + ".jpg";
+
+      LoaderBlob(url).finished(function(blobUrl){
+        var img = new Image();
+          img.addEventListener("load", function() {
+            var base = new PIXI.BaseTexture(img);
+            var texture = new PIXI.Texture(base);
+            var sprite = new PIXI.Sprite(texture);
+
+            // c(texture.baseTexture.hasLoaded, sprite);
+
+            sprite.anchor.x = 0.5;
+            sprite.anchor.y = 0.5;
+            sprite.position.x = d.x * scale3 + imageSize3 / 2;
+            sprite.position.y = d.y * scale3 + imageSize3 / 2;
+            sprite._data = d;
+            d.big = true;
+
+            stage5.addChild(sprite);
+
+          })
+          img.src = blobUrl;
+      })
+
+  }
+
+  function loadBigImage1(d, callback) {
       c("loadBig", d.id);
 
       var url = "https://s3.eu-central-1.amazonaws.com/fw4/large/" + d.id + ".jpg";

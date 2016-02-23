@@ -96,6 +96,39 @@ canvas {
     transform-origin: left bottom;
 }
 
+.sideLoader {
+   // box-shadow: 0 0px 56px rgba(0, 0, 0, 0.66), 0 0px 6px rgba(0, 0, 0, 0.23);
+   opacity: 1;
+   color: #F4E7C5;
+   z-index: 300;
+   position: absolute;
+   right: 0;
+   top: 0;
+   font-weight: bold;
+   height: 100%;
+   width: 30px;
+   /* background: rgb(55, 55, 55); */
+}
+.sideLoader .indicator{
+  background: rgba(152, 152, 152, 0.24);
+  width: 100%;
+  position: relative;
+  transition: height 1s;
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.16); */
+}
+.sideLoader .label {
+    width: 220px;
+    color: rgba(255, 255, 255, 0.71);
+    font-size: 11px;
+    text-transform: uppercase;
+    position: absolute;
+    top: 0px;
+    left: 8px;
+    z-index: 200;
+    transform: rotate(90deg);
+    transform-origin: left bottom;
+}
+
 .preload-juggle {
   z-index: 100;
   width: 300px;
