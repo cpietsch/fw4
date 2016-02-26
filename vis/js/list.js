@@ -118,6 +118,7 @@ function myListView() {
       // console.log("resize")
       width = window.innerWidth - margin.left - margin.right;
       height = window.innerHeight < minHeight ? minHeight : window.innerHeight;
+      widthOuter = window.innerWidth;
 
       renderer.resize(width + margin.left + margin.right, height);
 
@@ -925,6 +926,7 @@ function myListView() {
       if (zoomedToImage && zoomedToImageScale - 20 > scale) {
           // c("clear")
           zoomedToImage = false;
+          state.lastZoomed = 0;
 
           showAllImages();
           clearBigImages();

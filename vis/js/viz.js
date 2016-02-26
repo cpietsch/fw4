@@ -19,7 +19,7 @@
 // 2015-2016
 
 // this is not meant for your eyes ;)
-// not yet at least - will publish the code on github soon
+// code will be published after some refactoring
 
 utils.welcome();
 
@@ -40,17 +40,17 @@ var feedbacked = false;
 
 logger.log({ action: "enter vis" });
 
-if(utils.isMobile()){
-  logger.log({ action: "mobile" }).sync();
-  alert("come back in some weeks");
-} else {
+// if(utils.isMobile()){
+//   logger.log({ action: "mobile" }).sync();
+//   //alert("come back in some weeks");
+// } else {
   if (Modernizr.webgl) {
       init();
     } else {
       logger.log({ action: "noWebGL" }).sync();
       alert("sorry you need webGL") 
     }
-}
+// }
 
 function init() {
 
