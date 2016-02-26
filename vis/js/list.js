@@ -43,8 +43,10 @@ function myListView() {
 
   var quadtree;
 
+  var maxZoomLevel = utils.isMobile() ? 600 : 450;
+
   var zoom = d3.behavior.zoom()
-      .scaleExtent([1, 450])
+      .scaleExtent([1, maxZoomLevel])
       .on("zoom", zoomed)
       .on("zoomend", zoomend)
       .on("zoomstart", zoomstart);
@@ -77,6 +79,9 @@ function myListView() {
   var bottomPadding = 50;
   var extent = [0, 0];
   var bottomZooming = true;
+
+  var touchstart = 0;
+  var vizContainer;
 
   var detailTemplate = _.template(d3.select("#detailTemplate").html());
   var detailContainer = d3.select(".sidebar")
@@ -237,12 +242,28 @@ function myListView() {
 
       chart.makeScales();
 
-    
-      d3.select(".viz")
+      
+
+      vizContainer = d3.select(".viz")
           .call(zoom)
           .on("mousemove", mousemove)
           .on("dblclick.zoom", null)
+          .on("touchstart", function(d){
+            mousemove(d);
+            touchstart = new Date()*1;
+          })
+          .on("touchend", function(d){
+            var touchtime = (new Date()*1) - touchstart;
+            if(touchtime > 250) return;
+            if(selectedImageDistance > 15) return;
+            if (selectedImage && !selectedImage.id) return;
+            if (selectedImage && !selectedImage.active) return;
+            if(drag) return;
+
+            zoomToImage(selectedImage, 1400 / Math.sqrt(Math.sqrt(scale)))
+          })
           .on("click", function() {
+               //console.log("click");
               // console.log("DRAG", drag)
               if (selectedImage && !selectedImage.id) return;
               if (drag) return;
@@ -287,7 +308,7 @@ function myListView() {
   function mousemove(d) {
       if(timelineHover) return;
 
-      var mouse = d3.mouse(this);
+      var mouse = d3.mouse(vizContainer.node());
       var p = toScreenPoint(mouse);
 
       // console.time("search")
@@ -609,7 +630,7 @@ function myListView() {
 
       detailContainer
           .classed("hide", false)
-          .classed("sneak", lang=="en")
+          .classed("sneak", (lang=="en" || utils.isMobile()) )
           .select(".inner")
           .html(detailTemplate(d))
 

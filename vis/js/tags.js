@@ -238,6 +238,9 @@ function myTagCloud() {
 
     //mouseclickCallback(d);
 
+    chart.highlightWords(filterWords);
+    //data.forEach(function(d){ d.highlight = d.active; })
+
     setTimeout(function(){
       mouseclickCallback(d);
     },300);

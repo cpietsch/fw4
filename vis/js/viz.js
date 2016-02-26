@@ -168,7 +168,13 @@ d3.select(".feedback, .language-container").on("click", function(){
 })
 
 var browserInfo = d3.select(".browserInfo");
+
+if(utils.isMobile()){
+    browserInfo.text("Beware! This prototype will download 100mb of data.")
+}
+
 if(utils.isSafari()){
+
   browserInfo
     .on("click", function(){ browserInfo.remove(); })
     .classed("show", true)
@@ -205,7 +211,7 @@ window.onbeforeunload = function() {
     // }
 };
 
-window.onerror = function(message, url, lineNumber) {  
+window.onerrors = function(message, url, lineNumber) {  
   //save error and send to server for example.
   // console.error(message, lineNumber, url);
   logger.log({ action: "error", target: lineNumber + ": " + message });
