@@ -1,6 +1,6 @@
 // christopher pietsch
 // cpietsch@gmail.com
-// tweet me @chrispiecom
+// twitter @chrispiecom
 // 2015-2016
 
 // this is not meant for your eyes ;)
