@@ -358,9 +358,10 @@ function myListView() {
       years.forEach(function(year) {
           var startX = x(+year.key);
           var total = year.values.length;
-          // year.values.sort(function(a,b){
-          //   return a.hochkant - b.hochkant;
-          // })
+          year.values.sort(function(a,b){
+            return b.keywords.length - a.keywords.length;
+          })
+          //console.log(year.values)
 
           year.values.forEach(function(d, i) {
               var row = (Math.floor(i / collumns) + 2);

@@ -76,11 +76,15 @@ function myTagCloud() {
     chart.filter(filterWords);
 
     var keywords = [];
+    // var topographisch = [];
     data.forEach(function(d) {
       if(d.active){
         d.keywords.forEach(function(keyword) {
           keywords.push({ keyword: keyword, data: d });
         })
+        // d.topographisch.forEach(function(keyword) {
+        //   topographisch.push({ keyword: keyword, data: d });
+        // })
       }
     });
 
@@ -96,6 +100,19 @@ function myTagCloud() {
       .sort(function(a,b){
         return b.values.length - a.values.length;
       })
+
+
+  // var nestTopographisch = d3.nest()
+  //     .key(function(d) {  return d.keyword; })
+  //     .entries(topographisch)
+  //     .sort(function(a,b){
+  //       return b.values.length - a.values.length;
+  //     })
+  //     .forEach(function (d) {
+  //       console.log(d.key, d.values.length);
+  //     })
+
+ // console.log(nestTopographisch)
 
   var sliceNum = parseInt(sliceScale(width));
 

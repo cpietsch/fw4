@@ -115,7 +115,16 @@ utils.clean = function(data,texte,transKeyword) {
 		  .value()
 		  // .map(function(d){ return d; })
 
-		// console.log(d.keywords)
+		// d.topographisch = _(d.index)
+		// 	.split(";")
+		// 	.filter(function(d){ return d.indexOf("topographisch") > -1; })
+			
+		// 	// .map(function(d){ var s = d.split(":").map(_.trim); return s[2] == "Stadt" ? s[3] : s[2]; })
+		// 	.map(function(d){ var s = d.split(":").map(_.trim); return s[s.length-1]; })
+		// 	.value()
+		// 	.filter(function(d){ return d.length; })
+
+		//console.log(d.topographisch);
 
 		if(lang == "en"){
 			d.keywords = d.keywords.map(function(d){
