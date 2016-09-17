@@ -1,1 +1,5 @@
 logs/*
+gogh/*
+gogh/scripts/node/*
+gogh/data/images/*
+postcards/*
