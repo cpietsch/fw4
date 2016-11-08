@@ -36,7 +36,7 @@ function Logger() {
 
         var upload = JSON.stringify(_buffer);
         _buffer = [];
-        d3.json("http://uclab.fh-potsdam.de/fw4/log.php")
+        d3.json("https://uclab.fh-potsdam.de/fw4/log.php")
             // .header("Content-Type", "application/json")
             .post(upload, function(error, data) {
                 console.warn("done uploading")
