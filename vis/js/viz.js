@@ -14,8 +14,7 @@
 //    `----'          '---"           '--'                              `---'           
 
 // christopher pietsch
-// cpietsch@gmail.com
-// tweet me @chrispiecom
+// @chrispiecom
 // 2015-2016
 
 // this is not meant for your eyes ;)
@@ -26,9 +25,10 @@ utils.welcome();
 _.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
 
 var local = false;
-var s3 = local ? (lang == "en" ? "../../vis/" : "") : "http://s3.eu-central-1.amazonaws.com/fw4/";
+var s3 = local ? (lang == "en" ? "../../vis/" : "") : "https://s3.eu-central-1.amazonaws.com/fw4/";
 
 var data;
+var links;
 var imagesMap;
 var imagesMap2 = d3.map([]);
 var cloud;
@@ -40,6 +40,7 @@ var feedbacked = false;
 
 logger.log({ action: "enter vis" });
 
+// 
 // if(utils.isMobile()){
 //   logger.log({ action: "mobile" }).sync();
 //   //alert("come back in some weeks");
@@ -63,7 +64,7 @@ function init() {
     d3.csv(s3 + "data/timeline.csv", function(timeline) {
         d3.csv(s3 + "data/themen.csv", function(texte) {
             d3.csv(s3 + "data/transKeyword.csv", function(transKeyword) {
-                Loader(s3 + "data/spsg.csv").finished(function(data) {
+                Loader(s3 + "data/spsgTSNE.csv").finished(function(data) {
                     Loader(s3 + "data/neu_100.csv").finished(function(images) {
                         logger.log({
                             action: "loaded"
@@ -74,6 +75,7 @@ function init() {
                         // c(texte)
                         // data cleaning
                         utils.clean(data, texte, transKeyword);
+                        links = utils.makeLinks(data);
 
                         // utils.printkeyowords(data);
 
@@ -109,7 +111,7 @@ function init() {
                         cloud.init(data);
 
                         // list.loadTimeline(timeline);
-                        list.init(data, timeline);
+                        list.init(data, timeline, links);
 
 
                         cloud.mouseenterCallback(function(d) {
@@ -117,7 +119,7 @@ function init() {
                         })
 
                         cloud.mouseclickCallback(function(d) {
-                            list.flip(d);
+                            list.project(d);
                         })
 
 
@@ -159,6 +161,31 @@ d3.select(".infobutton")
     var s = !d3.select(".infobar").classed("sneak");
     d3.select(".infobar").classed("sneak", s)
     logger.log({ action: !s ? "open" : "close" , target: "info" });
+  })
+
+d3.select(".tsne")
+  .on("click", function(){
+    // var t =  d3.select(".tsne").text();
+    // var t2 = t == "grid" ? "tsne" : "grid";
+    // d3.select(".tsne").text(t2);
+    // list.setMode(t2);
+    list.setMode("tsne");
+    d3.selectAll(".navi .button").classed("active", false);
+    d3.select(this).classed("active", true);
+  })
+
+d3.select(".grid")
+  .on("click", function(){
+    list.setMode("grid");
+    d3.selectAll(".navi .button").classed("active", false);
+    d3.select(this).classed("active", true);
+  })
+
+d3.select(".time")
+  .on("click", function(){
+    list.setMode("time");
+    d3.selectAll(".navi .button").classed("active", false);
+    d3.select(this).classed("active", true);
   })
 
 d3.select("#feedback").on("click", function(){ feedbacked = true; })

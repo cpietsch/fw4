@@ -43,10 +43,11 @@ function myListView() {
 
   var quadtree;
 
-  var maxZoomLevel = utils.isMobile() ? 600 : 450;
+  var maxZoomLevel = utils.isMobile() ? 5000 : 2500;
 
   var zoom = d3.behavior.zoom()
       .scaleExtent([1, maxZoomLevel])
+      .size([width,height])
       .on("zoom", zoomed)
       .on("zoomend", zoomend)
       .on("zoomstart", zoomstart);
@@ -82,6 +83,20 @@ function myListView() {
 
   var touchstart = 0;
   var vizContainer;
+  var links;
+
+  var state = { 
+    lastZoomed:0,
+    zoomingToImage: false,
+    mode: "time",
+    last: { mode: "time" }
+  };
+
+
+  var tsneGrid = false;
+
+  var force = d3.layout.force()
+      .size([width, height])
 
   var detailTemplate = _.template(d3.select("#detailTemplate").html());
   var detailContainer = d3.select(".sidebar")
@@ -119,6 +134,17 @@ function myListView() {
 
   function chart() {}
 
+  chart.setMode = function(name){
+    timeline.classed("hide", function(d){ return name != "time" });
+    state.last.mode = state.mode;
+    state.mode = name;
+    chart.project();
+  }
+
+  chart.setTsneGrid = function(d){
+    tsneGrid = d;
+    chart.initTSNE();
+  }
   chart.resize = function() {
       // console.log("resize")
       width = window.innerWidth - margin.left - margin.right;
@@ -128,7 +154,7 @@ function myListView() {
       renderer.resize(width + margin.left + margin.right, height);
 
       chart.makeScales();
-      chart.flip();
+      chart.project();
   }
 
   chart.makeScales = function() {
@@ -159,8 +185,9 @@ function myListView() {
       });
   }
 
-  chart.init = function(_data,_timeline) {
+  chart.init = function(_data,_timeline,_links) {
       data = _data;
+      links = _links;
 
       container = d3.select(".page").append("div").classed("viz", true);
 
@@ -201,6 +228,10 @@ function myListView() {
           
           sprite.anchor.x = 0.5;
           sprite.anchor.y = 0.5;
+
+          sprite.scale.x = d.scaleFactor;
+          sprite.scale.y = d.scaleFactor;
+
           sprite._data = d;
           d.sprite = sprite;
 
@@ -299,7 +330,11 @@ function myListView() {
       timeline = d3.select(".viz").append("div").classed("timeline", true)
           .style("transform", "translate(" + 0 + "px," + (height - 30) + "px)");
 
-      chart.flip();
+      //chart.flip();
+      //chart.initGraph();
+      //chart.initTSNE();
+      chart.project();
+
       animate();
 
   };
@@ -360,6 +395,7 @@ function myListView() {
           var total = year.values.length;
           year.values.sort(function(a,b){
             return b.keywords.length - a.keywords.length;
+            // return b.scaleFactor - a.scaleFactor;
           })
           //console.log(year.values)
 
@@ -570,7 +606,6 @@ function myListView() {
   var zoomedToImageScale = 117;
   var zoomBarrier = 2;
   // todo: zoombarrier as d3.scale.threshold()
-  var state = { lastZoomed:0, zoomingToImage: false };
 
   function zoomToImage(d, duration) {
 
@@ -674,6 +709,8 @@ function myListView() {
             var sprite = new PIXI.Sprite(texture);
 
             // c(texture.baseTexture.hasLoaded, sprite);
+            sprite.scale.x = d.scaleFactor;
+            sprite.scale.y = d.scaleFactor;
 
             sprite.anchor.x = 0.5;
             sprite.anchor.y = 0.5;
@@ -704,6 +741,9 @@ function myListView() {
           var sprite = new PIXI.Sprite(texture);
 
           //c(texture.baseTexture.hasLoaded, sprite);
+
+          sprite.scale.x = d.scaleFactor;
+          sprite.scale.y = d.scaleFactor;
 
           sprite.anchor.x = 0.5;
           sprite.anchor.y = 0.5;
@@ -956,11 +996,15 @@ function myListView() {
       }
 
       //domain
-      updateDomain(x1, x2);
+      // console.log(state);
+      if(state.mode == "time"){
+        updateDomain(x1, x2);
 
-      var timeY = ((height) * scale - (-1 * translate[1]) - rangeBandImage * scale);
-      timeline
-          .style("transform", "translate(" + 0 + "px," + timeY + "px)");
+        var timeY = ((height) * scale - (-1 * translate[1]) - rangeBandImage * scale);
+        timeline
+            .style("transform", "translate(" + 0 + "px," + timeY + "px)");
+      }
+     
 
       // toggle zoom overlays
       if (scale > zoomBarrier) {
@@ -989,12 +1033,18 @@ function myListView() {
       startScale = scale;
   }
 
+  var thresholdScale = d3.scale.threshold()
+    .domain([1.1,115,116])
+    .range(["far","middle","close","detail"])
+
 
   function zoomend(d) {
       drag = translate !== startTranslate;
       zooming = false;
 
       filterVisible();
+
+      //console.log(scale, thresholdScale(scale))
 
       logger.log({
           action: "zoomend",
@@ -1010,36 +1060,151 @@ function myListView() {
   }
 
   chart.highlight = function() {
-
       data.forEach(function(d, i) {
           d.alpha = d.highlight ? 1 : 0.2;
       });
+  }
+
+  chart.project = function(){
+    if(state.mode == "tsne" || state.mode == "grid"){
+      chart.projectTSNE();
+    }
+    else {
+      chart.split();
+    }
+    chart.resetZoom();
+  }
+
+  chart.projectTSNE = function(){
+
+    var marginBottom = -height / 2.5;
+
+    var inactive = data.filter(function(d){ return !d.active; });
+    var inactiveSize = inactive.length;
+
+    var active = data.filter(function(d){ return d.active; });
+
+    inactive.sort(function(a,b){ return a.rTSNE - b.rTSNE });
+
+    inactive.forEach(function(d,i){
+      var r = 300 + d.scaleFactor*100;
+      var a =  -Math.PI/2+ (i/inactiveSize) * 2*Math.PI; 
+      var factor = 10;
+
+      d.x = r * Math.cos(a) +width/2;
+      d.y = r * Math.sin(a) +marginBottom;
+    });
+
+    active.forEach(function(d){
+
+      if(state.mode == "tsne"){
+        var factor = 10;
+        d.x = d.tsne[0]*factor +width/2;
+        d.y = d.tsne[1]*factor +marginBottom;
+      } else {
+        var factor =8;
+        d.x = d.grid[0]*factor +width/2 - 150;
+        d.y = d.grid[1]*factor-150 +marginBottom;
+      }
+     
+    })
+
+    data.forEach(function(d){
+      d.x1 = d.x * scale1 + imageSize / 2;
+      d.y1 = d.y * scale1 + imageSize / 2;
+
+      if (d.sprite.position.x == 0) {
+          d.sprite.position.x = d.x1;
+          d.sprite.position.y = d.y1;
+      }
+
+      if (d.sprite2) {
+          d.sprite2.position.x = d.x * scale2 + imageSize2 / 2;
+          d.sprite2.position.y = d.y * scale2 + imageSize2 / 2;
+      }
+    });
+
+
+    quadtree = Quadtree(data);
+    //chart.resetZoom();
+
+
+  }
+
+  chart.initGraph = function(){
+    
+
+    console.log(data)
+    console.log(links)
+
+    force
+      .nodes(data)
+      .links(links)
+      .charge(-2)
+      .gravity(0.01)
+      .linkDistance(10)
+      .on("tick", chart.tick)
+      .start();
+
+
+    quadtree = Quadtree(data);
+    chart.resetZoom();
+
+    // svg
+    //     .call(zoom.translate(translate).event)
+    //     .transition().duration(2000)
+    //     .call(zoom.scale(1).translate([0, -height]).event)
+
+  }
+
+  chart.tick = function(){
+
+    console.log("tick")
+
+    data.forEach(function(d){
+      d.x1 = d.x * scale1 + imageSize / 2;
+      d.y1 = d.y * scale1 + imageSize / 2;
+
+      if (d.sprite.position.x == 0) {
+          d.sprite.position.x = d.x1;
+          d.sprite.position.y = d.y1;
+      }
+
+      if (d.sprite2) {
+          d.sprite2.position.x = d.x * scale2 + imageSize2 / 2;
+          d.sprite2.position.y = d.y * scale2 + imageSize2 / 2;
+      }
+    })
 
   }
 
   chart.resetZoom = function() {
       var time = 1400;
+      var scale = 1;
 
-      extent = d3.extent(data, function(d) {
-          return d.y;
-      });
-      var y = -extent[1] - bottomPadding;
+      extent = d3.extent(data, function(d) { return d.y; });
+      var y;
 
-      bottomZooming = (y<-30 && y>-40);
+      if(state.mode == "time"){
+        y = -extent[1] - bottomPadding;
+        bottomZooming = (y<-30 && y>-40);
+      } else {
+        //time = state.last.mode == "time" ? 1 : 1400;
+        y = -bottomPadding;
+        bottomZooming = false;
+        extent[1] = -y;
+        scale = 2;
+      }
+
+      
 
       svg
           .call(zoom.translate(translate).event)
           .transition().duration(time)
-          .call(zoom.scale(1).translate([0, y]).event)
+          .call(zoom.translate([0, (y)]).scale(1).event)
           //.each("end", chart.split)
   }
 
-  chart.flip = function() {
-
-      chart.split();
-      chart.resetZoom();
-
-  }
 
   chart.split = function() {
       var oben = data.filter(function(d) {
@@ -1164,6 +1329,8 @@ function myListView() {
           var texture = new PIXI.Texture(base);
           var sprite = new PIXI.Sprite(texture);
 
+          sprite.scale.x = d.scaleFactor;
+          sprite.scale.y = d.scaleFactor;
 
           sprite.anchor.x = 0.5;
           sprite.anchor.y = 0.5;

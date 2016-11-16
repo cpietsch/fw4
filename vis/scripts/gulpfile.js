@@ -14,5 +14,5 @@ gulp.task('compress', function() {
   return gulp.src(["../js/list.js", "../js/tags.js"])
     .pipe(uglify())
     .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('../js/'));
 });

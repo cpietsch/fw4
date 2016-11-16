@@ -20,9 +20,9 @@ utils.isSafari = function(){
 
 utils.welcome = function(){
 
-	if (window.console)
+    if (window.console)
     {
-        window.console.log('FW4 visualisation prototype - http://www.chrispie.com/'); //jshint ignore:line
+        window.console.log('FW4 visualisation prototype - http://www.chrispie.com - http://uclab.fh-potsdam.de'); //jshint ignore:line
     }
 }
 
@@ -76,7 +76,15 @@ utils.clean = function(data,texte,transKeyword) {
 	var texteMap = d3.map(texte, function(d){ return d.name; });
 	var keywordMap = d3.map(transKeyword, function(d){ return d.de; });
 
+	// var medianHeight = d3.median(data, function(d){ return +d.hoehe; });
+	// var medianWidth = d3.median(data, function(d){ return +d.breite; });
+	//console.log(medianHeight, medianWidth);
+	var medianSize = 2210;
+	var scaleSize = d3.max(data, function(d){ return +d.hoehe; });;
+	scaleSize = medianSize*1.5;
+
 	data.forEach(function(d,i){
+		d.i = i;
 		d.id = +d.id;
 		d.alpha = 1;
 		d.breite = +d.breite;
@@ -141,9 +149,12 @@ utils.clean = function(data,texte,transKeyword) {
 		  .value()
 		  .filter(function(d){ return d != ""; })
 		  .map(function(d1){
-		  	if(!texteMap.get(d1)) console.log(d1,d)
+		  	//if(!texteMap.get(d1)) console.log(d1,d)
 		  	return texteMap.get(d1);
 		  })
+
+
+		
 
 
 		// }
@@ -168,8 +179,38 @@ utils.clean = function(data,texte,transKeyword) {
 		  'separator': /,? +/
 		});
 
+		d.scaleFactor = d.hochkant ? (d.hoehe / scaleSize) : (d.breite / scaleSize);
+		// d.scaleFactor -= 0.5;
+		// console.log(d.scaleFactor);
+		d.x = i;
+		d.y = i;
+
+		d.zusammenhang = d.zusammenhang.split(";").map(function(d){ return +d; });
+		d.tsne = d.tsne.split(" ").map(function(d){ return +d; });
+		d.grid = d.grid.split(" ").map(function(d){ return +d; });
+		d.rTSNE = -1* Math.atan2(d.tsne[0], d.tsne[1]);
+
 		d.order = i;
 	});
+
+	//console.log(data[0]);
+}
+
+utils.makeLinks = function(data){
+	var links = [];
+
+	data.forEach(function(d1){
+		d1.zusammenhang.forEach(function(d2){
+			var target = data.filter(function(d){ return d.id == d2; });
+			if(target.length==1){
+				links.push({ source: d1, target: target[0] });
+				// console.log(d1,target);
+				// console.log(d1.id,target[0].id);
+			}
+		})
+	})
+
+	return links;
 }
 
 utils.clean2 = function(data) {

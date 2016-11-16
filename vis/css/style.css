@@ -339,7 +339,9 @@ svg {
 }
 
 
-
+.timeline.hide {
+    display: none;
+}
 
 .timeline {
     z-index: 200;
