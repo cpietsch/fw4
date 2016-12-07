@@ -89,7 +89,8 @@ function myListView() {
     lastZoomed:0,
     zoomingToImage: false,
     mode: "time",
-    last: { mode: "time" }
+    last: { mode: "time" },
+    init: false
   };
 
 
@@ -146,6 +147,7 @@ function myListView() {
     chart.initTSNE();
   }
   chart.resize = function() {
+      if(!state.init) return;
       // console.log("resize")
       width = window.innerWidth - margin.left - margin.right;
       height = window.innerHeight < minHeight ? minHeight : window.innerHeight;
@@ -337,6 +339,7 @@ function myListView() {
 
       animate();
 
+      state.init = true;
   };
 
 

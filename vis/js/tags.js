@@ -26,6 +26,7 @@ function myTagCloud() {
   var sliceScale = d3.scale.linear().domain([1200,5000]).range([50, 200])
 
   var lock = false;
+  var state = { init: false };
 
   var mouseenterCallback = function(){};
 
@@ -45,7 +46,8 @@ function myTagCloud() {
   }
 
   chart.resize = function(){
-
+    if(!state.init) return;
+    
     width = window.innerWidth - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 

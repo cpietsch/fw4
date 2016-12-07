@@ -132,15 +132,17 @@ function init() {
 
     d3.select(window)
         .on("resize", function() {
-            clearTimeout(window.resizedFinished);
-            window.resizedFinished = setTimeout(function() {
-                list.resize();
-                cloud.resize();
-                logger.log({
-                    action: "resize",
-                    target: window.innerWidth + "," + window.innerHeight
-                });
-            }, 250);
+        	if(list !== undefined && cloud !== undefined) {
+        		clearTimeout(window.resizedFinished);
+        		window.resizedFinished = setTimeout(function() {
+        		    list.resize();
+        		    cloud.resize();
+        		    logger.log({
+        		        action: "resize",
+        		        target: window.innerWidth + "," + window.innerHeight
+        		    });
+        		}, 250);
+        	}
         })
 
     
